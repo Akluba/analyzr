@@ -6,29 +6,27 @@
 	<body>
 		<header>
 			<h1>Analyzr</h1>
-			<span>
-				<?php echo "<b>" .$user['username'] ."</b> \n"; ?>
-				<a href="#">Create Survey</a>
-				<a href="auth/logout">Logout</a>
-			</span>
+			<ul>
+				<li><?php echo "<strong>" .$user['username'] ."</strong>"; ?></li>
+				<li><a href="/analyzr/home/add_survey">Create Survey</a></li>
+				<li><a href="auth/logout">Logout</a></li>
+			</ul>
 		</header>
-		
-		<section>
-			<?php foreach ($survey as $item): ?>
-
-			<?php echo "<div class='survey_item'> \n"; ?>
-				<?php echo "<h2>" .$item->title ."</h2> \n"; ?>
-				<?php echo "<h3><b>Created </b>" .$item->createdDate ."</h3> \n"; ?>
-				<?php if($item->status == 1): ?><h3><b>Status </b> open </h3>
-				<?php else: ?><h3><b>Status </b> closed </h3><?php endif; ?>		
-				<a href="route/<?php echo $item->surveyId;?>">settings</a>
+		<section id="surveys">
+<?php foreach ($survey as $item): ?>
+			<article>
+				<h2><?php echo $item->title; ?></h2>
+				<h3>created <?php echo $item->createdDate; ?></h3>
+<?php if($item->status == 1): ?>
+				<h3>Status open</h3><?php else: ?>
+				<h3>Status closed</h3><?php endif ?>		
+				<a href="survey/settings/<?php echo $item->surveyId;?>">settings</a>
 				<a href="route/<?php echo $item->surveyId;?>">survey</a>
 				<a href="route/<?php echo $item->surveyId;?>">send</a>
 				<a href="route/<?php echo $item->surveyId;?>">results</a>
 				<a href="route/<?php echo $item->surveyId;?>">delete</a>
-			<?php echo "</div>"; ?>
-			
-			<?php endforeach ?>
+			</article>
+<?php endforeach ?>
 		</section>
 	</body>
 </html>
