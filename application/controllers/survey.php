@@ -28,13 +28,33 @@ public function __construct() {
 				
 		$survey_result = $this->settings_model->get_survey_settings($survey_id);
 		$data = array(
+			'userName' => $survey_result[0]->username,
+			'survey_id' => $survey_result[0]->surveyId,
 			'title' => $survey_result[0]->title,
 			'created' => $survey_result[0]->createdDate,
 			'status' => $survey_result[0]->status
 		);
 		
-		$this->load->view('side_nav');
-		$this->load->view('settings', $data);
+		$page_data = array(
+			'pageTitle' => 'Settings',
+			'headerContent' => $this->load->view('survey_header',$data, TRUE),
+			'navContent' => $this->load->view('side_nav',$data, TRUE),
+			'mainContent' => $this->load->view('settings',$data, TRUE)
+		);
+		
+		$this->load->view('templates/default', $page_data);
+	}
+	
+	public function update_title($survey_id){
+		$updated_title = $this->input->post('updated_title');
+		$survey_result = $this->settings_model->update_title($survey_id,$updated_title);
+		redirect('survey/settings/'.$survey_id,'refresh');
+	}
+	
+	public function update_status($survey_id){
+		$updated_status = $this->input->post('status_update');
+		$survey_result = $this->settings_model->update_status($survey_id,$updated_status);
+		redirect('survey/settings/'.$survey_id,'refresh');
 	}
 	
 	

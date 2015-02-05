@@ -36,11 +36,18 @@ class Home extends Auth_Controller {
 			);
 			// gathering all surveys belonging to user
 			$userId = $user_data['userId'];
+			$userName = $user_data['username'];
 			$survey_result = $this->home_model->get_survey_data($userId);
+			
+			$page_data = array(
+				'pageTitle' => 'Surveys',
+				'headerContent' => $this->load->view('home_header',array('user'=>$user_data), TRUE),
+				'mainContent' => $this->load->view('survey_list',array('survey'=>$survey_result), TRUE)
+			);
 			// load view and send data to display surveys
-			$this->load->view('survey_list', array('user'=>$user_data , 'survey'=>$survey_result));
+			$this->load->view('templates/default',$page_data);
 			// saving userId to be used in add_survey function
-			$this->session->set_flashdata('userId', $userId);	
+			$this->session->set_flashdata('userId', $userId);
 		}// end if
 	}// end index()
 	
@@ -53,7 +60,7 @@ class Home extends Auth_Controller {
 		// data to be stored in database
 		$data = array(
 			'userId' => $user_id,
-			'title' => 'Untitled Survey',
+			'title' => $this->input->post('survey_name'),
 			'createdDate' => $created_date,
 			'status' => 1
 		);
@@ -62,7 +69,7 @@ class Home extends Auth_Controller {
 		// newly added surveyId
 		$survey_id = $result;
 		// direct user to new survey settings
-		redirect('survey/settings/'.$survey_id, 'refresh');
+		redirect('home','refresh');
 	}// end add_survey()
 	
 	
