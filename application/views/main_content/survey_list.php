@@ -19,7 +19,7 @@
 				<h4>Status open</h4><?php else: ?>
 				<h4>Status closed</h4><?php endif ?>		
 				<a href="survey/settings/<?php echo $item->surveyId;?>">settings</a>
-				<a href="route/<?php echo $item->surveyId;?>">survey</a>
+				<a href="survey/builder/<?php echo $item->surveyId;?>">survey</a>
 				<a href="route/<?php echo $item->surveyId;?>">send</a>
 				<a href="route/<?php echo $item->surveyId;?>">results</a>
 			</article>

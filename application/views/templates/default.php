@@ -14,7 +14,7 @@
 			<?php if(isset($mainContent)){print $mainContent; }?>
 		</section>
 		<aside>
-			
+			<?php if(isset($sideContent)){print $sideContent; }?>
 		</aside>
 	</body>
 </html>

@@ -41,8 +41,8 @@ class Home extends Auth_Controller {
 			
 			$page_data = array(
 				'pageTitle' => 'Surveys',
-				'headerContent' => $this->load->view('home_header',array('user'=>$user_data), TRUE),
-				'mainContent' => $this->load->view('survey_list',array('survey'=>$survey_result), TRUE)
+				'headerContent' => $this->load->view('headers/home_header',array('user'=>$user_data), TRUE),
+				'mainContent' => $this->load->view('main_content/survey_list',array('survey'=>$survey_result), TRUE)
 			);
 			// load view and send data to display surveys
 			$this->load->view('templates/default',$page_data);
