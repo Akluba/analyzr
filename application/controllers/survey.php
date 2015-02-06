@@ -84,29 +84,59 @@ class Survey extends Auth_Controller {
 	######################################################################### */
 	
 	public function builder($survey_id){
-		
+		// passing survey_id to models to get data
 		$survey_result = $this->builder_model->get_survey_data($survey_id);
-		
-		
+		$question_data = $this->builder_model->get_question_data($survey_id);
+		$answer_data = $this->builder_model->get_answer_data($survey_id);
 		// data available to template
 		$data = array(
 			'userName' => $survey_result[0]->username,
 			'survey_id' => $survey_result[0]->surveyId,
 			'title' => $survey_result[0]->title,
 		);
-		
-			
 		// views to be loaded to builder section
 		$page_data = array(
 			'pageTitle' => 'Builder',
 			'headerContent' => $this->load->view('headers/survey_header',$data, TRUE),
 			'navContent' => $this->load->view('nav/side_nav',$data, TRUE),
-			'mainContent' => $this->load->view('main_content/builder',array('question'=>$survey_result), TRUE),
-			//'sideContent' => $this->load->view('side_content/settings_side',$data, TRUE)
-			
+			'mainContent' => $this->load->view('main_content/builder',array('questions'=>$question_data, 'answers'=>$answer_data), TRUE),
+			'sideContent' => $this->load->view('side_content/builder_side',$data, TRUE)	
 		);
 		// loading view
 		$this->load->view('templates/default', $page_data);
+	}// end of builder()
+	
+	
+	public function add_question($survey_id){
+		// get question data from user inputs
+		$question_data = array(
+			'surveyId' => $survey_id,
+			'questionType' => $this->input->post('question_type'),
+			'questionText' => $this->input->post('question_text'),
+			'questionRequire' => $this->input->post('question_require')
+		);
+		// pass data to model to insert question to database
+		$question_result = $this->builder_model->insert_question($question_data);
+		
+		// get answer data from user inputs
+		$question_id = $question_result;
+		$answer_data = array(
+			array(
+				'surveyId' => $survey_id,
+				'questionId' => $question_id,
+				'answerText' => $this->input->post('choice_1')
+			),
+			array(
+				'surveyId' => $survey_id,
+				'questionId' => $question_id,
+				'answerText' => $this->input->post('choice_2')
+			)
+		);
+		// pass data to model to insert answers to database
+		$answer_result = $this->builder_model->insert_answer($answer_data);
+		
+		// reload builder view w/ new question and answers
+		redirect('survey/builder/'.$survey_id,'refresh');
 	}
 	
 	

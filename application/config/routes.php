@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "landing";
 $route['404_override'] = '';
+$route['assets/(:any)'] = 'assets/$1';
 
 
 /* End of file routes.php */
