@@ -26,12 +26,12 @@ public function __construct() {
 	
 	//load login form
 	public function login_form(){
-		$this->load->view('login_form');
+		$this->load->view('auth/login_form');
 	}// end login_form()
 	
 	//load registration form
 	public function registration_form() {
-		$this->load->view('registration_form');
+		$this->load->view('auth/registration_form');
 	}// end registration_form()
 	
 	
@@ -42,7 +42,7 @@ public function __construct() {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 		// watching for form_val lib to be ran
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('login_form');
+			$this->load->view('auth/login_form');
 		}else{
 			// setting data to user's input posts
 			$log_data = array(
@@ -64,7 +64,7 @@ public function __construct() {
 				$log_data = array(
 				'error_message' => 'Invalid Username or Password'
 				);
-				$this->load->view('login_form', $log_data);
+				$this->load->view('auth/login_form', $log_data);
 			}// end else/if
 		}// end else/if
 	}// end login_process
@@ -76,7 +76,7 @@ public function __construct() {
 		$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('registration_form');
+			$this->load->view('auth/registration_form');
 		}else{
 			$reg_data = array(
 			'username' => $this->input->post('username'),
@@ -103,7 +103,7 @@ public function __construct() {
 				}
 			}else{
 				$data['message_display'] = 'email address already exist!';
-				$this->load->view('registration_form', $data);
+				$this->load->view('auth/registration_form', $data);
 			}// 
 		}// end if/else
 	}// end registration_process()
@@ -116,7 +116,7 @@ public function __construct() {
 		);
 		$this->session->unset_userdata('logged_in', $sess_array);
 		$data['message_display'] = 'Successfully Logout';
-		$this->load->view('login_form', $data);
+		$this->load->view('auth/login_form', $data);
 	}
 	
 }// end Auth Class

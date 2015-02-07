@@ -120,18 +120,29 @@ class Survey extends Auth_Controller {
 		
 		// get answer data from user inputs
 		$question_id = $question_result;
-		$answer_data = array(
-			array(
+		$choices = $this->input->post('choices');
+		$answer_data = array();
+		
+		// determine selected type of question by user
+		$question_type = $this->input->post('question_type');
+		// if text based answer -- limit answer to ONE null 
+		if($question_type == 4 || $question_type == 5){
+			$answer_data[] = array(
 				'surveyId' => $survey_id,
 				'questionId' => $question_id,
-				'answerText' => $this->input->post('choice_1')
-			),
-			array(
-				'surveyId' => $survey_id,
-				'questionId' => $question_id,
-				'answerText' => $this->input->post('choice_2')
-			)
-		);
+				'answerText' => NULL
+			);
+		}else{
+			// loop through choices array and create answer for each
+			foreach($choices as $choice){
+				$answer_data[] = array(
+					'surveyId' => $survey_id,
+					'questionId' => $question_id,
+					'answerText' => $choice
+				);
+			};// end foreach
+		}// end if/else
+		
 		// pass data to model to insert answers to database
 		$answer_result = $this->builder_model->insert_answer($answer_data);
 		
