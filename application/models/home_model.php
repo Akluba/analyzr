@@ -32,6 +32,11 @@ Class Home_model extends CI_Model {
 	// Insert new survey data
 	public function new_survey_insert($data) {
 		$this->db->insert('survey', $data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}// end new_survey_insert()
 	
 }// end Home_model Class

@@ -4,24 +4,21 @@ html{
 body{
 	margin: 0;
 }
-header{
-	height: 67px;
-	width: 100%;
-	background-color: #212121;
+h2{
+	color: #bcb7ad;
 }
-header h1{
+h2 strong{
+	color: #44749d;
+}
+h3{
 	margin: 0;
-	float: left;
-	color: white;
 }
-header ul{
-	float: right;
+p{
+	margin: 0;
 }
-header ul li{
-	float: left;
-	color: white;
-	list-style-type: none;	
-}
+
+
+
 
 #parent{
     margin-top:67px;
@@ -31,16 +28,7 @@ header ul li{
     right:0px; 
     bottom:0px;
 }
-nav{
-    position:absolute;
-    z-index: 1;
-    width: 60px;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    background-color: #fefafa;
-    overflow: scroll;
-}
+
 section{
     position:absolute; 
     z-index: 2;
@@ -61,21 +49,93 @@ aside{
     background-color: #fefafa;
     overflow: scroll;
 }
-
-
-
-
-
-
-
-nav{
-	width: 60px;
-	
+/* ########################################################################### 
+######################### HEADER #############################################
+########################################################################### */
+header{
+	height: 67px;
+	width: 100%;
+	background-color: #212121;
+}
+header h1{
+	margin: 0;
 	float: left;
-	
-	background-color: #fefafa;
+	color: white;
+}
+header ul{
+	float: right;
+}
+header ul li{
+	float: left;
+	color: white;
+	list-style-type: none;	
+}
+
+/* ########################################################################### 
+######################### SIDE NAV ###########################################
+########################################################################### */
+nav{
+    position:absolute;
+    z-index: 1;
+    width: 60px;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    background-color: #fefafa;
 }
 nav ul{
 	padding: 0;
-	list-style-type: none;
 }
+nav ul li{
+	list-style-type: none;
+	width: 40px;
+	height: 75px;
+	margin: 0 auto;
+}
+nav a{
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	font-size: 12px;
+}
+
+
+
+
+
+
+
+
+#container{
+	width: 90%;
+	margin: 0 auto;
+}
+#side_container{
+	width: 275px;
+	margin: 0 auto;
+}
+
+
+article{
+	background-color: #fefafa;
+	margin-bottom: 10px;
+}
+.article_header{
+	height: 25px;
+	background-color: #c6d5e1;
+	padding: 5px 0 0 15px;
+}
+.article_content{
+	padding: 15px;
+}
+
+
+textarea{
+	padding: 0;
+	width: 100%;
+	height: 85px;
+	resize: none;
+}
+
+
+

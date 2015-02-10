@@ -18,12 +18,22 @@ Class Settings_model extends CI_Model {
 	public function update_title($survey_id,$updated_title){
 		$this->db->where('surveyId', $survey_id);
 		$this->db->update('survey', array('title' => $updated_title));
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}// end update_title()
 	
 	// Update Status
 	public function update_status($survey_id,$updated_status){
 		$this->db->where('surveyId', $survey_id);
 		$this->db->update('survey', array('status' => $updated_status));
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}// end update_status()
 	
 	// Remove Survey

@@ -5,13 +5,6 @@
 	</head>
 	<body>
 	<?php
-	if (isset($logout_message)) {
-	echo "<div class='message'>";
-	echo $logout_message;
-	echo "</div>";
-	}
-	?>
-	<?php
 	if (isset($message_display)) {
 	echo "<div class='message'>";
 	echo $message_display;

@@ -35,8 +35,10 @@ class Survey extends Auth_Controller {
 			'userName' => $survey_result[0]->username,
 			'survey_id' => $survey_result[0]->surveyId,
 			'title' => $survey_result[0]->title,
+			'title_message' => $this->session->flashdata('title_message'),
 			'created' => $survey_result[0]->createdDate,
-			'status' => $survey_result[0]->status
+			'status' => $survey_result[0]->status,
+			'status_message' => $this->session->flashdata('status_message')
 		);
 		// views to be loaded to settings section
 		$page_data = array(
@@ -53,22 +55,57 @@ class Survey extends Auth_Controller {
 	
 	// updating the survey TITLE
 	public function update_title($survey_id){
-		// get updated title from user input
-		$updated_title = $this->input->post('updated_title');
-		// pass input and survey_id to model for updating 
-		$survey_result = $this->settings_model->update_title($survey_id,$updated_title);
-		// reload settings view with new updated title
-		redirect('survey/settings/'.$survey_id,'refresh');
+		$this->form_validation->set_rules('updated_title', 'Survey Name', 'trim|required|min_length[5]|max_length[50]|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			// send validation error
+			$message = validation_errors();
+			$this->session->set_flashdata('title_message', $message);
+			redirect('survey/settings/'.$survey_id,'refresh');
+		}else{
+			// get updated title from user input
+			$updated_title = $this->input->post('updated_title');
+			// pass input and survey_id to model for updating 
+			$survey_result = $this->settings_model->update_title($survey_id,$updated_title);
+			if($survey_result == TRUE){
+				// successful message
+				$this->session->set_flashdata('title_message', 'Survey title successfully updated!');
+				// reload settings view with new updated title
+				redirect('survey/settings/'.$survey_id,'refresh');
+			}else{
+				// unsuccessful message
+				$this->session->set_flashdata('title_message', 'Survey title unsuccessfully updated, please try again!');
+				// reload settings view with new updated title
+				redirect('survey/settings/'.$survey_id,'refresh');
+			}
+		}
 	}// end of update_title()
 	
 	// updating the survey STATUS
 	public function update_status($survey_id){
-		// get updated status from user selection
-		$updated_status = $this->input->post('status_update');
-		// pass selection and survey_id to model for updating
-		$survey_result = $this->settings_model->update_status($survey_id,$updated_status);
-		// reload settings view with new updated status
-		redirect('survey/settings/'.$survey_id,'refresh');
+		// set rules for from validation
+		$this->form_validation->set_rules('status_update', 'Survey Status', 'required|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			// send unsuccessful message
+			$message = validation_errors();
+			$this->session->set_flashdata('status_message', $message);
+			redirect('survey/settings/'.$survey_id,'refresh');
+		}else{
+			// get updated status from user selection
+			$updated_status = $this->input->post('status_update');
+			// pass selection and survey_id to model for updating
+			$survey_result = $this->settings_model->update_status($survey_id,$updated_status);
+			if($survey_result == TRUE){
+				// successful message
+				$this->session->set_flashdata('status_message', 'Survey status successfully updated!');
+				// reload settings view with new updated status
+				redirect('survey/settings/'.$survey_id,'refresh');
+			}else{
+				// unsuccessful message
+				$this->session->set_flashdata('status_message', 'Survey status unsuccessfully updated, please try again!');
+				// reload settings view
+				redirect('survey/settings/'.$survey_id,'refresh');
+			}
+		}
 	}// end of update_status()
 	
 	// removing the survey
