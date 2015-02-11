@@ -58,17 +58,30 @@ header{
 	background-color: #212121;
 }
 header h1{
-	margin: 0;
+	margin: 14px 70px 0 20px;
 	float: left;
 	color: white;
 }
 header ul{
 	float: right;
+	margin: 24px 0 0;
+	padding: 0;
 }
 header ul li{
 	float: left;
-	color: white;
-	list-style-type: none;	
+	color: #c6d5e1;
+	list-style-type: none;
+	margin-right: 20px;	
+}
+header ul li a{
+	color: #fefafa;
+	text-decoration: none;
+}
+#survey_link{
+	float: left;
+	color: #fefafa;
+	text-decoration: none;
+	margin: 24px 0 0;
 }
 
 /* ########################################################################### 

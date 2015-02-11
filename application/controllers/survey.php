@@ -82,7 +82,7 @@ class Survey extends Auth_Controller {
 	
 	// updating the survey STATUS
 	public function update_status($survey_id){
-		// set rules for from validation
+		// set rules for form validation
 		$this->form_validation->set_rules('status_update', 'Survey Status', 'required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
 			// send unsuccessful message
@@ -145,6 +145,16 @@ class Survey extends Auth_Controller {
 	
 	
 	public function add_question($survey_id){
+		// set rules for form validation
+		$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
+		$this->form_validation->set_rules('question_text', 'Question Type', 'required|xss_clean');
+		$this->form_validation->set_rules('choices', 'Question Type', 'required|xss_clean');
+		$this->form_validation->set_rules('question_require', 'Question Type', 'required|xss_clean');
+		
+		
+		
+		
+		
 		// get question data from user inputs
 		$question_data = array(
 			'surveyId' => $survey_id,
@@ -184,7 +194,7 @@ class Survey extends Auth_Controller {
 		$answer_result = $this->builder_model->insert_answer($answer_data);
 		
 		// reload builder view w/ new question and answers
-		redirect('survey/builder/'.$survey_id,'refresh');
+		//redirect('survey/builder/'.$survey_id,'refresh');
 	}
 	
 	
