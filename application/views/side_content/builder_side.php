@@ -1,6 +1,3 @@
-
-
-
 <div id="side_container">
 	<h2><strong>Add a Question</strong></h2>
 	
@@ -51,6 +48,9 @@
 		echo form_checkbox('question_require',1,FALSE) ."\n";
 		echo form_label('Answer required ') ."\n";
 		echo '</article>' ."\n";
+		
+		echo '<div id="errors"></div>';
+		echo validation_errors();
 		
 		echo form_submit('submit', 'Add Question')."\n";
 		
@@ -127,8 +127,57 @@
 	
 	
 	
+	$("#the_form").submit(function(event) {
+		
+		event.preventDefault();
+		
+		// getting selected radio input
+		var r = document.getElementsByName('question_type');
+		for (var i = 0, length = r.length; i < length; i++) {
+		    if (r[i].checked) {
+		        // checked radio
+				var selected = r[i].value;
+		        // stop checking when selected is found
+		        break;
+		    }
+		}
+		
+		// Rachel's code snippet
+		var myForm = document.getElementById("the_form");
+		//Extract Each Element Value
+		data = {}
+	    for (var i = 0; i < myForm.elements.length; i++) {
+	        if(myForm.elements[i].name.indexOf('[]') > -1){
+	            var name = myForm.elements[i].name.replace('[]','');
+	            if(data[name] === undefined) data[name] = [];
+	            data[name].push(myForm.elements[i].value);
+	        }else if(myForm.elements[i].name == 'question_type'){
+		        data[myForm.elements[i].name] = selected
+	        }else{
+	           data[myForm.elements[i].name] = myForm.elements[i].value
+	        }
 	
-	document.getElementById('the_form').onsubmit = function(event){
+	    }
+		
+		
+		$.ajax({
+			type: "POST",
+			url: "../add_question/<?php echo $survey_id; ?>",
+			dataType: 'json',
+			data: data,
+			success: function(res) {
+				
+				console.log(res);
+				// $('#errors').append(res['text'], res['choice']);
+			}
+		});
+	});
+	
+	
+	
+	
+	/*
+document.getElementById('the_form').onsubmit = function(event){
 		
 		event.preventDefault();
 		
@@ -182,6 +231,7 @@
 	    
 		
 	}
+*/
 
 	
 	

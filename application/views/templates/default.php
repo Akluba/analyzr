@@ -3,6 +3,7 @@
 	<head>
 		<title>Analyzr | <?php echo $pageTitle;?></title>
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<header>

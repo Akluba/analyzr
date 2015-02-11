@@ -147,54 +147,60 @@ class Survey extends Auth_Controller {
 	public function add_question($survey_id){
 		// set rules for form validation
 		$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
-		$this->form_validation->set_rules('question_text', 'Question Type', 'required|xss_clean');
-		$this->form_validation->set_rules('choices', 'Question Type', 'required|xss_clean');
-		$this->form_validation->set_rules('question_require', 'Question Type', 'required|xss_clean');
-		
-		
-		
-		
-		
-		// get question data from user inputs
-		$question_data = array(
-			'surveyId' => $survey_id,
-			'questionType' => $this->input->post('question_type'),
-			'questionText' => $this->input->post('question_text'),
-			'questionRequire' => $this->input->post('question_require')
-		);
-		// pass data to model to insert question to database
-		$question_result = $this->builder_model->insert_question($question_data);
-		
-		// get answer data from user inputs
-		$question_id = $question_result;
-		$choices = $this->input->post('choices');
-		$answer_data = array();
-		
-		// determine selected type of question by user
-		$question_type = $this->input->post('question_type');
-		// if text based answer -- limit answer to ONE null 
-		if($question_type == 4 || $question_type == 5){
-			$answer_data[] = array(
-				'surveyId' => $survey_id,
-				'questionId' => $question_id,
-				'answerText' => NULL
+		$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
+		$this->form_validation->set_rules('choices[]', 'Question Choices', 'required|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			
+			$errors = array(
+				'text' => form_error('question_text'),
+				'choice' => form_error('choices[]')
 			);
+			
+			 echo json_encode($errors);
+			 
 		}else{
-			// loop through choices array and create answer for each
-			foreach($choices as $choice){
+			// get question data from user inputs
+			$question_data = array(
+				'surveyId' => $survey_id,
+				'questionType' => $this->input->post("question_type"),
+				'questionText' => $this->input->post("question_text"),
+				'questionRequire' => $this->input->post('question_require')
+			);
+			// pass data to model to insert question to database
+			$question_result = $this->builder_model->insert_question($question_data);
+			
+			// get answer data from user inputs
+			$question_id = $question_result;
+			$choices = $this->input->post('choices');
+			$answer_data = array();
+			
+			// determine selected type of question by user
+			$question_type = $this->input->post('question_type');
+			// if text based answer -- limit answer to ONE null 
+			if($question_type == 4 || $question_type == 5){
 				$answer_data[] = array(
 					'surveyId' => $survey_id,
 					'questionId' => $question_id,
-					'answerText' => $choice
+					'answerText' => NULL
 				);
-			};// end foreach
-		}// end if/else
-		
-		// pass data to model to insert answers to database
-		$answer_result = $this->builder_model->insert_answer($answer_data);
-		
-		// reload builder view w/ new question and answers
-		//redirect('survey/builder/'.$survey_id,'refresh');
+			}else{
+				// loop through choices array and create answer for each
+				foreach($choices as $choice){
+					$answer_data[] = array(
+						'surveyId' => $survey_id,
+						'questionId' => $question_id,
+						'answerText' => $choice
+					);
+				};// end foreach
+			}// end if/else
+			
+			// pass data to model to insert answers to database
+			$answer_result = $this->builder_model->insert_answer($answer_data);
+			
+			// reload builder view w/ new question and answers
+			//redirect('survey/builder/'.$survey_id,'refresh');
+			
+		}
 	}
 	
 	
