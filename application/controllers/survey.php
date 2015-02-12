@@ -145,19 +145,29 @@ class Survey extends Auth_Controller {
 	
 	
 	public function add_question($survey_id){
-		// set rules for form validation
-		$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
-		$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
-		$this->form_validation->set_rules('choices[]', 'Question Choices', 'required|xss_clean');
+		
+		// determine selected type of question by user
+		$question_type = $this->input->post('question_type');
+		
+		// set rules for form validation based on question type
+		if($question_type == 4 || $question_type == 5){
+			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
+			$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
+		}else{
+			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
+			$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
+			$this->form_validation->set_rules('choices[]', 'Question Choices', 'required|xss_clean');
+		}
+		// run form validation
 		if ($this->form_validation->run() == FALSE) {
-			
-			$errors = array(
+			// ajax response returning validation errors
+			$response = array(
+				'error' => TRUE,
 				'text' => form_error('question_text'),
 				'choice' => form_error('choices[]')
 			);
-			
-			 echo json_encode($errors);
-			 
+			// echo array so it's accessable
+			echo json_encode($response);	 
 		}else{
 			// get question data from user inputs
 			$question_data = array(
@@ -174,8 +184,7 @@ class Survey extends Auth_Controller {
 			$choices = $this->input->post('choices');
 			$answer_data = array();
 			
-			// determine selected type of question by user
-			$question_type = $this->input->post('question_type');
+			
 			// if text based answer -- limit answer to ONE null 
 			if($question_type == 4 || $question_type == 5){
 				$answer_data[] = array(
@@ -197,11 +206,15 @@ class Survey extends Auth_Controller {
 			// pass data to model to insert answers to database
 			$answer_result = $this->builder_model->insert_answer($answer_data);
 			
-			// reload builder view w/ new question and answers
-			//redirect('survey/builder/'.$survey_id,'refresh');
-			
-		}
-	}
+			// return a successful response via ajax
+			$response = array(
+				'error' => FALSE
+			);
+			// echo array so it's accessable
+			echo json_encode($response);
+				
+		}// end of form_validation if/else
+	}// end of add_question()
 	
 	
 }// end of Survey Class

@@ -27,6 +27,7 @@
 		
 		echo '<article>' ."\n";
 		echo '<h4>Question:</h4>' ."\n";
+		echo '<div id="question_error"></div>';
 		$data = array(
 			'name' => 'question_text',
 		);
@@ -36,6 +37,7 @@
 		
 		echo '<article id="question_choices">' ."\n";
 		echo '<h4>Choices:</h4>' ."\n";
+		echo '<div id="choice_error"></div>';
 		echo form_input('choices[]') ."<br />";
 		echo form_input('choices[]') ."<br />";
 		echo '<div id="additional_choices"></div>';
@@ -49,8 +51,7 @@
 		echo form_label('Answer required ') ."\n";
 		echo '</article>' ."\n";
 		
-		echo '<div id="errors"></div>';
-		echo validation_errors();
+		
 		
 		echo form_submit('submit', 'Add Question')."\n";
 		
@@ -131,6 +132,9 @@
 		
 		event.preventDefault();
 		
+		$('#question_error').empty();
+		$('#choice_error').empty();
+		
 		// getting selected radio input
 		var r = document.getElementsByName('question_type');
 		for (var i = 0, length = r.length; i < length; i++) {
@@ -166,9 +170,12 @@
 			dataType: 'json',
 			data: data,
 			success: function(res) {
-				
-				console.log(res);
-				// $('#errors').append(res['text'], res['choice']);
+				if(res['error'] == true ){
+					if(res['text'] != "") $('#question_error').append(res['text']);
+					if(res['choice'] != "") $('#choice_error').append(res['choice']);
+				}else{
+					location.reload();
+				}
 			}
 		});
 	});
