@@ -45,5 +45,13 @@ Class Builder_model extends CI_Model {
 		$this->db->insert_batch('answer', $answer_data); 
 	}
 	
+	public function remove_question($question_id){
+		$tables = array('question','answer');
+		$this->db->where('questionId', $question_id);
+		$this->db->delete($tables);
+	}
+	
+	
+	
 }// end Builder_model Class
 ?>

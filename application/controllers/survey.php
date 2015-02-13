@@ -47,7 +47,6 @@ class Survey extends Auth_Controller {
 			'mainContent' => $this->load->view('main_content/settings',$data, TRUE),
 			'navContent' => $this->load->view('nav/side_nav',$data, TRUE),
 			'sideContent' => $this->load->view('side_content/settings_side',$data, TRUE)
-			
 		);
 		// loading view
 		$this->load->view('templates/default', $page_data);
@@ -119,7 +118,7 @@ class Survey extends Auth_Controller {
 	/* #########################################################################
 	################ functionality of survey builder ###########################
 	######################################################################### */
-	
+	// READ -- displaying survey questions
 	public function builder($survey_id){
 		// passing survey_id to models to get data
 		$survey_result = $this->builder_model->get_survey_data($survey_id);
@@ -139,13 +138,16 @@ class Survey extends Auth_Controller {
 			'mainContent' => $this->load->view('main_content/builder',array('questions'=>$question_data, 'answers'=>$answer_data), TRUE),
 			'sideContent' => $this->load->view('side_content/builder_side',$data, TRUE)	
 		);
+		
+		
+		$this->session->set_flashdata('survey_id', $survey_id);
+		
 		// loading view
 		$this->load->view('templates/default', $page_data);
 	}// end of builder()
 	
-	
-	public function add_question($survey_id){
-		
+	// CREATE -- add question to survey
+	public function create_question($survey_id){
 		// determine selected type of question by user
 		$question_type = $this->input->post('question_type');
 		
@@ -178,13 +180,10 @@ class Survey extends Auth_Controller {
 			);
 			// pass data to model to insert question to database
 			$question_result = $this->builder_model->insert_question($question_data);
-			
 			// get answer data from user inputs
 			$question_id = $question_result;
 			$choices = $this->input->post('choices');
 			$answer_data = array();
-			
-			
 			// if text based answer -- limit answer to ONE null 
 			if($question_type == 4 || $question_type == 5){
 				$answer_data[] = array(
@@ -202,19 +201,48 @@ class Survey extends Auth_Controller {
 					);
 				};// end foreach
 			}// end if/else
-			
 			// pass data to model to insert answers to database
 			$answer_result = $this->builder_model->insert_answer($answer_data);
-			
 			// return a successful response via ajax
 			$response = array(
 				'error' => FALSE
 			);
 			// echo array so it's accessable
-			echo json_encode($response);
-				
+			echo json_encode($response);	
 		}// end of form_validation if/else
 	}// end of add_question()
+	
+	
+	
+	
+	// UPDATE -- edit question from survey
+	public function update_question($question_id){
+		
+		
+	}
+	
+	// DELETE -- remove question from survey
+	public function remove_question($question_id){
+		$question_result = $this->builder_model->remove_question($question_id);
+		echo "true";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }// end of Survey Class

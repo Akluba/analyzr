@@ -2,16 +2,26 @@
 	<h2>Builder: <strong><?php echo $title?></strong></h2>
 	<!-- displaying each question for this survey -->
 	<?php foreach($questions as $question): ; echo "\n"; ?>
-		<article> 
+		<article class="item"> 
 			<!-- question title -->
 			<div class="article_header">
 				<h3><?php echo $question->questionText; ?></h3>
+				<ul>
+					<li><a href="../edit_question/<?php echo $question->questionId; ?>">edit</a></li>
+					<li><a href="#" onclick="remove_question(<?php echo $question->questionId; ?>)" class="delete">remove</a></li>
+				</ul>
+				<div style="clear: both;"></div>
 			</div>
 			<div class="article_content">
+			<!-- if an answer is required -->
+			<?php if($question->questionRequire == 1): ?>
+				<?php echo "<p>&#42; answer required</p>"; ?>
+			<?php endif ?>
 			<!-- if a select element place opening select tag -->
 			<?php if($question->questionType == 3): ?>
 				<select name="<?php echo $question->questionId; ?>">
 			<?php endif ?>
+			
 				<!-- displaying each answer -->
 				<?php foreach($answers as $answer): ?>
 					<!-- displaying correct answer set to question -->
@@ -42,3 +52,5 @@
 		</article>
 	<?php endforeach ?>
 </div>
+
+<div id="confirm_remove"></div>

@@ -12,6 +12,8 @@ h2 strong{
 }
 h3{
 	margin: 0;
+	float: left;
+	max-width: 70%;
 }
 p{
 	margin: 0;
@@ -112,35 +114,54 @@ nav a{
 	font-size: 12px;
 }
 
-
-
-
-
-
-
-
+/* ########################################################################### 
+######################### MAIN CONTENT #######################################
+########################################################################### */
 #container{
 	width: 90%;
 	margin: 0 auto;
 }
+article{
+	background-color: #fefafa;
+	margin-bottom: 10px;
+}
+.article_header{
+	min-height: 20px;
+	background-color: #c6d5e1;
+	padding: 5px 0 5px 15px;
+}
+.article_header ul{
+	padding: 0;
+	margin: 0;
+	float: right;
+}
+.article_header ul li{
+	float: left;
+	list-style-type: none;
+	margin-right: 20px;	
+}
+.article_header ul li a{
+	color: #212121;
+	text-decoration: none;
+}
+.article_content{
+	padding: 15px;
+}
+
+
+
+
+
+/* ########################################################################### 
+######################### SIDE CONTENT #######################################
+########################################################################### */
 #side_container{
 	width: 275px;
 	margin: 0 auto;
 }
 
 
-article{
-	background-color: #fefafa;
-	margin-bottom: 10px;
-}
-.article_header{
-	height: 25px;
-	background-color: #c6d5e1;
-	padding: 5px 0 0 15px;
-}
-.article_content{
-	padding: 15px;
-}
+
 
 
 textarea{
