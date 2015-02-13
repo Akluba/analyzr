@@ -1,9 +1,45 @@
-
+/* CREATE QUESTION / ANSWERS
+	-INCLUDES-
+	gather user inputs
+	send data to controller
+	display response 
+*/
+$("#survey_form").submit(function(event) {
+	// prevent php functions from taking place
+	event.preventDefault();
+	// get create survey form inputs
+	var form = document.getElementById("survey_form");
+	// object to contain data
+	data = {}
+	// extract element name : value
+	for(var i = 0; i < form.elements.length; i++) {
+		data[form.elements[i].name] = form.elements[i].value
+	}
+	// posting data via ajax to controller
+	$.ajax({
+		type: "POST",
+		url: "home/add_survey",
+		dataType: 'json',
+		data: data,
+		success: function(res) {
+			if(res['error'] == true ){
+				// clear existing errors
+				$('#message').empty();
+				// append validation error message
+				if(res['message'] != "") $('#message').append(res['message']);
+			}else{
+				location.reload();
+			}
+		}// end success
+	});// end ajax post
+});// end submit()
 
 
 /* CREATE QUESTION / ANSWERS
 	-INCLUDES-
-	
+	gather user inputs
+	send data to controller
+	display response
 */
 $("#question_form").submit(function(event) {
 	// prevent php functions from taking place
@@ -42,9 +78,7 @@ $("#question_form").submit(function(event) {
            data[myForm.elements[i].name] = myForm.elements[i].value
         }
     }// end for loop
-    
-	
-	// post data to controller to validate then add to database
+	// posting data via ajax to controller 
 	$.ajax({
 		type: "POST",
 		url: "../create_question/" + data.survey_id,
@@ -55,7 +89,7 @@ $("#question_form").submit(function(event) {
 				// clear existing errors
 				$('#question_error').empty();
 				$('#choice_error').empty();
-				// 
+				// append validation error message 
 				if(res['text'] != "") $('#question_error').append(res['text']);
 				if(res['choice'] != "") $('#choice_error').append(res['choice']);
 			}else{

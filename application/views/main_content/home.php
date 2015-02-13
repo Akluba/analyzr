@@ -2,19 +2,15 @@
 	<article>
 		<div class="article_header">
 			<h3>Create a new survey</h3>
-			<?php
-				if (isset($message_display)) {
-				echo "<div class='message'>";
-				echo $message_display;
-				echo "</div>";
-				}
-				echo "\n"
-			?>
+			<div id="message"></div>
 		</div>
 		
 		<!-- form for creating new survey !look into formatting source code! -->
 		<?php
-			echo form_open('home/add_survey')."\n";
+			echo form_open('home/add_survey', array('id'=>'survey_form')) ."\n";
+			
+			// SURVEY ID -- hidden input 	
+			echo form_hidden('user_id', $user['userId']);
 			
 			echo form_label('Survey Name :') ."\n";
 			echo form_input('survey_name') ."\n";

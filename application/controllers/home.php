@@ -38,38 +38,37 @@ class Home extends Auth_Controller {
 			$userId = $user_data['userId'];
 			$userName = $user_data['username'];
 			$survey_result = $this->home_model->get_survey_data($userId);
-			
-			$message = $this->session->flashdata('message_display');
-			
+			// data available to view
 			$page_data = array(
 				'pageTitle' => 'Surveys',
 				'headerContent' => $this->load->view('headers/home_header',array('user'=>$user_data), TRUE),
-				'mainContent' => $this->load->view('main_content/survey_list',array('survey'=>$survey_result,'message_display'=>$message), TRUE)
+				'mainContent' => $this->load->view('main_content/home',array('survey'=>$survey_result, 'user'=>$user_data), TRUE)
 			);
 			// load view and send data to display surveys
 			$this->load->view('templates/default',$page_data);
-			// saving userId to be used in add_survey function
-			$this->session->set_flashdata('userId', $userId);
 		}// end if
 	}// end index()
 	
 	public function add_survey(){
 		// set rules for from validation
 		$this->form_validation->set_rules('survey_name', 'Survey Name', 'trim|required|min_length[5]|max_length[50]|xss_clean');
+		
+		
 		if ($this->form_validation->run() == FALSE) {
-			// send unsuccessful message
-			$message = validation_errors();
-			$this->session->set_flashdata('message_display', $message);
-			redirect('home','refresh');
+			// respond back with error
+			$response = array(
+				'error' => TRUE,
+				'message' => form_error('survey_name')
+			);
+			// echo array so it's accessable
+			echo json_encode($response);
 		}else{
-			// receive userId from index function
-			$user_id = $this->session->flashdata('userId');
 			// get current date for survey createdDate
 			$datestring = "%Y%m%d";
 			$created_date = mdate($datestring);
 			// data to be stored in database
 			$data = array(
-				'userId' => $user_id,
+				'userId' => $this->input->post('user_id'),
 				'title' => $this->input->post('survey_name'),
 				'createdDate' => $created_date,
 				'status' => 1
@@ -77,15 +76,20 @@ class Home extends Auth_Controller {
 			// Transfering Data To Model - insert survey
 			$result = $this->home_model->new_survey_insert($data);
 			if($result == TRUE){
-				// send successful message
-				$this->session->set_flashdata('message_display', 'successfully created survey!');
-				// direct user to new survey settings
-				redirect('home','refresh');
+				$response = array(
+					'error' => FALSE,
+					'message' => 'Survey successfully created!'
+				);
+				// echo array so it's accessable
+				echo json_encode($response);	
 			}else{
-				// send unsuccessful message
-				$this->session->set_flashdata('message_display', 'creating survey unsuccessful, please try again!');
-				// direct user to new survey settings
-				redirect('home','refresh');
+				// respond back with error
+				$response = array(
+					'error' => TRUE,
+					'message' => 'Survey was not added, please try again.'
+				);
+				// echo array so it's accessable
+				echo json_encode($response);
 			}
 		}// end form validation
 	}// end add_survey()
