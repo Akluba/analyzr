@@ -24,9 +24,13 @@
 			</aside>
 		</div>
 		
-		<script type="text/javascript" src="<?php echo asset_url();?>js/create.js"></script>
-		<script type="text/javascript" src="<?php echo asset_url();?>js/read.js"></script>
-		<script type="text/javascript" src="<?php echo asset_url();?>js/update.js"></script>
-		<script type="text/javascript" src="<?php echo asset_url();?>js/delete.js"></script>
+		<!-- 	Form Functionality	 -->
+		<script type="text/javascript" src="<?php echo asset_url();?>js/question_form.js"></script>
+		
+		<!-- 	CRUD Functionality	 -->
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/create.js"></script>
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/read.js"></script>
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/update.js"></script>
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/delete.js"></script>
 	</body>
 </html>
