@@ -13,10 +13,7 @@
 			<?php if(isset($headerContent)){print $headerContent; }?>
 		</header>
 		<div id ="parent">
-			<nav>
-				<?php if(isset($navContent)){print $navContent; }?>
-			</nav>
-			<section>
+			<section id="home_section">
 				<?php if(isset($mainContent)){print $mainContent; }?>
 			</section>
 			<aside>

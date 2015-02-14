@@ -39,8 +39,17 @@ section{
     right: 315px;
     bottom: 0px;
     min-width: 645px;
-    background-color: #eae5de;
-    
+    background-color: #eae5de;   
+}
+#home_section{
+	position:absolute; 
+    z-index: 2;
+    left: 0px;
+    top: 0px;
+    right: 315px;
+    bottom: 0px;
+    min-width: 645px;
+    background-color: #eae5de; 
 }
 aside{
 	position:absolute;

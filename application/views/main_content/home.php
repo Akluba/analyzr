@@ -7,16 +7,16 @@
 		
 		<!-- form for creating new survey !look into formatting source code! -->
 		<?php
+			// OPEN FORM
 			echo form_open('home/add_survey', array('id'=>'survey_form')) ."\n";
-			
 			// SURVEY ID -- hidden input 	
 			echo form_hidden('user_id', $user['userId']);
-			
+			// SURVEY NAME -- text input
 			echo form_label('Survey Name :') ."\n";
 			echo form_input('survey_name') ."\n";
-			
+			// SUBMIT FORM
 			echo form_submit('submit', 'Create Survey')."\n";
-			
+			// CLOSE FORN
 			echo form_close()."\n";
 		?>
 	</article>
@@ -29,8 +29,8 @@
 	<?php if($item->status == 1): ?>
 		<h5>Status open</h5><?php else: ?>
 		<h5>Status closed</h5><?php endif ?>		
-		<a href="survey/settings/<?php echo $item->surveyId;?>">settings</a>
-		<a href="survey/builder/<?php echo $item->surveyId;?>">builder</a>
+		<a href="survey_settings/<?php echo $item->surveyId;?>">settings</a>
+		<a href="survey_builder/<?php echo $item->surveyId;?>">builder</a>
 		<a href="route/<?php echo $item->surveyId;?>">send</a>
 		<a href="route/<?php echo $item->surveyId;?>">results</a>
 	</article>

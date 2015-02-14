@@ -20,7 +20,9 @@ function remove_question(question_id){
 		// ajax call to controller	
 		$.ajax({
 			type: "POST",
-			url: "../remove_question/" + question_id,
+			url: "../survey_builder/remove_question",
+			dataType: 'json',
+			data: {'question_id': question_id},
 			success: function(res) {
 				// refresh page w/ question removed 
 				location.reload();

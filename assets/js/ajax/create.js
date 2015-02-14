@@ -1,4 +1,4 @@
-/* CREATE QUESTION / ANSWERS
+/* CREATE SURVEY
 	-INCLUDES-
 	gather user inputs
 	send data to controller
@@ -78,10 +78,13 @@ $("#question_form").submit(function(event) {
            data[myForm.elements[i].name] = myForm.elements[i].value
         }
     }// end for loop
+    
+    console.log(data);
+    
 	// posting data via ajax to controller 
 	$.ajax({
 		type: "POST",
-		url: "../create_question/" + data.survey_id,
+		url: "../survey_builder/create_question",
 		dataType: 'json',
 		data: data,
 		success: function(res) {
@@ -92,6 +95,8 @@ $("#question_form").submit(function(event) {
 				// append validation error message 
 				if(res['text'] != "") $('#question_error').append(res['text']);
 				if(res['choice'] != "") $('#choice_error').append(res['choice']);
+			}else if(res['error'] == 'user'){
+				location.reload();
 			}else{
 				location.reload();
 			}

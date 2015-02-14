@@ -40,6 +40,10 @@
 
 $route['default_controller'] = "landing";
 $route['404_override'] = '';
+
+$route['survey_settings/(:num)'] = 'survey_settings/settings/$1';
+$route['survey_builder/(:num)'] = 'survey_builder/builder/$1';
+
 $route['assets/(:any)'] = 'assets/$1';
 
 
