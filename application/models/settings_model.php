@@ -38,8 +38,9 @@ Class Settings_model extends CI_Model {
 	
 	// Remove Survey
 	public function remove_survey($survey_id){
+		$tables = array('survey','question','answer');
 		$this->db->where('surveyId', $survey_id);
-		$this->db->delete('survey');
+		$this->db->delete($tables);
 	}// end remove_survey()
 	
 }// end Settings_model Class

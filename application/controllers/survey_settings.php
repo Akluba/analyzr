@@ -22,10 +22,8 @@ class Survey_Settings extends Auth_Controller {
 	} // end of __construct()
 
 	/* #########################################################################
-	################ functionality of survey settings ##########################
+	################ READ -- survey settings ###################################
 	######################################################################### */
-	
-	// displaying content to settings section
 	public function settings($survey_id){
 		// gathering survey information from survey_id	
 		$survey_result = $this->settings_model->get_survey_settings($survey_id);
@@ -49,7 +47,9 @@ class Survey_Settings extends Auth_Controller {
 		$this->load->view('templates/default', $page_data);
 	}// end of settings()
 	
-	// updating the survey TITLE
+	/* #########################################################################
+	################ UPDATE -- survey title ####################################
+	######################################################################### */
 	public function update_title(){
 		$this->form_validation->set_rules('updated_title', 'Survey Name', 'trim|required|min_length[5]|max_length[50]|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
@@ -79,7 +79,9 @@ class Survey_Settings extends Auth_Controller {
 		}// end form_validation if/else
 	}// end of update_title()
 	
-	// updating the survey STATUS
+	/* #########################################################################
+	################ UPDATE -- survey status ###################################
+	######################################################################### */
 	public function update_status(){
 		// set rules for form validation
 		$this->form_validation->set_rules('status_update', 'Survey Status', 'required|xss_clean');
@@ -109,12 +111,14 @@ class Survey_Settings extends Auth_Controller {
 		}// end form_validation if/else
 	}// end of update_status()
 	
-	// removing the survey
-	public function remove_survey($survey_id){
+	/* #########################################################################
+	################ DELETE -- survey content ##################################
+	######################################################################### */
+	public function remove_survey(){
+		$survey_id = $this->input->post('survey_id');
 		// pass survey_id to model to remove survey from database
 		$survey_result = $this->settings_model->remove_survey($survey_id);
-		// direct back to survey home w/ survey removed
-		redirect('home','refresh');
+		echo "true";
 	}// end of remove_survey()
 	
 		
