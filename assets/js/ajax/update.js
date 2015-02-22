@@ -69,8 +69,8 @@ $('.js_question_edit').on('click',function(){
 			});// end click cancel	
 			
 			// hide/show choices section of edit question form 
-			$('#question_form input').on('change', function(){
-				var selected_radio = $('input[name="question_type"]:checked', '#question_form').val();
+			$('#edit_question_form input').on('change', function(){
+				var selected_radio = $('input[name="question_type"]:checked', '#edit_question_form').val();
 				if(selected_radio == 4 || selected_radio == 5){
 					$('#question_choices').hide();
 				}else{

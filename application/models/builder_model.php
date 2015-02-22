@@ -86,9 +86,11 @@ Class Builder_model extends CI_Model {
 		// get count of new
 		$num_new = count($answer_data);
 		
-		
+		if($num_new === 1){
+			var_dump($answer_data);
+		}
 		// new choice amount = existing choice amount
-		if($num_new === $num_existing){
+		else if($num_new === $num_existing){
 			
 			$new_data = array();
 			$i = 0;

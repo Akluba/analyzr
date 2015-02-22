@@ -52,3 +52,39 @@ $("#question_form").submit(function(event) {
 		}// end success
 	});// end ajax post
 });// end of submit()
+
+
+// CREATE SENT SURVEY
+$("#send_form").submit(function(event) {
+	// prevent php functions from taking place
+	event.preventDefault();
+	// get user inputs from form
+    var data = $(this).serialize();
+    // posting data via ajax to controller 
+	$.ajax({
+		type: "POST",
+		url: "../survey_send/send_survey",
+		dataType: 'json',
+		data: data,
+		success: function(res) {
+			if(res['error'] == true ){
+				// clear existing errors
+				$('#email_error').empty();
+				$('#subject_error').empty();
+				$('#message_error').empty();
+				// append validation error message 
+				if(res['email'] != "") $('#email_error').append(res['email']);
+				if(res['subject'] != "") $('#subject_error').append(res['subject']);
+				if(res['message'] != "") $('#message_error').append(res['message']);
+			}else{
+				location.reload();
+			}// end success if/else
+		}// end success
+	});// end ajax post
+});// end of submit()	
+	
+	
+	
+	
+	
+

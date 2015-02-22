@@ -26,11 +26,13 @@
 		<h4><?php echo $item->title; ?></h4>
 		<h5>created <?php echo $item->createdDate; ?></h5>
 	<?php if($item->status == 1): ?>
-		<h5>Status open</h5><?php else: ?>
-		<h5>Status closed</h5><?php endif ?>		
+		<h5>Status open</h5>
+	<?php else: ?>
+		<h5>Status closed</h5>
+	<?php endif ?>		
 		<a href="survey_settings/<?php echo $item->surveyId;?>">settings</a>
 		<a href="survey_builder/<?php echo $item->surveyId;?>">builder</a>
-		<a href="route/<?php echo $item->surveyId;?>">send</a>
+		<a href="survey_send/<?php echo $item->surveyId;?>">send</a>
 		<a href="route/<?php echo $item->surveyId;?>">results</a>
 	</article>
 	<?php endforeach ?>

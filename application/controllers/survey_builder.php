@@ -20,36 +20,10 @@ class Survey_Builder extends Auth_Controller {
 			// Load database
 			$this->load->model('builder_model');
 	} // end of __construct()
-
-	/* #########################################################################
-	################ READ -- displaying survey elements ########################
-	######################################################################### */
-	public function builder($survey_id){
-		// passing survey_id to models to get data
-		$survey_result = $this->builder_model->get_survey_data($survey_id);
-		$question_data = $this->builder_model->get_question_data($survey_id);
-		$answer_data = $this->builder_model->get_answer_data($survey_id);
-		// data available to template
-		$data = array(
-			'userName' => $survey_result[0]->username,
-			'survey_id' => $survey_result[0]->surveyId,
-			'title' => $survey_result[0]->title,
-		);
-		// views to be loaded to builder section
-		$page_data = array(
-			'pageTitle' => 'Builder',
-			'headerContent' => $this->load->view('headers/survey_header',$data, TRUE),
-			'navContent' => $this->load->view('nav/side_nav',$data, TRUE),
-			'mainContent' => $this->load->view('main_content/builder',array('questions'=>$question_data, 'answers'=>$answer_data), TRUE),
-			'sideContent' => $this->load->view('side_content/builder_side',$data, TRUE)	
-		);
-		// loading view
-		$this->load->view('templates/default', $page_data);
-	}// end of builder()
 	
-	/* #########################################################################
-	################ CREATE -- add question to survey ##########################
-	######################################################################### */
+	/* ##################################################################
+	########### CREATE ##################################################
+	*/ ##################################################################
 	public function create_question(){
 		// determine selected type of question by user
 		$question_type = $this->input->post('question_type');
@@ -114,9 +88,37 @@ class Survey_Builder extends Auth_Controller {
 		}// end of form_validation if/else
 	}// end of add_question()
 	
-	/* #########################################################################
-	################ UPDATE -- edit survey element #############################
-	######################################################################### */
+
+	/* ##################################################################
+	########### READ ####################################################
+	*/ ##################################################################
+	public function builder($survey_id){
+		// passing survey_id to models to get data
+		$survey_result = $this->builder_model->get_survey_data($survey_id);
+		$question_data = $this->builder_model->get_question_data($survey_id);
+		$answer_data = $this->builder_model->get_answer_data($survey_id);
+		// data available to template
+		$data = array(
+			'userName' => $survey_result[0]->username,
+			'survey_id' => $survey_result[0]->surveyId,
+			'title' => $survey_result[0]->title,
+		);
+		// views to be loaded to builder section
+		$page_data = array(
+			'pageTitle' => 'Builder',
+			'headerContent' => $this->load->view('headers/survey_header',$data, TRUE),
+			'navContent' => $this->load->view('nav/side_nav',$data, TRUE),
+			'mainContent' => $this->load->view('main_content/builder',array('questions'=>$question_data, 'answers'=>$answer_data), TRUE),
+			'sideContent' => $this->load->view('side_content/builder_side',$data, TRUE)	
+		);
+		// loading view
+		$this->load->view('templates/default', $page_data);
+	}// end of builder()
+
+	
+	/* ##################################################################
+	########### UPDATE ##################################################
+	*/ ##################################################################
 	public function edit_question($question_id){
 		// question + answer data from database
 		$question_data = $this->builder_model->edit_question_data($question_id);
@@ -198,9 +200,10 @@ class Survey_Builder extends Auth_Controller {
 		}// end of form_validation if/else
 	}// end of update_question()
 	
-	/* #########################################################################
-	################ DELETE -- remove survey element ###########################
-	######################################################################### */
+	
+	/* ##################################################################
+	########### DELETE ##################################################
+	*/ ##################################################################
 	public function remove_question(){
 		$question_id = $this->input->post("question_id");
 		$question_result = $this->builder_model->remove_question($question_id);
@@ -210,6 +213,5 @@ class Survey_Builder extends Auth_Controller {
 	
 	
 }// end of Survey_Builder Class
-
 /* End of file survey_builder.php */
 /* Location: ./application/controllers/survey_builder.php */

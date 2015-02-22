@@ -20,10 +20,10 @@ class Survey_Settings extends Auth_Controller {
 			// Load database
 			$this->load->model('settings_model');
 	} // end of __construct()
-
-	/* #########################################################################
-	################ READ -- survey settings ###################################
-	######################################################################### */
+	
+	/* ##################################################################
+	########### READ ####################################################
+	*/ ##################################################################
 	public function settings($survey_id){
 		// gathering survey information from survey_id	
 		$survey_result = $this->settings_model->get_survey_settings($survey_id);
@@ -47,9 +47,9 @@ class Survey_Settings extends Auth_Controller {
 		$this->load->view('templates/default', $page_data);
 	}// end of settings()
 	
-	/* #########################################################################
-	################ UPDATE -- survey title ####################################
-	######################################################################### */
+	/* ##################################################################
+	########### UPDATE ##################################################
+	*/ ##################################################################
 	public function update_title(){
 		$this->form_validation->set_rules('updated_title', 'Survey Name', 'trim|required|min_length[5]|max_length[50]|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
@@ -79,9 +79,7 @@ class Survey_Settings extends Auth_Controller {
 		}// end form_validation if/else
 	}// end of update_title()
 	
-	/* #########################################################################
-	################ UPDATE -- survey status ###################################
-	######################################################################### */
+	
 	public function update_status(){
 		// set rules for form validation
 		$this->form_validation->set_rules('status_update', 'Survey Status', 'required|xss_clean');
@@ -111,9 +109,9 @@ class Survey_Settings extends Auth_Controller {
 		}// end form_validation if/else
 	}// end of update_status()
 	
-	/* #########################################################################
-	################ DELETE -- survey content ##################################
-	######################################################################### */
+	/* ##################################################################
+	########### DELETE ##################################################
+	*/ ##################################################################
 	public function remove_survey(){
 		$survey_id = $this->input->post('survey_id');
 		// pass survey_id to model to remove survey from database

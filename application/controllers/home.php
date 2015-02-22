@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 	
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -21,39 +20,15 @@ class Home extends Auth_Controller {
 			// Load database
 			$this->load->model('home_model');
 	} // end of __construct()
-
-	// Determine user , Gather user surveys
-	public function index(){
-		// determining logged in user from session
-		$email = $this->session->userdata('logged_in');
-		// passing data to model to get all data pertaining to user
-		$user_result = $this->home_model->get_data($email);
-		if($user_result == TRUE){
-			$user_data = array(
-				'userId' =>$user_result[0]->userId,
-				'email' =>$user_result[0]->email,
-				'username' =>$user_result[0]->username
-			);
-			// gathering all surveys belonging to user
-			$userId = $user_data['userId'];
-			$userName = $user_data['username'];
-			$survey_result = $this->home_model->get_survey_data($userId);
-			// data available to view
-			$page_data = array(
-				'pageTitle' => 'Surveys',
-				'headerContent' => $this->load->view('headers/home_header',array('user'=>$user_data), TRUE),
-				'mainContent' => $this->load->view('main_content/home',array('survey'=>$survey_result, 'user'=>$user_data), TRUE)
-			);
-			// load view and send data to display surveys
-			$this->load->view('templates/home',$page_data);
-		}// end if
-	}// end index()
+	
+	/* ##################################################################
+	########### CREATE ##################################################
+	*/ ##################################################################
 	
 	public function add_survey(){
 		// set rules for from validation
 		$this->form_validation->set_rules('survey_name', 'Survey Name', 'trim|required|min_length[5]|max_length[50]|xss_clean');
-		
-		
+		// run form validation
 		if ($this->form_validation->run() == FALSE) {
 			// respond back with error
 			$response = array(
@@ -94,7 +69,38 @@ class Home extends Auth_Controller {
 		}// end form validation
 	}// end add_survey()
 	
-}// end Home Class
+	/* ##################################################################
+	########### READ ####################################################
+	*/ ##################################################################
+	
+	// Determine user , Gather user surveys
+	public function index(){
+		// determining logged in user from session
+		$email = $this->session->userdata('logged_in');
+		// passing data to model to get all data pertaining to user
+		$user_result = $this->home_model->get_data($email);
+		if($user_result == TRUE){
+			$user_data = array(
+				'userId' =>$user_result[0]->userId,
+				'email' =>$user_result[0]->email,
+				'username' =>$user_result[0]->username
+			);
+			// gathering all surveys belonging to user
+			$userId = $user_data['userId'];
+			$userName = $user_data['username'];
+			$survey_result = $this->home_model->get_survey_data($userId);
+			// data available to view
+			$page_data = array(
+				'pageTitle' => 'Surveys',
+				'headerContent' => $this->load->view('headers/home_header',array('user'=>$user_data), TRUE),
+				'mainContent' => $this->load->view('main_content/home',array('survey'=>$survey_result, 'user'=>$user_data), TRUE)
+			);
+			// load view and send data to display surveys
+			$this->load->view('templates/home',$page_data);
+		}// end if
+	}// end index()
+	
 
+}// end Home Class
 /* End of file home.php */
 /* Location: ./application/controllers/home.php */
