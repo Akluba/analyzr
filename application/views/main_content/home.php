@@ -4,11 +4,10 @@
 			<h3>Create a new survey</h3>
 			<div id="message"></div>
 		</div>
-		
 		<!-- form for creating new survey !look into formatting source code! -->
 		<?php
 			// OPEN FORM
-			echo form_open('home/add_survey', array('id'=>'survey_form')) ."\n";
+			echo form_open('#', array('id'=>'survey_form')) ."\n";
 			// SURVEY ID -- hidden input 	
 			echo form_hidden('user_id', $user['userId']);
 			// SURVEY NAME -- text input

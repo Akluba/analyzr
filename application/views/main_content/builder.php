@@ -1,14 +1,15 @@
+<!-- Survey preview existing questions -->
 <div id="container">
 	<h2>Builder: <strong><?php echo $title?></strong></h2>
 	<!-- displaying each question for this survey -->
 	<?php foreach($questions as $question): ; echo "\n"; ?>
-		<article class="item"> 
+		<article> 
 			<!-- question title -->
 			<div class="article_header">
 				<h3><?php echo $question->questionText; ?></h3>
 				<ul>
-					<li><a href="../edit_question/<?php echo $question->questionId; ?>">edit</a></li>
-					<li><a href="#" onclick="remove_question(<?php echo $question->questionId; ?>)" class="delete">remove</a></li>
+					<li><a href="#" data-id="<?php echo $question->questionId; ?>" class="js_question_edit">edit</a></li>
+					<li><a href="#" data-id="<?php echo $question->questionId; ?>" class="js_question_delete">remove</a></li>
 				</ul>
 				<div style="clear: both;"></div>
 			</div>
@@ -52,5 +53,16 @@
 		</article>
 	<?php endforeach ?>
 </div>
-
-<div id="confirm_remove"></div>
+<!-- Confirm Survey Delete panel -->
+<div id="confirm_remove" style="display: none;">
+	<div id="confirmOverlay">
+		<div id="confirmBox">
+			<h1>Remove Question</h1>
+			<p>Description of what is about to happen</p>
+			<div id="confirmButtons">
+				<a class="js_confirm_remove" href="#">Yes<span></span></a>
+				<a class="js_cancel_remove" href="#">No<span></span></a>
+			</div>
+		</div>
+	</div>
+</div>

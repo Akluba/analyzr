@@ -53,7 +53,6 @@ class Survey_Builder extends Auth_Controller {
 	public function create_question(){
 		// determine selected type of question by user
 		$question_type = $this->input->post('question_type');
-		
 		// set rules for form validation based on question type
 		if($question_type == 4 || $question_type == 5){
 			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
@@ -118,8 +117,85 @@ class Survey_Builder extends Auth_Controller {
 	/* #########################################################################
 	################ UPDATE -- edit survey element #############################
 	######################################################################### */
+	public function edit_question($question_id){
+		// question + answer data from database
+		$question_data = $this->builder_model->edit_question_data($question_id);
+		$answer_data = $this->builder_model->edit_answer_data($question_id);
+		// 
+		$data = array(
+			'question_id' => $question_data[0]->questionId,
+			'question_type' => $question_data[0]->questionType,
+			'question_text' => $question_data[0]->questionText,
+			'choices' => $answer_data,
+			'question_require' => $question_data[0]->questionRequire
+		);
+		// load view of question edit state
+		$this->load->view('side_content/builder_edit', $data);	
+	}// end of edit_question()
+	
 	public function update_question(){
-		
+		// determine selected type of question by user
+		$question_type = $this->input->post('question_type');
+		// set rules for form validation based on question type
+		if($question_type == 4 || $question_type == 5){
+			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
+			$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
+		}else{
+			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
+			$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
+			$this->form_validation->set_rules('choices[]', 'Question Choices', 'required|xss_clean');
+		}
+		// run form validation
+		if ($this->form_validation->run() == FALSE) {
+			// ajax response returning validation errors
+			$response = array(
+				'error' => TRUE,
+				'text' => form_error('question_text'),
+				'choice' => form_error('choices[]')
+			);
+			// echo array so it's accessable
+			echo json_encode($response);	 
+		}else{
+			// get question data from user inputs
+			$question_data = array(
+				'questionId' => $this->input->post("question_id"),
+				'questionType' => $this->input->post("question_type"),
+				'questionText' => $this->input->post("question_text"),
+				'questionRequire' => $this->input->post('question_require')
+			);
+			// pass data to model to update question in database
+			$question_result = $this->builder_model->update_question($question_data);
+			
+			$question_id = $this->input->post("question_id");
+			$choices = $this->input->post('choices');
+			$answer_data = array();
+			// if text based answer -- limit answer to ONE null 
+			if($question_type == 4 || $question_type == 5){
+				$answer_data[] = array(
+					'questionId' => $this->input->post("question_id"),
+					'answerText' => NULL
+				);
+			}else{
+				// loop through choices array and create answer for each
+				foreach($choices as $choice){
+					$answer_data[] = array(
+						'questionId' => $this->input->post("question_id"),
+						'answerText' => $choice
+					);
+				};// end foreach
+			}// end question_type if/else
+			
+			// pass data to model to update answers in database
+			$answer_result = $this->builder_model->update_answer($answer_data, $question_id);
+			
+			// return a successful response via ajax
+			$response = array(
+				'error' => FALSE
+			);
+			// echo array so it's accessable
+			echo json_encode($response);
+			
+		}// end of form_validation if/else
 	}// end of update_question()
 	
 	/* #########################################################################

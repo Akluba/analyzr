@@ -1,69 +1,38 @@
-/* QUESTION BUILDER	
-	-INCLUDES-
-	show / hide choices
-	creating / removing choices
-*/
-	
-/* hide/show choices section of add question form */
-function hideChoice(radio){
-	// find which radio button is selected
-	var selected = radio[0].value;
-	// selecting choices article
-	var choices = document.getElementById('question_choices');
-	// determine wheter or not to display 
-	if(selected == 4 || selected == 5){
-		choices.style.display = 'none';
+// hide/show choices section of add question form
+$('#question_form input').on('change', function(){
+	var selected_radio = $('input[name="question_type"]:checked', '#question_form').val();
+	if(selected_radio == 4 || selected_radio == 5){
+		$('#question_choices').hide();
 	}else{
-		choices.style.display = '';
-	}// end if/else
-}// end hideChoice()
+		$('#question_choices').show();
+	}
+});// end change()
 
-
+// num used for unique data-id
 var i = 0;
+// keep count of choices
 var count = 0;
-
+// add to previous data-id
 function increment(){
 	i += 1; 
 }
-
-/* remove selected choice from additional choice section of add question form */
-function removeChoice(childDiv){
-	var child = document.getElementById(childDiv);
-	var parent = document.getElementById("additional_choices");
-	parent.removeChild(child);
-	count--;
-}
-
-/* add choice to additional choice section of add question form */
-function addChoice(){
+// add / remove choices located in add question form
+$('.js_add_choice').on('click', function(){
 	// limit amount of added choices
 	if(count === 6) return false;
-	// create span 
-	var s = document.createElement('span');
-	// create input 
-	var n = document.createElement("INPUT");
-	// input attributes
-	n.setAttribute("type", "text");
-	n.setAttribute("Name", "choices[]");
-	// create link
-	var a = document.createElement("a");
-	var t = document.createTextNode("x");
-	a.appendChild(t);
 	// run increment function to get id
 	increment();
 	// add to count of added inputs
 	count++;
-	// appending input to span
-	s.appendChild(n);
-	// onclick of a run removeChoice function pass id
-	a.setAttribute("onclick", "removeChoice('id_" + i + "')");
-	// appending remove link to span
-	s.appendChild(a);
-	// setting span id to i
-	s.setAttribute("id", "id_" + i);
-	// appending br to spans
-	var br = document.createElement('br');
-	s.appendChild(br);
-	// appending span to form
-	document.getElementById("additional_choices").appendChild(s);
-}// end addChoice()
+	// group of elements to be added for additional choice
+	var s = '<div data-id="' + i +'">' +
+	'<input type="text" name="choices[]">' +
+	'<a href="#" data-id="' + i + '" class="js_remove_choice">x</a>';
+	// appending additional choice elements
+	$('#additional_choices').append(s);
+	// remove choice elements 
+	$('.js_remove_choice').unbind('click').on('click', function(){
+		$(this).parent().remove();
+		count--;
+	});// end click() remove
+});// end click() add
