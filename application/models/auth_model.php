@@ -32,9 +32,9 @@ Class Auth_model extends CI_Model {
 		if ($query->num_rows() == 0) {
 			// Query to insert data in database
 			$this->db->insert('user', $reg_data);
-		if ($this->db->affected_rows() > 0) {
-			return true;
-		}
+			if ($this->db->affected_rows() > 0) {
+				return true;
+			}
 		}else{
 			return false;
 		}

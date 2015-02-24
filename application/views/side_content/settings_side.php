@@ -2,7 +2,7 @@
 <div class="side_container">
 	<h2><strong>Delete Survey</strong></h2>
 	<p>Text goes here..</p>
-	<a href="#" data-id="<?php echo $survey_id; ?>" class="js_survey_delete">Delete</a>
+	<a class="submit_btn js_survey_delete" id="delete_btn" href="#" data-id="<?php echo $survey_id; ?>">Delete</a>
 </div>
 <!-- Confirm Survey Delete panel -->
 <div id="confirm_remove" style="display: none;">

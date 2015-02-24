@@ -154,7 +154,54 @@ article{
 	padding: 15px;
 }
 
+/* SETTINGS */
+.article_content label{
+	display: inline-block;
+	width: 50px;
+	color: #44749d;
+}
+.update_btn{
+	height: 40px;
+	width: 108px;
+	padding: 0;
+	border: none;
+	background-color: #44749d;
+	color: #fefafa;
+	font-size: 14px;
+	cursor: pointer;
+}
+.form_select{
+	height: 40px;
+	width: 275px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
 
+
+
+/* SEND */
+table{
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
+thead{
+	height: 30px;
+	padding: 0 0 0 10px;
+	background-color: #c6d5e1;
+	color: #212121;
+}
+tbody tr{
+	height: 60px;
+	background-color: #fefafa;
+}
+tbody .spacer{
+	height: 6px;
+	background-color: transparent;
+}
+th, td{
+	padding: 0 10px;
+}
 
 
 
@@ -164,11 +211,63 @@ article{
 .side_container{
 	width: 275px;
 	margin: 0 auto;
+	position: relative;
+}
+fieldset{
+	margin: 0 0 15px;
+	padding: 0;
+	border: 0;
+}
+
+.error_message{
+	position: absolute;
+	right: 0;
+	font-size: 12px;
+	color: #44749d;
+}
+
+.error_message p{
+	display: inline;
+}
+
+.form_input{
+	height: 30px;
+	width: 265px;
+	padding: 3px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
+
+/* SETTINGS */
+#delete_btn{
+	display: block;
+	line-height: 45px;
+	text-align: center;
+	text-decoration: none;
+	background-color: #ef454d; 
+	font-size: 16px;
 }
 
 
+/* SEND */
+.send_textarea{
+	padding: 3px;
+	height: 160px;
+	width: 265px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
 
-
+.submit_btn{
+	width: 275px;
+	height: 45px;
+	border-radius: 5px;
+	background-color: #44749d;
+	color: #fefafa;
+	border: none;
+	margin-top: 15px;
+	font-size: 16px;
+}
 
 textarea{
 	padding: 0;

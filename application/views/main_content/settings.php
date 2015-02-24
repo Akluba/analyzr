@@ -14,11 +14,11 @@
 					// SURVEY ID -- hidden input 	
 					echo form_hidden('survey_id', $survey_id);
 					// TITLE LABEL
-					echo form_label('Title : ') ."\n";
+					echo form_label('Title: ') ."\n";
 					// TITLE INPUT
-					echo form_input(array('value' => $title, 'name' => 'updated_title')) ."\n";
+					echo form_input(array('class' => 'form_input', 'value' => $title, 'name' => 'updated_title')) ."\n";
 					// SUBMIT BUTTON
-					echo form_submit('submit', 'Update')."\n";
+					echo form_submit(array('type'=>'submit','class'=>'update_btn','value'=>'Update'))."\n";
 				// CLOSE FORM
 				echo form_close()."\n";
 			?>
@@ -38,11 +38,11 @@
 					// SURVEY ID -- hidden input 	
 					echo form_hidden('survey_id', $survey_id);
 					// STATUS LABEL
-					echo form_label('Status : ') ."\n";
+					echo form_label('Status: ') ."\n";
 					// STATUS SELECT
-					echo form_dropdown('status_update',array(1 => 'Open', 0 => 'Closed'), $status);
+					echo form_dropdown('status_update',array(1 => 'Open', 0 => 'Closed'), $status,'class="form_select"');
 					// SUBMIT BUTTON
-					echo form_submit('submit', 'Update')."\n";
+					echo form_submit(array('type'=>'submit','class'=>'update_btn','value'=>'Update'))."\n";
 				// CLOSE FORM
 				echo form_close()."\n";
 			?>

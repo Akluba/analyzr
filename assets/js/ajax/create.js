@@ -42,8 +42,8 @@ $("#question_form").submit(function(event) {
 				$('#question_error').empty();
 				$('#choice_error').empty();
 				// append validation error message 
-				if(res['text'] != "") $('#question_error').append(res['text']);
-				if(res['choice'] != "") $('#choice_error').append(res['choice']);
+				if(res['text'] != "") $('#question_error').append("&#42;"+res['text']);
+				if(res['choice'] != "") $('#choice_error').append("&#42;"+res['choice']);
 			}else if(res['error'] == 'user'){
 				location.reload();
 			}else{
@@ -72,10 +72,12 @@ $("#send_form").submit(function(event) {
 				$('#email_error').empty();
 				$('#subject_error').empty();
 				$('#message_error').empty();
+				$('#mandrill_error').empty();
 				// append validation error message 
-				if(res['email'] != "") $('#email_error').append(res['email']);
-				if(res['subject'] != "") $('#subject_error').append(res['subject']);
-				if(res['message'] != "") $('#message_error').append(res['message']);
+				if(res['email'] != "" && res['email'] != undefined) $('#email_error').append("&#42;"+res['email']);
+				if(res['subject'] != "" && res['subject'] != undefined) $('#subject_error').append("&#42;"+res['subject']);
+				if(res['message'] != "" && res['message'] != undefined) $('#message_error').append("&#42;"+res['message']);
+				if(res['mandrill'] != "" && res['mandrill'] != undefined) $('#mandrill_error').append("&#42;"+res['mandrill']);
 			}else{
 				location.reload();
 			}// end success if/else

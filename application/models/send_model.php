@@ -5,7 +5,22 @@ Class Send_model extends CI_Model {
 	########### CREATE ##################################################
 	*/ ##################################################################
 	public function insert_send_data($send_data){
-		$this->db->insert('sent', $send_data);
+		$condition = "email =" . "'" . $send_data['email'] . "'";
+		$this->db->select('*');
+		$this->db->from('sent');
+		$this->db->where($condition);
+		$this->db->limit(1);
+		$query = $this->db->get();
+		
+		if ($query->num_rows() == 0) {
+			$this->db->trans_start();
+			$this->db->insert('sent', $send_data);
+			$insert_id = $this->db->insert_id();
+			$this->db->trans_complete();
+			return  $insert_id;
+		}else{
+			return false;
+		}
 	}// end of insert_send_data()
 	
 	
@@ -31,6 +46,19 @@ Class Send_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}// end of get_sent_data()
+	
+	
+	/* ##################################################################
+	########### DELETE ##################################################
+	*/ ##################################################################
+	public function remove_sent($recipient_id){
+		$this->db->where('recipientId', $recipient_id);
+		$this->db->delete('sent');
+	}
+	
+	
+	
+	
 	
 	
 }// end of Send_model Class

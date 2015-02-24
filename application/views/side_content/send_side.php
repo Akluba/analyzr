@@ -1,23 +1,33 @@
 <div class="side_container">
+	<h2><strong>Send Survey</strong></h2>
 	<?php
 		// OPEN FORM
 		echo form_open('#', array('id'=>'send_form'))."\n";
-		// SURVEY ID -- hidden input 	
+		// SURVEY ID	
 		echo form_hidden('survey_id', $survey_id);
+		// USER EMAIL
+		echo form_hidden('user_email', $user_email);
 		// EMAIL ADDRESS
-		echo '<div id="email_error"></div>';
-		echo form_label('email address: ') ."\n";
-		echo form_input('send_email');
+		echo form_fieldset();
+			echo form_label('Email Address: ') ."\n";
+			echo form_input(array('name'=>'send_email','class'=>'form_input'));
+			echo '<div class="error_message" id="email_error"></div>';
+		echo form_fieldset_close(); 
 		// EMAIL SUBJECT
-		echo '<div id="subject_error"></div>';
-		echo form_label('subject: ') ."\n";
-		echo form_input('send_subject');
+		echo form_fieldset();
+			echo form_label('Subject: ') ."\n";
+			echo form_input(array('name'=>'send_subject','class'=>'form_input'));
+			echo '<div class="error_message" id="subject_error"></div>';
+		echo form_fieldset_close(); 
 		// EMAIL MESSAGE
-		echo '<div id="message_error"></div>';
-		echo form_label('message: ') ."\n";
-		echo form_textarea('send_message') ."\n";
+		echo form_fieldset();
+			echo form_label('Message: ') ."\n";
+			echo form_textarea(array('name'=>'send_message','class'=>'send_textarea')) ."\n";
+			echo '<div class="error_message" id="message_error"></div>';
+		echo form_fieldset_close();
 		// SUBMIT
-		echo form_submit('submit', 'Send Survey')."\n";
+		echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Send Survey'))."\n";
+		echo '<div class="error_message" id="mandrill_error"></div>';
 		// CLOSE FORM
 		echo form_close()."\n";
 	?>
