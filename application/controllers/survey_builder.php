@@ -125,6 +125,7 @@ class Survey_Builder extends Auth_Controller {
 		$answer_data = $this->builder_model->edit_answer_data($question_id);
 		// 
 		$data = array(
+			'survey_id' => $question_data[0]->surveyId,
 			'question_id' => $question_data[0]->questionId,
 			'question_type' => $question_data[0]->questionType,
 			'question_text' => $question_data[0]->questionText,
@@ -174,6 +175,7 @@ class Survey_Builder extends Auth_Controller {
 			// if text based answer -- limit answer to ONE null 
 			if($question_type == 4 || $question_type == 5){
 				$answer_data[] = array(
+					'surveyId' => $this->input->post("survey_id"),
 					'questionId' => $this->input->post("question_id"),
 					'answerText' => NULL
 				);
@@ -181,6 +183,7 @@ class Survey_Builder extends Auth_Controller {
 				// loop through choices array and create answer for each
 				foreach($choices as $choice){
 					$answer_data[] = array(
+						'surveyId' => $this->input->post("survey_id"),
 						'questionId' => $this->input->post("question_id"),
 						'answerText' => $choice
 					);

@@ -66,10 +66,16 @@ class Survey_Send extends Auth_Controller {
 			}else{
 				// send survey via MANDRILL
 				try{
+					$html = '<p>'.$this->input->post("send_message").'</p><br />'.
+							'<a href="analyzr.com/survey/'.$send_result.'">Link to Analyzr Survey</a>';
+							
+					$text = $this->input->post("send_message");
+					$text += 'use this link to access survey - analyzr.com/survey/'.$send_result;
+					
 					// message content
 					$message = array(
-						'html' => '<p>'.$this->input->post("send_message").'</p>'.'<a href="analyzr.com/survey/'.$send_result.'">Link to Analyzr Survey</a>',
-						'text' => $this->input->post("send_message") . 'use this link to access survey - analyzr.com/survey/'.$send_result,
+						'html' => $html,
+						'text' => $text,
 						'subject' => $this->input->post("send_subject"),
 						'from_email' => $this->input->post("user_email"),
 						'to' => array(
@@ -89,7 +95,6 @@ class Survey_Send extends Auth_Controller {
 					// echo array so it's accessable
 					echo json_encode($response);
 				}catch(Mandrill_Error $e) {
-					
 					//remove created sent from database
 					$sent_error = $this->send_model->remove_sent($send_result);
 					// Mandrill errors are thrown as exceptions

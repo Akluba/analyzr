@@ -76,6 +76,12 @@ Class Builder_model extends CI_Model {
 		$this->db->update('question', $question_data);
 	}// end update_question()
 	
+	
+	
+	
+	
+	
+	
 	public function update_answer($answer_data,$question_id){
 		
 		// get count of existing choices
@@ -87,28 +93,62 @@ Class Builder_model extends CI_Model {
 		$num_new = count($answer_data);
 		
 		if($num_new === 1){
-			var_dump($answer_data);
+			$new_data = array();
+			for($i=1;$i<$num_existing;$i++){
+				$new_data[] = $existing->result()[$i]->answerId;
+			}
+			$this->db->where_in('answerId', $new_data);
+			$this->db->delete('answer');
+			
+			$answer_data[0]['answerId'] = $existing->result()[0]->answerId;
+			$this->db->update('answer', $answer_data[0]);
 		}
-		// new choice amount = existing choice amount
-		else if($num_new === $num_existing){
+		
+		
+		
+		// even and new
+		else if($num_new >= $num_existing){
 			
 			$new_data = array();
-			$i = 0;
 			
 			// append answerId to new choice array 
-			foreach($answer_data as $choice){
+			foreach($existing->result() as $i=>$existing_data){
 				// answerId from existing choice
-				$id = $existing->result()[$i]->answerId;
+				$id = $existing_data->answerId;
+				$choice = $answer_data[$i];
 				// setting array value to answerId key
 				$choice['answerId'] = $id;
 				// adding choice to new_data array
 				$new_data[] = $choice;
-				// increase i to find next answerId
-				$i++;
 			}
-			
 			// update_batch 
 			$this->db->update_batch('answer', $new_data, 'answerId');
+			
+			// new greater existing
+			if($num_new > $num_existing){
+				$new_data = array();
+				for($i=$i+1; $i<$num_new;$i++){
+					$new_data[] = $answer_data[$i];
+				}
+				$this->db->insert_batch('answer', $new_data); 
+			}
+		}else{
+			$new_data = array();
+			foreach($answer_data as $i=>$choice){
+				$id = $existing->result()[$i]->answerId;
+				$choice['answerId'] = $id;
+				$new_data[] = $choice;
+			}
+			// update_batch 
+			$this->db->update_batch('answer', $new_data, 'answerId');
+			
+			$new_data = array();
+			for($i=$i+1;$i<$num_existing;$i++){
+				$new_data[] = $existing->result()[$i]->answerId;
+			}
+			$this->db->where_in('answerId', $new_data);
+			$this->db->delete('answer');
+			
 		}// end equal choice amount if/else
 		
 		

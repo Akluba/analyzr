@@ -1,0 +1,1 @@
+<h2><?php echo $survey[0]->title; ?></h2>

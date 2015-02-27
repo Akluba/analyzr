@@ -15,7 +15,7 @@ $("#survey_form").submit(function(event) {
 				// clear existing errors
 				$('#message').empty();
 				// append validation error message
-				if(res['message'] != "") $('#message').append(res['message']);
+				if(res['message'] != "") $('#message').append("&#42;"+res['message']);
 			}else{
 				location.reload();
 			}

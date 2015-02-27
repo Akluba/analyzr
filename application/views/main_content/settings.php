@@ -7,7 +7,7 @@
 			<div id="title_message"></div>
 		</div>
 		<div class="article_content">
-			<p>Text goes here..</p>
+			<p class="settings_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum congue erat ac vestibulum. Ut id pulvinar turpis. Vivamus ut pellentesque sapien, ut gravida orci. Nam faucibus varius nisi ut venenatis. Duis luctus nisl eget leo convallis, convallis elementum tellus suscipit.</p>
 			<?php
 				// OPEN FORM
 				echo form_open('#', array('id'=>'title_form'))."\n";
@@ -31,7 +31,7 @@
 			<div id="status_message"></div>
 		</div>
 		<div class="article_content">
-			<p>Text goes here..</p>
+			<p class="settings_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum congue erat ac vestibulum. Ut id pulvinar turpis. Vivamus ut pellentesque sapien, ut gravida orci. Nam faucibus varius nisi ut venenatis. Duis luctus nisl eget leo convallis, convallis elementum tellus suscipit.</p>
 			<?php
 				// OPEN FORM
 				echo form_open('#', array('id'=>'status_form'))."\n";

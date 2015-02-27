@@ -19,15 +19,15 @@ function increment(){
 // add / remove choices located in add question form
 $('.js_add_choice').on('click', function(){
 	// limit amount of added choices
-	if(count === 6) return false;
+	if(count === 4) return false;
 	// run increment function to get id
 	increment();
 	// add to count of added inputs
 	count++;
 	// group of elements to be added for additional choice
 	var s = '<div data-id="' + i +'">' +
-	'<input type="text" name="choices[]">' +
-	'<a href="#" data-id="' + i + '" class="js_remove_choice">x</a>';
+	'<input class="form_input additional_choice_input" type="text" name="choices[]">' +
+	'<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor">x</a>';
 	// appending additional choice elements
 	$('#additional_choices').append(s);
 	// remove choice elements 

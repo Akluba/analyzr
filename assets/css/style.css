@@ -15,6 +15,12 @@ h3{
 	float: left;
 	max-width: 70%;
 }
+h4{
+	margin: 0;
+}
+h5{
+	margin: 0;
+}
 p{
 	margin: 0;
 }
@@ -36,7 +42,8 @@ section{
     right: 315px;
     bottom: 0px;
     min-width: 645px;
-    background-color: #eae5de;   
+    background-color: #eae5de; 
+    overflow: scroll;  
 }
 #home_section{
 	position:absolute; 
@@ -154,17 +161,77 @@ article{
 	padding: 15px;
 }
 
-/* SETTINGS */
+/* ******************************
+	HOME
+****************************** */
+#new_survey{
+	margin-top: 19px;
+	position: relative;
+}
+.in-head_error_message{
+	position: absolute;
+	top: 8px;
+	right: 15px;
+	font-size: 12px;
+	color: #44749d;
+}
+.in-head_error_message p{
+	display: inline;
+}
+#new_survey_content{
+	padding: 15px;
+}
+#new_survey_content label{
+	display: inline-block;
+	width: 115px;
+	color: #44749d; 
+}
+#create_survey_input{
+	width: 295px;
+}
+
+
+.home_existing_survey{
+	padding: 15px;
+}
+.home_existing_info{
+	float: left;
+}
+
+.home_existing_survey ul{
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+.home_existing_survey ul li{
+	float: left;
+	margin-top: 0;
+	list-style-type: none;
+	margin-right: 5px;
+}
+.home_existing_survey ul a{
+	text-decoration: none;
+}
+
+
+/* ******************************
+	SETTINGS
+****************************** */
+.settings_text{
+	margin-bottom: 24px; 
+}
 .article_content label{
 	display: inline-block;
-	width: 50px;
+	width: 75px;
 	color: #44749d;
 }
 .update_btn{
 	height: 40px;
 	width: 108px;
+	float: right;
 	padding: 0;
 	border: none;
+	border-radius: 3px;
 	background-color: #44749d;
 	color: #fefafa;
 	font-size: 14px;
@@ -236,6 +303,14 @@ fieldset{
 	padding: 3px;
 	border: 2px solid #c6d5e1;
 	font-size: 14px;
+	margin-bottom: 5px;
+}
+textarea{
+	padding: 3px;
+	width: 265px;
+	resize: none;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
 }
 
 /* SETTINGS */
@@ -248,14 +323,34 @@ fieldset{
 	font-size: 16px;
 }
 
+/* BUILD */
+.question_textarea{
+	height: 75px;	
+}
+.add_choice_btn{
+	font-size: 14px;
+	color: #808284;
+	cursor: pointer;
+	float: left;
+}
+.additional_choice_input{
+	width: 240px;
+}
+.remove_choice_anchor{
+	text-decoration: none;
+	display: inline-block;
+	height: 12px;
+	width: 12px;
+	position: relative;
+	top: 3px;
+	left: 10px;
+	background-image: url('../img/remove_choice.png');
+	text-indent: -10000000px;
+}
 
 /* SEND */
 .send_textarea{
-	padding: 3px;
 	height: 160px;
-	width: 265px;
-	border: 2px solid #c6d5e1;
-	font-size: 14px;
 }
 
 .submit_btn{
@@ -267,13 +362,6 @@ fieldset{
 	border: none;
 	margin-top: 15px;
 	font-size: 16px;
-}
-
-textarea{
-	padding: 0;
-	width: 100%;
-	height: 85px;
-	resize: none;
 }
 
 
