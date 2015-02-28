@@ -1,4 +1,4 @@
-<div id="container">
+<div class="container">
 	<h2>Settings: <strong><?php echo $title?></strong></h2>
 	<!-- Update survey TITLE -->
 	<article>

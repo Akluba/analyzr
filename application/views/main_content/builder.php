@@ -1,5 +1,5 @@
 <!-- Survey preview existing questions -->
-<div id="container">
+<div class="container">
 	<h2>Builder: <strong><?php echo $title?></strong></h2>
 	<!-- displaying each question for this survey -->
 	<?php foreach($questions as $question): ; echo "\n"; ?>
@@ -14,41 +14,51 @@
 				<div style="clear: both;"></div>
 			</div>
 			<div class="article_content">
-			<!-- if an answer is required -->
-			<?php if($question->questionRequire == 1): ?>
-				<?php echo "<p>&#42; answer required</p>"; ?>
-			<?php endif ?>
-			<!-- if a select element place opening select tag -->
-			<?php if($question->questionType == 3): ?>
-				<select name="<?php echo $question->questionId; ?>">
-			<?php endif ?>
-			
-				<!-- displaying each answer -->
-				<?php foreach($answers as $answer): ?>
-					<!-- displaying correct answer set to question -->
-					<?php if($answer->questionId == $question->questionId): ?>
-						<!-- displaying answer type - RADIO -->
-						<?php if($question->questionType == 1): ?>
-							<input type="radio" name="<?php echo $question->questionId;?>" value="<?php echo $answer->answerText?>"><?php echo $answer->answerText;?><br />
-						<!-- displaying answer type - CHECKBOX -->
-						<?php elseif($question->questionType == 2): ?>
-							<input type="checkbox" name="<?php echo $question->questionId;?>" value="<?php echo $answer->answerText?>"><?php echo $answer->answerText;?>
-						<!-- displaying answer type - DROPDOWN -->
-						<?php elseif($question->questionType == 3): ?>
-							<option value="<?php echo $answer->answerText?>"><?php echo $answer->answerText?></option>
-						<!-- displaying answer type - INPUT -->
-						<?php elseif($question->questionType == 4): ?>
-							<input type="text" name="<?php echo $question->questionId;?>">
-						<!-- displaying answer type - COMMENT -->
-						<?php elseif($question->questionType == 5): ?>
-							<textarea name="<?php echo $question->questionId;?>"></textarea> 
-						<?php endif ?>
-					<?php endif ?>
-				<?php endforeach ?>
-			<!-- if a select element place closing select tag -->
-			<?php if($question->questionType == 3): ?>
-				</select>
-			<?php endif; echo "\n"; ?>
+			<?php
+				// CHOICES
+			$question_type = $question->questionType;
+			echo '<table>';
+			if($question_type != 3){
+				foreach($answers as $answer){
+					if($answer->questionId == $question->questionId){
+						echo '<tr>';
+						switch($question_type){
+							// displaying answer type - RADIO 
+							case 1:
+								echo '<td>' .form_radio(array('name'=>$question->questionId, 'value'=>$answer->answerId));
+								echo $answer->answerText .'</td>';
+								break;
+							// displaying answer type - CHECKBOX 
+							case 2:
+								echo '<td>' .form_checkbox(array('name'=>$question->questionId, 'value'=>$answer->answerId));
+								echo $answer->answerText .'</td>';
+								break;
+							// displaying answer type - INPUT 	
+							case 4:
+								echo form_input(array('name'=>$question->questionId, 'class'=>'survey_input'));
+								echo form_hidden($question->questionId . 'hidden', $answer->answerId);
+								break;
+							// displaying answer type - TEXTAREA 	
+							case 5:
+								echo form_textarea(array('name'=>$question->questionId, 'class'=>'survey_textarea'));
+								echo form_hidden($question->questionId . 'hidden', $answer->answerId);
+								break;
+						}// end of switch statement
+						echo '</tr>';
+					}// end of if 
+				}// end of foreach answer
+			}else{
+				$options = array();
+				foreach($answers as $answer){
+					if($answer->questionId == $question->questionId){
+						$options[$answer->answerId] = $answer->answerText;
+					}
+				}
+				// displaying answer type - DROPDOWN 
+				echo form_dropdown($question->questionId, $options, '','class="form_select"');
+			}// end if/else question type
+			echo '</table>';	
+			?>
 			</div>
 		</article>
 	<?php endforeach ?>

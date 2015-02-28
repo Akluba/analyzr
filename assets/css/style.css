@@ -1,30 +1,20 @@
+/* ########################################################################### 
+######################### Components #########################################
+########################################################################### */
+
+/* ******************************
+	Document
+****************************** */
 html{
 	margin: 0;
 }
 body{
 	margin: 0;
 }
-h2{
-	color: #bcb7ad;
-}
-h2 strong{
-	color: #44749d;
-}
-h3{
-	margin: 0;
-	float: left;
-	max-width: 70%;
-}
-h4{
-	margin: 0;
-}
-h5{
-	margin: 0;
-}
-p{
-	margin: 0;
-}
 
+/* ******************************
+	Layout
+****************************** */
 #parent{
     margin-top:67px;
     position:absolute; 
@@ -33,7 +23,6 @@ p{
     right:0px; 
     bottom:0px;
 }
-
 section{
     position:absolute; 
     z-index: 2;
@@ -64,9 +53,10 @@ aside{
     background-color: #fefafa;
     overflow: scroll;
 }
-/* ########################################################################### 
-######################### HEADER #############################################
-########################################################################### */
+
+/* ******************************
+	Headers
+****************************** */
 header{
 	height: 67px;
 	width: 100%;
@@ -98,10 +88,9 @@ header ul li a{
 	text-decoration: none;
 	margin: 24px 0 0;
 }
-
-/* ########################################################################### 
-######################### SIDE NAV ###########################################
-########################################################################### */
+/* ******************************
+	Side Nav
+****************************** */
 nav{
     position:absolute;
     z-index: 1;
@@ -127,13 +116,22 @@ nav a{
 	font-size: 12px;
 }
 
-/* ########################################################################### 
-######################### MAIN CONTENT #######################################
-########################################################################### */
+/* ******************************
+	Containers
+****************************** */
 .container{
 	width: 90%;
 	margin: 0 auto;
 }
+.side_container{
+	width: 275px;
+	margin: 0 auto;
+	position: relative;
+}
+
+/* ******************************
+	Articles
+****************************** */
 article{
 	background-color: #fefafa;
 	margin-bottom: 10px;
@@ -160,14 +158,36 @@ article{
 .article_content{
 	padding: 15px;
 }
+.article_content label{
+	display: inline-block;
+	width: 75px;
+	color: #44749d;
+}
 
 /* ******************************
-	HOME
+	Titles
 ****************************** */
-#new_survey{
-	margin-top: 19px;
-	position: relative;
+h2{
+	color: #bcb7ad;
 }
+h2 strong{
+	color: #44749d;
+}
+h3{
+	margin: 0;
+	float: left;
+	max-width: 70%;
+}
+h4{
+	margin: 0;
+}
+h5{
+	margin: 0;
+}
+
+/* ******************************
+	Errors
+****************************** */
 .in-head_error_message{
 	position: absolute;
 	top: 8px;
@@ -177,6 +197,101 @@ article{
 }
 .in-head_error_message p{
 	display: inline;
+}
+.error_message{
+	position: absolute;
+	right: 0;
+	font-size: 12px;
+	color: #44749d;
+}
+.error_message p{
+	display: inline;
+}
+
+/* ******************************
+	Inputs
+****************************** */
+fieldset{
+	margin: 0 0 15px;
+	padding: 0;
+	border: 0;
+}
+.form_input{
+	height: 30px;
+	width: 265px;
+	padding: 3px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.survey_input{
+	height: 30px;
+	width: 265px;
+	padding: 3px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
+textarea{
+	padding: 3px;
+	width: 265px;
+	resize: none;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
+.survey_textarea{
+	width: 100%;
+	box-sizing:border-box;
+}
+
+/* ******************************
+	Text
+****************************** */
+p{
+	margin: 0;
+}
+
+/* ******************************
+	Buttons
+****************************** */
+.submit_btn{
+	width: 275px;
+	height: 45px;
+	border-radius: 5px;
+	background-color: #44749d;
+	color: #fefafa;
+	border: none;
+	margin-top: 15px;
+	font-size: 16px;
+}
+
+/* ******************************
+	Table
+****************************** */
+table{
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
+thead{
+	height: 30px;
+	padding: 0 0 0 10px;
+	background-color: #c6d5e1;
+	color: #212121;
+}
+th, td{
+	padding: 0 10px;
+}
+
+/* ########################################################################### 
+######################### HOME ###############################################
+########################################################################### */
+
+/* ******************************
+	Main Content
+****************************** */
+#new_survey{
+	margin-top: 19px;
+	position: relative;
 }
 #new_survey_content{
 	padding: 15px;
@@ -189,15 +304,12 @@ article{
 #create_survey_input{
 	width: 295px;
 }
-
-
 .home_existing_survey{
 	padding: 15px;
 }
 .home_existing_info{
 	float: left;
 }
-
 .home_existing_survey ul{
 	float: right;
 	margin: 0;
@@ -213,17 +325,28 @@ article{
 	text-decoration: none;
 }
 
+/* ******************************
+	Side Content
+****************************** */
+
+
+
+
+/* ########################################################################### 
+######################### SETTINGS ###########################################
+########################################################################### */
 
 /* ******************************
-	SETTINGS
+	Main Content
 ****************************** */
 .settings_text{
 	margin-bottom: 24px; 
 }
-.article_content label{
-	display: inline-block;
-	width: 75px;
-	color: #44749d;
+.form_select{
+	height: 40px;
+	width: 275px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
 }
 .update_btn{
 	height: 40px;
@@ -237,83 +360,10 @@ article{
 	font-size: 14px;
 	cursor: pointer;
 }
-.form_select{
-	height: 40px;
-	width: 275px;
-	border: 2px solid #c6d5e1;
-	font-size: 14px;
-}
 
-
-
-/* SEND */
-table{
-	width: 100%;
-	border-collapse: collapse;
-	text-align: left;
-}
-thead{
-	height: 30px;
-	padding: 0 0 0 10px;
-	background-color: #c6d5e1;
-	color: #212121;
-}
-tbody tr{
-	height: 60px;
-	background-color: #fefafa;
-}
-tbody .spacer{
-	height: 6px;
-	background-color: transparent;
-}
-th, td{
-	padding: 0 10px;
-}
-
-
-
-/* ########################################################################### 
-######################### SIDE CONTENT #######################################
-########################################################################### */
-.side_container{
-	width: 275px;
-	margin: 0 auto;
-	position: relative;
-}
-fieldset{
-	margin: 0 0 15px;
-	padding: 0;
-	border: 0;
-}
-
-.error_message{
-	position: absolute;
-	right: 0;
-	font-size: 12px;
-	color: #44749d;
-}
-
-.error_message p{
-	display: inline;
-}
-
-.form_input{
-	height: 30px;
-	width: 265px;
-	padding: 3px;
-	border: 2px solid #c6d5e1;
-	font-size: 14px;
-	margin-bottom: 5px;
-}
-textarea{
-	padding: 3px;
-	width: 265px;
-	resize: none;
-	border: 2px solid #c6d5e1;
-	font-size: 14px;
-}
-
-/* SETTINGS */
+/* ******************************
+	Side Content
+****************************** */
 #delete_btn{
 	display: block;
 	line-height: 45px;
@@ -323,7 +373,18 @@ textarea{
 	font-size: 16px;
 }
 
-/* BUILD */
+/* ########################################################################### 
+######################### BUILD ##############################################
+########################################################################### */
+
+/* ******************************
+	Main Content
+****************************** */
+
+
+/* ******************************
+	Side Content
+****************************** */
 .question_textarea{
 	height: 75px;	
 }
@@ -348,21 +409,79 @@ textarea{
 	text-indent: -10000000px;
 }
 
-/* SEND */
+/* ########################################################################### 
+######################### SEND ###############################################
+########################################################################### */
+
+/* ******************************
+	Main Content
+****************************** */
+.send_recipients_table tr{
+	height: 60px;
+	background-color: #fefafa;
+}
+.send_recipients_table .spacer{
+	height: 6px;
+	background-color: transparent;
+}
+
+/* ******************************
+	Side Content
+****************************** */
 .send_textarea{
 	height: 160px;
 }
 
-.submit_btn{
-	width: 275px;
-	height: 45px;
-	border-radius: 5px;
-	background-color: #44749d;
-	color: #fefafa;
-	border: none;
-	margin-top: 15px;
-	font-size: 16px;
+/* ########################################################################### 
+######################### ANALYZE ############################################
+########################################################################### */
+
+/* ******************************
+	Main Content
+****************************** */
+.answer_required{
+	float: right;
+	margin-right: 15px; 
+}
+.analyze_table tr{
+	height: 30px;
+}
+#recipient_choice{
+	height: 17px;
+	width: 14px;
+	background-image: url('../img/check_mark.png');
+	display: inline-block;
+	margin-left: 12px;
 }
 
-
-
+/* ******************************
+	Side Content
+****************************** */
+#analyze_type_ul{
+	padding: 0;
+	margin: 0;
+	height: 30px;
+}
+#analyze_type_ul li{
+	float: left;
+	list-style-type: none;
+	padding-right: 10px;
+}
+#analyze_type_ul a{
+	text-decoration: none;
+	color: #c6d5e1;
+}
+#analyze_type_ul .current_analyze_type{
+	color: #212121;
+}
+.recipient_item{
+	padding: 10px;
+	cursor: pointer;
+}
+.current_recipient_item{
+	background-color: #c6d5e1;
+}
+.recipient_hidden{
+	opacity: .2;
+	cursor: default;
+}

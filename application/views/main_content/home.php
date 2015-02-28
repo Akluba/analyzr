@@ -1,4 +1,4 @@
-<div id="container">
+<div class="container">
 	<h2>Survey Home</strong></h2>
 	<article id="new_survey">
 		<div class="article_header">

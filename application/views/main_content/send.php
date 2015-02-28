@@ -1,4 +1,4 @@
-<div id="container">
+<div class="container">
 	<h2>Send: <strong><?php echo $title?></strong></h2>
 	<table>
 		<thead>
@@ -8,7 +8,7 @@
 				<th>Responded</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="send_recipients_table">
 			<?php foreach ($sent as $sent_info): ?>
 			<tr>
 				<td><?php echo $sent_info->email; ?></td>
