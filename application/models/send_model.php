@@ -5,11 +5,10 @@ Class Send_model extends CI_Model {
 	########### CREATE ##################################################
 	*/ ##################################################################
 	public function insert_send_data($send_data){
-		//check to see if email address exists in db
-		$condition = "email =" . "'" . $send_data['email'] . "'";
 		$this->db->select('*');
 		$this->db->from('sent');
-		$this->db->where($condition);
+		$this->db->where('surveyId',$send_data['surveyId']);
+		$this->db->where('email',$send_data['email']);
 		$this->db->limit(1);
 		$query = $this->db->get();
 		// if not

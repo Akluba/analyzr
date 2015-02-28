@@ -9,6 +9,7 @@ public function __construct() {
 	parent::__construct();
 		// Load form helper library
 		$this->load->helper('form');
+		$this->load->helper('date');
 		
 		// Load form validation library
 		$this->load->library('form_validation');
@@ -51,42 +52,60 @@ public function __construct() {
 		$this->load->view('templates/survey', $page_data);
 	}
 	
+	/* ##################################################################
+	########### CREATE ##################################################
+	*/ ##################################################################
 	public function get_response(){
-		$recipient_id = $this->input->post('recipient_id');
+		// get survey id
 		$survey_id = $this->input->post('survey_id');
-		
-		//get required data
+		//determine which questions are required 
 		$required_data = $this->take_model->get_required($survey_id);
+		// set form_validation rules for required question
 		foreach($required_data as $question){
 			$questionId = $question->questionId;
 			$this->form_validation->set_rules($questionId, 'Question', 'required|xss_clean');
 		}
-		
 		// run form validation
 		if ($this->form_validation->run() == FALSE) {
 			echo "required"; 
 		}else{
+			// get recipient id
+			$recipient_id = $this->input->post('recipient_id');
+			// remove unneeded POST items from array
 			unset($_POST['survey_id'],$_POST['recipient_id']);
+			// array to contain response data
 			$response_data = array();
+			// loop through POST 
 			foreach($_POST as $key=>$value){
+				// question id w/ 'hidden' represents text value is present
 				if(isset($_POST[$key.'hidden'])){
 					$response_data[] = array(
 						'recipientId' => $recipient_id,
 						'answerId' => $_POST[$key.'hidden'],
-						'answerText' => $value
+						'responseText' => $value
 					);	
 				}else if(strpos($key, 'hidden')){
+					// don't insert hidden input values into response_data[]
 					continue;
 				}else{
+					// insert response data containing only answer id
 					$response_data[] = array(
 						'recipientId' => $recipient_id,
 						'answerId' => $value,
-						'answerText' => Null
+						'responseText' => Null
 					);	
 				}
-			}
-			$response_result = $this->take_model->insert_response_data($response_data);
-			
+			}// end foreach Post data
+			// insert response data into database
+			$response_insert = $this->take_model->insert_response_data($response_data);
+			// insert response date
+			$datestring = "%Y%m%d";
+			$respond_date = mdate($datestring);
+			$respond_data = array(
+				'recipientId' => $recipient_id,
+				'respondDate' => $respond_date
+			);
+			$respond_insert = $this->take_model->insert_respond_data($respond_data);
 			
 		}// end of form_validation if/else
 	}// end of get_response()

@@ -29,6 +29,7 @@
 		
 		<!-- 	CRUD Functionality	 -->
 		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/create.js"></script>
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/read.js"></script>
 		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/update.js"></script>
 		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/delete.js"></script>
 	</body>

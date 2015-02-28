@@ -39,7 +39,7 @@
 				<li><a href="survey_settings/<?php echo $item->surveyId;?>">settings</a></li>
 				<li><a href="survey_builder/<?php echo $item->surveyId;?>">builder</a></li>
 				<li><a href="survey_send/<?php echo $item->surveyId;?>">send</a></li>
-				<li><a href="route/<?php echo $item->surveyId;?>">results</a></li>
+				<li><a href="survey_analyze/<?php echo $item->surveyId;?>">results</a></li>
 			</ul>
 			<div style="clear:both;"></div> 
 		</article>

@@ -44,8 +44,12 @@ Class Take_model extends CI_Model {
 	}
 	
 	public function insert_response_data($response_data){
-		var_dump($response_data);
 		$this->db->insert_batch('response', $response_data);
+	}
+	
+	public function insert_respond_data($respond_data){
+		$this->db->where('recipientId', $respond_data['recipientId']);
+		$this->db->update('sent', array('respondDate' => $respond_data['respondDate']));
 	}
 	
 }// end Take_model Class

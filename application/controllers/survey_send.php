@@ -67,7 +67,7 @@ class Survey_Send extends Auth_Controller {
 				// send survey via MANDRILL
 				try{
 					$html = '<p>'.$this->input->post("send_message").'</p><br />'.
-							'<a href="analyzr.com/survey/'.$send_result.'">Link to Analyzr Survey</a>';
+							'<a href="http://localhost:8888/analyzr/take_survey/'.$send_result.'">Link to Analyzr Survey</a>';
 							
 					$text = $this->input->post("send_message");
 					$text += 'use this link to access survey - analyzr.com/survey/'.$send_result;
