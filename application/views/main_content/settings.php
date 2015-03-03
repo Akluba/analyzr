@@ -18,7 +18,7 @@
 					// TITLE INPUT
 					echo form_input(array('class' => 'form_input', 'value' => $title, 'name' => 'updated_title')) ."\n";
 					// SUBMIT BUTTON
-					echo form_submit(array('type'=>'submit','class'=>'update_btn','value'=>'Update'))."\n";
+					echo form_submit(array('type'=>'submit','class'=>'update_btn js_button_change','value'=>'Update'))."\n";
 				// CLOSE FORM
 				echo form_close()."\n";
 			?>
@@ -42,7 +42,7 @@
 					// STATUS SELECT
 					echo form_dropdown('status_update',array(1 => 'Open', 0 => 'Closed'), $status,'class="form_select"');
 					// SUBMIT BUTTON
-					echo form_submit(array('type'=>'submit','class'=>'update_btn','value'=>'Update'))."\n";
+					echo form_submit(array('type'=>'submit','id'=>'js_update_status_btn','class'=>'update_btn','value'=>'Update'))."\n";
 				// CLOSE FORM
 				echo form_close()."\n";
 			?>

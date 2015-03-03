@@ -5,9 +5,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/style.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/confirm.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/webfont/webfont.css">
-		
-		
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/webfont/webfont.css">	
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
