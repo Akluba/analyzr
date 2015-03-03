@@ -5,6 +5,10 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/style.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/confirm.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/webfont/webfont.css">
+		
+
+
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
@@ -26,6 +30,7 @@
 		
 		<!-- 	Form Functionality	 -->
 		<script type="text/javascript" src="<?php echo asset_url();?>js/question_form.js"></script>
+		<script type="text/javascript" src="<?php echo asset_url();?>js/animation.js"></script>
 		
 		<!-- 	CRUD Functionality	 -->
 		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/create.js"></script>

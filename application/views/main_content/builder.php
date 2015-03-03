@@ -1,5 +1,5 @@
 <!-- Survey preview existing questions -->
-<div class="container">
+<div class="container" id="builder_active_container">
 	<h2>Builder: <strong><?php echo $title?></strong></h2>
 	<!-- displaying each question for this survey -->
 	<?php foreach($questions as $question): ; echo "\n"; ?>
@@ -15,7 +15,7 @@
 			</div>
 			<div class="article_content">
 			<?php
-				// CHOICES
+			// CHOICES
 			$question_type = $question->questionType;
 			echo '<table>';
 			if($question_type != 3){

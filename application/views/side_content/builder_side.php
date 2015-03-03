@@ -41,7 +41,7 @@
 				'name'        => 'question_require',
 				'id'          => 'required',
 				'value'       => 1,
-				'checked'     => FALSE
+				'checked'     => TRUE
 			);
 			echo form_checkbox($check_data) ."\n";
 			echo form_label('Answer required ') ."\n";

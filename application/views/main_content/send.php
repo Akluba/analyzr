@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="send_active_container">
 	<h2>Send: <strong><?php echo $title?></strong></h2>
 	<table>
 		<thead>
