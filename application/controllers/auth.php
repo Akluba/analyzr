@@ -73,13 +73,12 @@ public function __construct() {
 				);
 				// Add user data in session
 				$this->session->set_userdata('logged_in', $sess_array);
-				
+				// response to allow redirect to home
 				$response = array(
 					'error' => FALSE
 				);
 				// echo array so it's accessable
 				echo json_encode($response);
-				
 			}else{
 				$response = array(
 					'error' => TRUE,
@@ -92,13 +91,21 @@ public function __construct() {
 	}// end login_process
 	
 	// REGISTRATION
-	public function registration_process() {
+	public function register_process() {
 		// Check validation for user input in registration form
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
-			redirect('register', 'refresh');
+			// ajax response returning validation errors
+			$response = array(
+				'error' => TRUE,
+				'user_error' => form_error('username'),
+				'email_error' => form_error('email'),
+				'pass_error' => form_error('password')
+			);
+			// echo array so it's accessable
+			echo json_encode($response);
 		}else{
 			$reg_data = array(
 			'username' => $this->input->post('username'),
@@ -120,13 +127,21 @@ public function __construct() {
 					);
 					// Add user data in session
 					$this->session->set_userdata('logged_in', $sess_array);
-					// Redirect user into logged in area
-					redirect('home', 'refresh');
+					// response to allow redirect to home
+					$response = array(
+						'error' => FALSE
+					);
+					// echo array so it's accessable
+					echo json_encode($response);
 				}
 			}else{
-				$data['message_display'] = 'email address already exist!';
-				$this->load->view('auth/registration_form', $data);
-			}// 
+				$response = array(
+					'error' => TRUE,
+					'invalid_error' => 'email address already exist!'
+				);
+				// echo array so it's accessable
+				echo json_encode($response);
+			}
 		}// end if/else
 	}// end registration_process()
 	

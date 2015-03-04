@@ -157,7 +157,7 @@ textarea{
 	padding: 3px;
 	border: 2px solid #c6d5e1;
 	font-size: 14px;
-	margin-bottom: 12px;
+	margin-bottom: 3px;
 }
 .auth_form a{
 	text-decoration: none;
@@ -168,6 +168,12 @@ textarea{
 
 .auth_form label{
 	float: left;
+}
+
+fieldset{
+	margin: 0 0 15px;
+	padding: 0;
+	border: 0;
 }
 
 .error_message{
