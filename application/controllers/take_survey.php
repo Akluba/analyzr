@@ -37,6 +37,7 @@ public function __construct() {
 		$answer_data = $this->take_model->get_answer_data($survey_id);
 		
 		$body_data = array(
+			'surveyTitle' => $survey_data[0]->title,
 			'recipient' => $recipient_data,
 			'questions' => $question_data,
 			'answers' => $answer_data
@@ -44,9 +45,8 @@ public function __construct() {
 		
 		$page_data = array(
 			'pageTitle' => 'Take Survey',
-			'headerContent' => $this->load->view('survey/survey_head'),
-			'surveyTitle' => $this->load->view('survey/survey_title',array('survey' => $survey_data), TRUE),
-			'surveyBody' => $this->load->view('survey/survey_body',$body_data, TRUE),
+			'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+			'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
 		);
 		
 		$this->load->view('templates/survey', $page_data);

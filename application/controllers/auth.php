@@ -26,12 +26,20 @@ public function __construct() {
 	
 	//load login form
 	public function login_form(){
-		$this->load->view('auth/login_form');
+		$page_data = array(
+			'pageTitle' => 'Login',
+			'analyzrContent' => $this->load->view('auth/login_form',array(), TRUE),
+		);
+		$this->load->view('templates/auth', $page_data);
 	}// end login_form()
 	
 	//load registration form
 	public function registration_form() {
-		$this->load->view('auth/registration_form');
+		$page_data = array(
+			'pageTitle' => 'Register',
+			'analyzrContent' => $this->load->view('auth/registration_form',array(), TRUE),
+		);
+		$this->load->view('templates/auth', $page_data);
 	}// end registration_form()
 	
 	
@@ -42,7 +50,14 @@ public function __construct() {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 		// watching for form_val lib to be ran
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('auth/login_form');
+			// ajax response returning validation errors
+			$response = array(
+				'error' => TRUE,
+				'email_error' => form_error('email'),
+				'pass_error' => form_error('password')
+			);
+			// echo array so it's accessable
+			echo json_encode($response);
 		}else{
 			// setting data to user's input posts
 			$log_data = array(
@@ -58,13 +73,20 @@ public function __construct() {
 				);
 				// Add user data in session
 				$this->session->set_userdata('logged_in', $sess_array);
-				// Redirect user into logged in area
-				redirect('home', 'refresh');
-			}else{
-				$log_data = array(
-				'error_message' => 'Invalid Username or Password'
+				
+				$response = array(
+					'error' => FALSE
 				);
-				$this->load->view('auth/login_form', $log_data);
+				// echo array so it's accessable
+				echo json_encode($response);
+				
+			}else{
+				$response = array(
+					'error' => TRUE,
+					'invalid_error' => 'Invalid email or password'
+				);
+				// echo array so it's accessable
+				echo json_encode($response);
 			}// end else/if
 		}// end else/if
 	}// end login_process
@@ -76,7 +98,7 @@ public function __construct() {
 		$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('auth/registration_form');
+			redirect('register', 'refresh');
 		}else{
 			$reg_data = array(
 			'username' => $this->input->post('username'),
@@ -116,7 +138,7 @@ public function __construct() {
 		);
 		$this->session->unset_userdata('logged_in', $sess_array);
 		$data['message_display'] = 'Successfully Logout';
-		$this->load->view('auth/login_form', $data);
+		redirect('login', 'refresh');
 	}
 	
 }// end Auth Class

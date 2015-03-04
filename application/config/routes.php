@@ -41,6 +41,9 @@
 $route['default_controller'] = "landing";
 $route['404_override'] = '';
 
+$route['login'] = 'auth/login_form';
+$route['register'] = 'auth/registration_form';
+
 $route['survey_settings/(:num)'] = 'survey_settings/settings/$1';
 $route['survey_builder/(:num)'] = 'survey_builder/builder/$1';
 $route['survey_send/(:num)'] = 'survey_send/send/$1';

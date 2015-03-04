@@ -1,38 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Ananlyzr | Login</title>
-	</head>
-	<body>
-	<?php
-	if (isset($message_display)) {
-	echo "<div class='message'>";
-	echo $message_display;
-	echo "</div>";
-	}
-	echo "\n"
+<h1>Analyzr</h1>
+<div class="auth_form">
+	<?php 
+		echo form_open('#',array('id'=>'js_login_form')) . "\n"; 
+		
+		echo form_label('Email Address : ') ."\n";
+		echo '<div class="error_message" id="email_error"></div>';
+		echo form_input(array('name'=>'email','class'=>'auth_input')) ."\n";
+		
+		echo form_label('Password : ') ."\n";
+		echo '<div class="error_message" id="pass_error"></div>';
+		echo form_input(array('type'=>'password','name'=>'password','class'=>'auth_input')) ."\n";
+		
+		echo '<div class="error_message" id="invalid_error"></div>';
+		echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Login'))."\n";
+		
+		echo '<a href="register">Register here</a>';
+		
+		echo form_close()
 	?>
-		<div id="main">
-			<div id="login">
-				<h2>Login Form</h2>
-				<?php echo form_open('auth/login_process') . "\n"; ?>
-					<?php
-						echo "<div class='error_msg'>";
-						if (isset($error_message)) {
-							echo $error_message;
-						}
-						echo validation_errors();
-						echo "</div> \n";
-					?>
-					<label>Email Address :</label>
-					<input type="text" name="email" id="email" placeholder="email address"/>
-					<label>Password :</label>
-					<input type="password" name="password" id="password" placeholder="**********"/>
-					<input type="submit" value=" Login " name="submit"/>
-					<a href="registration_form">To SignUp Click Here</a>
-				<?php echo form_close() ."\n"; ?>
-			</div>
-		</div>
-	</body>
-</html>
+</div>
+
 

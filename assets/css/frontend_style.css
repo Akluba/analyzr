@@ -1,0 +1,183 @@
+/* ########################################################################### 
+######################### Survey #############################################
+########################################################################### */
+/* ******************************
+	Document
+****************************** */
+html{
+	margin: 0;
+}
+body{
+	margin: 0;
+	background-color: #eae5de;
+}
+section{
+	max-width: 960px;
+	min-width: 305px;
+	width: 85%;
+	margin: 0 auto 50px;
+}
+/* ******************************
+	Headers
+****************************** */
+header{
+	height: 67px;
+	width: 100%;
+	background-color: #212121;
+}
+header h1{
+	margin: 14px 70px 0 20px;
+	float: left;
+	color: white;
+}
+header ul{
+	float: right;
+	margin: 16px 20px 0 0;
+	padding: 0;
+}
+header ul li{
+	float: left;
+	list-style-type: none;
+	margin-right: 10px;	
+}
+header ul li:last-child{
+	margin-right: 0;
+}
+header ul li a{
+	text-decoration: none;
+	display: block;
+	color: #c6d5e1;
+	height: 15px;
+	padding: 10px;
+}
+#login_btn{
+	border-radius: 3px;
+	background-color: #44749d;
+	color: #fefafa;
+}
+
+/* ******************************
+	Articles
+****************************** */
+article{
+	background-color: #fefafa;
+	margin-bottom: 10px;
+}
+.article_header{
+	min-height: 20px;
+	background-color: #c6d5e1;
+	padding: 5px 0 5px 15px;
+}
+.article_content{
+	padding: 15px;
+}
+.article_content label{
+	display: inline-block;
+	width: 75px;
+	color: #44749d;
+}
+
+/* ******************************
+	Article text
+****************************** */
+h3{
+	margin: 0;
+	float: left;
+	max-width: 70%;
+}
+.answer_required{
+	float: right;
+	margin: 0 15px 0; 
+}
+
+/* ******************************
+	Form inputs
+****************************** */
+.survey_input{
+	height: 30px;
+	width: 265px;
+	padding: 3px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
+.form_select{
+	height: 40px;
+	width: 275px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
+textarea{
+	padding: 3px;
+	width: 265px;
+	resize: none;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+}
+.survey_textarea{
+	width: 100%;
+	box-sizing:border-box;
+}
+
+/* ******************************
+	Buttons
+****************************** */
+.submit_btn{
+	width: 275px;
+	height: 45px;
+	border-radius: 5px;
+	background-color: #44749d;
+	color: #fefafa;
+	border: none;
+	margin-top: 15px;
+	font-size: 16px;
+}
+
+
+
+/* ########################################################################### 
+######################### Auth ###############################################
+########################################################################### */
+.auth_area{
+	width: 375px;
+	margin: 100px auto;	
+}
+.auth_area h1{
+	text-align: center;
+}
+.auth_form{
+	width: 275px;
+	position: relative;
+	padding: 25px 50px 50px;
+	background-color: #fefafa;
+	border-radius: 5px;
+}
+.auth_input{
+	height: 30px;
+	width: 265px;
+	padding: 3px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+	margin-bottom: 12px;
+}
+.auth_form a{
+	text-decoration: none;
+	float: right;
+	margin: 15px 0;
+	color: #44749d;
+}
+
+.auth_form label{
+	float: left;
+}
+
+.error_message{
+	position: absolute;
+	right: 50px;
+	font-size: 12px;
+	color: #44749d;
+}
+.error_message p{
+	margin: 0;
+	display: inline;
+}
+

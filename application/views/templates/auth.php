@@ -9,14 +9,12 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<?php if(isset($headerContent)){print $headerContent; }?>
-		</header>
-		<section>
+		<div class="auth_area">
 			<?php if(isset($analyzrContent)){print $analyzrContent; }?>
-		</section>
+		</div>
 		
-		<!-- 	SUBMITTING RESPONSE	 -->
-		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/response.js"></script>
+		
+		<!--  User login / register ajax	 -->
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/auth.js"></script>
 	</body>
 </html>
