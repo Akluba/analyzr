@@ -161,22 +161,9 @@ article{
 	padding: 5px 0 5px 15px;
 	position: relative;
 }
-.article_header ul{
-	padding: 0;
-	margin: 0;
-	float: right;
-}
-.article_header ul li{
-	float: left;
-	list-style-type: none;
-	margin-right: 20px;	
-}
-.article_header ul li a{
-	color: #212121;
-	text-decoration: none;
-}
 .article_content{
 	padding: 15px;
+	position: relative;
 }
 .article_content label{
 	display: inline-block;
@@ -240,6 +227,7 @@ h5 strong{
 }
 .error_message p{
 	display: inline;
+	font-size: 12px;
 }
 
 /* ******************************
@@ -416,7 +404,6 @@ th, td{
 	font-weight: 400;
 	margin: 0;
 }
-
 #feature_set .icon{
 	color: #44749d;
 	font-size: 60px;
@@ -470,7 +457,32 @@ th, td{
 /* ******************************
 	Main Content
 ****************************** */
-
+.question_actions{
+	position: absolute;
+	right: 15px;
+	margin: 0;
+	padding: 0;
+}
+.question_actions li{
+	float: left;
+	list-style-type: none;
+	margin-left: 12px;
+}
+.question_actions li a{
+	text-decoration: none;
+	display: block;
+	height: 40px;
+	width: 108px;
+	background-color: #bcb7ad;
+	border-radius: 3px;
+	text-align: center;
+	color: #FEFAFA;
+	line-height: 40px;
+}
+.question_actions li .remove_quest_btn{
+	background-color: #ef454d; 
+	
+}
 
 /* ******************************
 	Side Content
@@ -496,13 +508,11 @@ th, td{
 	top: 3px;
 	left: 6px;
 }
-
 .indicate_type p{
 	float: left;
-	margin-left: 3px; 
+	margin-left: 3px;
+	color: #44749D; 
 }
-
-
 .type_selector input{
 	position:absolute;
     z-index:999;
@@ -524,9 +534,6 @@ th, td{
 .textarea{
 	background-image: url('../img/textarea_icon.png');
 }
-
-
-
 .type_selector input:active + .type_img{
 	opacity: .9;
 }

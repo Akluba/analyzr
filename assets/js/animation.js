@@ -38,3 +38,12 @@ $('.form_select').on('change',function(){
 		$('#js_update_status_btn').css({'background-color':'#85929d','color':'#cccccc'});
 	}	
 });// end change()
+
+// hide question actions
+$('.question_actions').hide();
+// hover show / hide question's actions
+$('.js_question_item').hover(function(){
+	$(this).find('.question_actions').show();
+},function(){
+	$(this).find('.question_actions').hide();
+})

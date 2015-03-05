@@ -1,70 +1,80 @@
 <!-- Survey preview existing questions -->
 <div class="container" id="builder_active_container">
-	<h2>Builder: <strong><?php echo $title?></strong></h2>
-	<!-- displaying each question for this survey -->
-	<?php foreach($questions as $question): ; echo "\n"; ?>
-		<article> 
-			<!-- question title -->
-			<div class="article_header">
-				<h3><?php echo $question->questionText; ?></h3>
-				<ul>
-					<li><a href="#" data-id="<?php echo $question->questionId; ?>" class="js_question_edit">edit</a></li>
-					<li><a href="#" data-id="<?php echo $question->questionId; ?>" class="js_question_delete">remove</a></li>
-				</ul>
-				<div style="clear: both;"></div>
-			</div>
-			<div class="article_content">
-			<?php
-			// CHOICES
-			$question_type = $question->questionType;
-			echo '<table>';
-			echo '<tbody class="choice_rows">';
-			if($question_type != 3){
-				foreach($answers as $answer){
-					if($answer->questionId == $question->questionId){
-						echo '<tr>';
-						switch($question_type){
-							// displaying answer type - RADIO 
-							case 1:
-								echo '<td>' .form_radio(array('name'=>$question->questionId, 'value'=>$answer->answerId));
-								echo $answer->answerText .'</td>';
-								break;
-							// displaying answer type - CHECKBOX 
-							case 2:
-								echo '<td>' .form_checkbox(array('name'=>$question->questionId, 'value'=>$answer->answerId));
-								echo $answer->answerText .'</td>';
-								break;
-							// displaying answer type - INPUT 	
-							case 4:
-								echo form_input(array('name'=>$question->questionId, 'class'=>'survey_input'));
-								echo form_hidden($question->questionId . 'hidden', $answer->answerId);
-								break;
-							// displaying answer type - TEXTAREA 	
-							case 5:
-								echo form_textarea(array('name'=>$question->questionId, 'class'=>'survey_textarea'));
-								echo form_hidden($question->questionId . 'hidden', $answer->answerId);
-								break;
-						}// end of switch statement
-						echo '</tr>';
-					}// end of if 
-				}// end of foreach answer
-			}else{
-				$options = array();
-				foreach($answers as $answer){
-					if($answer->questionId == $question->questionId){
-						$options[$answer->answerId] = $answer->answerText;
-					}
+	<?php
+	echo '<h2>Analyze-overview: <strong>' .$title .'</strong></h2>';	
+	foreach($questions as $question){
+		echo '<article class="js_question_item">';
+			// TITLE 
+			echo '<div class="article_header">';
+				echo '<h3>' .$question->questionText .'</h3>';
+				// REQUIRED
+				if($question->questionRequire == 1){
+					echo '<p class="answer_required">&#42; answer required</p>';
 				}
-				// displaying answer type - DROPDOWN 
-				echo form_dropdown($question->questionId, $options, '','class="form_select"');
-			}// end if/else question type
-			echo '</tbody>';
-			echo '</table>';	
-			?>
-			</div>
-		</article>
-	<?php endforeach ?>
+			echo '</div>';
+			echo '<div class="article_content">';
+				// QUESTION OPTIONS
+				echo '<ul class="question_actions">';
+					echo '<li><a href="#" data-id="' .$question->questionId .'" class="js_question_edit">edit</a></li>';
+					echo '<li><a href="#" data-id="' .$question->questionId .'" class="js_question_delete remove_quest_btn">remove</a></li>';
+				echo '</ul>';
+				
+				// CHOICES
+				$question_type = $question->questionType;
+				echo '<table>';
+				echo '<tbody class="choice_rows">';
+				if($question_type != 3){
+					foreach($answers as $answer){
+						if($answer->questionId == $question->questionId){
+							echo '<tr>';
+							switch($question_type){
+								// displaying answer type - RADIO 
+								case 1:
+									echo '<td>' .form_radio(array('name'=>$question->questionId, 'value'=>$answer->answerId));
+									echo $answer->answerText .'</td>';
+									break;
+								// displaying answer type - CHECKBOX 
+								case 2:
+									echo '<td>' .form_checkbox(array('name'=>$question->questionId, 'value'=>$answer->answerId));
+									echo $answer->answerText .'</td>';
+									break;
+								// displaying answer type - INPUT 	
+								case 4:
+									echo form_input(array('name'=>$question->questionId, 'class'=>'survey_input'));
+									echo form_hidden($question->questionId . 'hidden', $answer->answerId);
+									break;
+								// displaying answer type - TEXTAREA 	
+								case 5:
+									echo form_textarea(array('name'=>$question->questionId, 'class'=>'survey_textarea'));
+									echo form_hidden($question->questionId . 'hidden', $answer->answerId);
+									break;
+							}// end of switch statement
+							echo '</tr>';
+						}// end of if 
+					}// end of foreach answer
+				}else{
+					$options = array();
+					foreach($answers as $answer){
+						if($answer->questionId == $question->questionId){
+							$options[$answer->answerId] = $answer->answerText;
+						}
+					}
+					// displaying answer type - DROPDOWN 
+					echo form_dropdown($question->questionId, $options, '','class="form_select"');
+				}// end if/else question type
+				echo '</tbody>';
+				echo '</table>';	
+			echo '</div>';
+		echo '</article>';
+	}
+	?>
+			
+		
 </div>
+
+
+
+
 <!-- Confirm Survey Delete panel -->
 <div id="confirm_remove" style="display: none;">
 	<div id="confirmOverlay">
