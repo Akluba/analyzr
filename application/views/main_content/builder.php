@@ -72,8 +72,8 @@
 			<h1>Remove Question</h1>
 			<p>Description of what is about to happen</p>
 			<div id="confirmButtons">
-				<a class="js_confirm_remove" href="#">Yes<span></span></a>
-				<a class="js_cancel_remove" href="#">No<span></span></a>
+				<a class="js_confirm_remove confirm_remove_btn" href="#">Confirm<span></span></a>
+				<a class="js_cancel_remove cancel_remove_btn" href="#">Cancel<span></span></a>
 			</div>
 		</div>
 	</div>
