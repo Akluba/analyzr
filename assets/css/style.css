@@ -501,19 +501,20 @@ th, td{
     left: -999999999px;
 }
 .radio{
-	background-color: red;
+	background-image: url('../img/radio_icon.png');
+	
 }
 .checkbox{
-	background-color: red;
+	background-image: url('../img/checkbox_icon.png');
 }
 .dropdown{
-	background-color: red;
+	background-image: url('../img/dropdown_icon.png');
 }
 .input{
-	background-color: red;
+	background-image: url('../img/input_icon.png');
 }
 .textarea{
-	background-color: red;
+	background-image: url('../img/textarea_icon.png');
 }
 
 
@@ -533,6 +534,7 @@ th, td{
     display:inline-block;
     width: 30px;
     height: 30px;
+    border-radius: 3px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;

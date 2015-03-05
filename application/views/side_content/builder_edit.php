@@ -8,16 +8,28 @@
 		echo form_hidden('question_id', $question_id);
 		// QUESTION TYPE
 		echo form_fieldset('Question Type');
-			echo form_label('radio: ') ."\n";
-			echo form_radio('question_type',1,$question_type == 1);
-			echo form_label('checkbox: ') ."\n";
-			echo form_radio('question_type',2,$question_type == 2);
-			echo form_label('dropdown: ') ."\n";
-			echo form_radio('question_type',3,$question_type == 3);
-			echo form_label('input: ') ."\n";
-			echo form_radio('question_type',4,$question_type == 4);
-			echo form_label('textarea: ') ."\n";
-			echo form_radio('question_type',5,$question_type == 5);
+		echo '<div class="type_selector">';
+			
+			echo form_radio(array('id'=>'radio','name'=>'question_type','value'=>1,'checked'=>$question_type == 1));
+			echo form_label('', 'radio', array('class'=> 'type_img radio')) ."\n";
+			
+			
+			echo form_radio(array('id'=>'checkbox','name'=>'question_type','value'=>2,'checked'=>$question_type == 2));
+			echo form_label('', 'checkbox', array('class'=> 'type_img checkbox')) ."\n";
+			
+			
+			echo form_radio(array('id'=>'dropdown','name'=>'question_type','value'=>3,'checked'=>$question_type == 3));
+			echo form_label('', 'dropdown', array('class'=> 'type_img dropdown')) ."\n";
+			
+			
+			echo form_radio(array('id'=>'input','name'=>'question_type','value'=>4,'checked'=>$question_type == 4));
+			echo form_label('', 'input', array('class'=> 'type_img input')) ."\n";
+			
+			
+			echo form_radio(array('id'=>'textarea','name'=>'question_type','value'=>5,'checked'=>$question_type == 5));
+			echo form_label('', 'textarea', array('class'=> 'type_img textarea')) ."\n";
+			
+		echo '</div>';
 		echo form_fieldset_close(); 
 		// QUESTION TEXT 
 		echo form_fieldset('Survey Question');

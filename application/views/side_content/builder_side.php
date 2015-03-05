@@ -5,9 +5,6 @@
 		echo form_open('#', array('id'=>'question_form'))."\n";
 		// SURVEY ID	
 		echo form_hidden('survey_id', $survey_id);
-		
-		
-		
 		// QUESTION TYPE
 		echo form_fieldset('Question Type');
 		echo '<div class="type_selector">';
@@ -33,10 +30,6 @@
 			
 		echo '</div>';
 		echo form_fieldset_close(); 
-		
-		
-		
-		
 		// QUESTION TEXT
 		echo form_fieldset('Survey Question');
 			$data = array(
