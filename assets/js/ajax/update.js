@@ -133,7 +133,7 @@ $('.js_question_edit').on('click',function(){
 				// run increment to determine data-id
 				increment();
 				// create ancor to allow for removal
-				var a = '<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor">x</a> ';
+				var a = '<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor icon" data-icon="&#xe025;"></div></a> ';
 				// create parent div
 				var d = '<div data-id="' + i +'"></div>';
 				// wrap existing input in div
@@ -162,7 +162,7 @@ $('.js_question_edit').on('click',function(){
 				// group of elements to be added for additional choice
 				var s = '<div data-id="' + i +'">' +
 				'<input class="form_input additional_choice_input" type="text" name="choices[]">' +
-				'<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor">x</a>';
+				'<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor icon" data-icon="&#xe025;"></a>';
 				// appending additional choice elements
 				$('#additional_choices').append(s);
 				// remove choice elements 

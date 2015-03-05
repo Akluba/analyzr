@@ -27,7 +27,7 @@ $('.js_add_choice').on('click', function(){
 	// group of elements to be added for additional choice
 	var s = '<div data-id="' + i +'">' +
 	'<input class="form_input additional_choice_input" type="text" name="choices[]">' +
-	'<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor">x</a>';
+	'<a href="#" data-id="' + i + '" class="js_remove_choice remove_choice_anchor icon" data-icon="&#xe025;"></a>';
 	// appending additional choice elements
 	$('#additional_choices').append(s);
 	// remove choice elements 

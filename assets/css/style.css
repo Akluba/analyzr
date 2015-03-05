@@ -486,13 +486,64 @@ th, td{
 .remove_choice_anchor{
 	text-decoration: none;
 	display: inline-block;
-	height: 12px;
-	width: 12px;
+	color: #212121;
+	font-size: 18px;
 	position: relative;
 	top: 3px;
-	left: 10px;
-	background-image: url('../img/remove_choice.png');
-	text-indent: -10000000px;
+	left: 6px;
+}
+
+
+
+.type_selector input{
+	position:absolute;
+    z-index:999;
+    left: -999999999px;
+}
+.radio{
+	background-color: red;
+}
+.checkbox{
+	background-color: red;
+}
+.dropdown{
+	background-color: red;
+}
+.input{
+	background-color: red;
+}
+.textarea{
+	background-color: red;
+}
+
+
+
+.type_selector input:active + .type_img{
+	opacity: .9;
+}
+.type_selector input:checked + .type_img{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.type_img{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width: 30px;
+    height: 30px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.type_img:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
 /* ########################################################################### 
