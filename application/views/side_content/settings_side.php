@@ -1,7 +1,7 @@
 <!-- Delete Survey -->
 <div class="side_container">
 	<h2><strong>Delete Survey</strong></h2>
-	<p>Text goes here..</p>
+	<p>To delete this survey click the button below. Be advised, deleting this survey may not be undone and all related content will be deleted as well.</p>
 	<a class="submit_btn js_survey_delete" id="delete_btn" href="#" data-id="<?php echo $survey_id; ?>">Delete</a>
 </div>
 <!-- Confirm Survey Delete panel -->

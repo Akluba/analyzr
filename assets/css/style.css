@@ -407,9 +407,26 @@ th, td{
 /* ******************************
 	Side Content
 ****************************** */
+#feature_set h2{
+	color: #212121;
+	font-weight: 400;
+	margin: 0;
+}
 
-
-
+#feature_set .icon{
+	color: #44749d;
+	font-size: 60px;
+}
+#mail_item{
+	height: 67px;
+}
+.feature_item{
+	margin-top: 19px;
+}
+.feature_item ul{
+	margin: 0;
+	padding-left: 20px;
+}
 
 /* ########################################################################### 
 ######################### SETTINGS ###########################################
