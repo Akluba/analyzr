@@ -250,6 +250,10 @@ fieldset{
 	padding: 0;
 	border: 0;
 }
+legend{
+	float: left;
+	margin-bottom: 8px;
+}
 .form_input{
 	height: 30px;
 	width: 265px;
@@ -493,6 +497,10 @@ th, td{
 	left: 6px;
 }
 
+.indicate_type p{
+	float: left;
+	margin-left: 3px; 
+}
 
 
 .type_selector input{

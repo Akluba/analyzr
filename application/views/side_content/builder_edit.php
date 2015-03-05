@@ -7,7 +7,9 @@
 		echo form_hidden('survey_id', $survey_id);
 		echo form_hidden('question_id', $question_id);
 		// QUESTION TYPE
-		echo form_fieldset('Question Type');
+		echo form_fieldset('Question Type:');
+		echo '<div class="indicate_type"></div>';
+		echo '<div style="clear:both"></div>';
 		echo '<div class="type_selector">';
 			
 			echo form_radio(array('id'=>'radio','name'=>'question_type','value'=>1,'checked'=>$question_type == 1));
@@ -75,6 +77,7 @@
 				'value' => 1,
 				'checked' => $question_require == 1
 			);
+			echo '<div style="clear:both"></div>';
 			echo form_checkbox($check_data) ."\n";
 			echo form_label('Answer required ') ."\n";
 		echo form_fieldset_close();

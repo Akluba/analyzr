@@ -85,6 +85,31 @@ $('.js_question_edit').on('click',function(){
 			------------------------------- */
 			// selected radio btn value
 			var selected_radio = $('input[name="question_type"]:checked', '#edit_question_form').val();
+			
+			// indicate what type of question is selected
+			switch(selected_radio){
+				case "1":
+					$('.indicate_type').empty();
+					$('.indicate_type').append('<p>Multiple Choice</p>');
+					break;
+				case "2":
+					$('.indicate_type').empty();
+					$('.indicate_type').append('<p>CheckBox</p>');
+					break;
+				case "3":
+					$('.indicate_type').empty();
+					$('.indicate_type').append('<p>Select Dropdown</p>');
+					break;
+				case "4":
+					$('.indicate_type').empty();
+					$('.indicate_type').append('<p>Text Box</p>');
+					break;
+				case "5":
+					$('.indicate_type').empty();
+					$('.indicate_type').append('<p>Comment Box</p>');
+					break;
+			}
+			
 			// if question_type is an input or textarea
 			if(selected_radio == 4 || selected_radio == 5){
 				// hide the choice inputs
@@ -102,6 +127,31 @@ $('.js_question_edit').on('click',function(){
 			$('#edit_question_form input').on('change', function(){
 				// selected radio btn value
 				var selected_radio = $('input[name="question_type"]:checked', '#edit_question_form').val();
+				
+				// indicate what type of question is selected
+				switch(selected_radio){
+					case "1":
+						$('.indicate_type').empty();
+						$('.indicate_type').append('<p>Multiple Choice</p>');
+						break;
+					case "2":
+						$('.indicate_type').empty();
+						$('.indicate_type').append('<p>CheckBox</p>');
+						break;
+					case "3":
+						$('.indicate_type').empty();
+						$('.indicate_type').append('<p>Select Dropdown</p>');
+						break;
+					case "4":
+						$('.indicate_type').empty();
+						$('.indicate_type').append('<p>Text Box</p>');
+						break;
+					case "5":
+						$('.indicate_type').empty();
+						$('.indicate_type').append('<p>Comment Box</p>');
+						break;
+				}
+				
 				// if question_type is an input or textarea
 				if(selected_radio == 4 || selected_radio == 5){
 					// hide the choice inputs
