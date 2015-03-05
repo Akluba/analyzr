@@ -17,7 +17,7 @@ $("#title_form").submit(function(event) {
 				// clear existing errors
 				$('#title_message').empty();
 				// append validation error message
-				if(res['message'] != "") $('#title_message').append(res['message']);
+				if(res['message'] != "") $('#title_message').append("&#42;"+res['message']);
 			}else{
 				location.reload();
 			}
@@ -45,7 +45,7 @@ $("#status_form").submit(function(event) {
 				// clear existing errors
 				$('#status_message').empty();
 				// append validation error message
-				if(res['message'] != "") $('#status_message').append(res['message']);
+				if(res['message'] != "") $('#status_message').append("&#42;"+res['message']);
 			}else{
 				location.reload();
 			}

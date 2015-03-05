@@ -159,6 +159,7 @@ article{
 	min-height: 24px;
 	background-color: #c6d5e1;
 	padding: 5px 0 5px 15px;
+	position: relative;
 }
 .article_header ul{
 	padding: 0;
@@ -229,6 +230,7 @@ h5 strong{
 }
 .in-head_error_message p{
 	display: inline;
+	font-size: 14px;
 }
 .error_message{
 	position: absolute;

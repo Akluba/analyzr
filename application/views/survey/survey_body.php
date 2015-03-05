@@ -1,5 +1,5 @@
 <?php 
-	echo '<h2>' .$surveyTitle .'</h2>';
+	echo '<h2>Survey: <strong>' .$surveyTitle .'</strong></h2>';
 	// HIDDEN INPUTS
 	$hidden = array('recipient_id'=>$recipient[0]->recipientId,'survey_id'=>$recipient[0]->surveyId);
 	// FORM OPEN
@@ -18,6 +18,7 @@
 			// CHOICES
 			$question_type = $question->questionType;
 			echo '<table>';
+			echo '<tbody class="choice_rows">';
 			if($question_type != 3){
 				foreach($answers as $answer){
 					if($answer->questionId == $question->questionId){
@@ -58,6 +59,7 @@
 				echo form_dropdown($question->questionId, $options, '','class="form_select"');
 			}
 			echo '</table>';
+			echo '</tbody>';
 			echo '</div>';
 		echo '</article>';
 	}// end of foreach question
