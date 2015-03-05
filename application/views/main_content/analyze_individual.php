@@ -16,7 +16,7 @@
 			// CHOICES
 			$question_type = $question->questionType;
 			echo '<table >';
-				echo '<tbody class="analyze_table">';
+				echo '<tbody class="analyze_table choice_rows">';
 					foreach($answers as $answer){
 						if($answer->questionId == $question->questionId){
 							switch($question_type){

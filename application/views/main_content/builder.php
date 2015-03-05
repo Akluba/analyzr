@@ -18,6 +18,7 @@
 			// CHOICES
 			$question_type = $question->questionType;
 			echo '<table>';
+			echo '<tbody class="choice_rows">';
 			if($question_type != 3){
 				foreach($answers as $answer){
 					if($answer->questionId == $question->questionId){
@@ -57,6 +58,7 @@
 				// displaying answer type - DROPDOWN 
 				echo form_dropdown($question->questionId, $options, '','class="form_select"');
 			}// end if/else question type
+			echo '</tbody>';
 			echo '</table>';	
 			?>
 			</div>

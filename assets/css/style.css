@@ -10,6 +10,7 @@ html{
 }
 body{
 	margin: 0;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* ******************************
@@ -69,7 +70,7 @@ header h1{
 }
 header ul{
 	float: right;
-	margin: 24px 0 0;
+	margin: 24px 20px 0 0;
 	padding: 0;
 }
 header ul li{
@@ -78,9 +79,19 @@ header ul li{
 	list-style-type: none;
 	margin-right: 20px;	
 }
+header ul li:last-child{
+	margin-right: 0px;	
+}
 header ul li a{
 	color: #fefafa;
 	text-decoration: none;
+	font-size: 16px;
+}
+header ul li a:hover{
+	color: #44749d;
+}
+header ul li strong{
+	font-size: 16px;
 }
 #survey_link{
 	float: left;
@@ -145,7 +156,7 @@ article{
 	margin-bottom: 10px;
 }
 .article_header{
-	min-height: 20px;
+	min-height: 24px;
 	background-color: #c6d5e1;
 	padding: 5px 0 5px 15px;
 }
@@ -177,20 +188,33 @@ article{
 ****************************** */
 h2{
 	color: #bcb7ad;
+	font-size: 24px;
+	font-weight: 200;
 }
 h2 strong{
 	color: #44749d;
+	font-weight: 400;
 }
 h3{
 	margin: 0;
 	float: left;
 	max-width: 70%;
+	font-size: 18px;
+	font-weight: 400;
 }
 h4{
-	margin: 0;
+	margin: 0 0 3px 0;
+	font-size: 20px;
+	font-weight: 400;
 }
 h5{
 	margin: 0;
+	font-size: 14px;
+	font-weight: 300;
+}
+h5 strong{
+	color: #44749d;
+	font-weight: 400;
 }
 
 /* ******************************
@@ -256,6 +280,16 @@ textarea{
 ****************************** */
 p{
 	margin: 0;
+	font-size: 16px;
+	font-weight: 400;
+}
+th{
+	font-size: 18px;
+	font-weight: 400;
+}
+td{
+	font-size: 16px;
+	font-weight: 400;
 }
 
 /* ******************************
@@ -269,7 +303,8 @@ p{
 	color: #fefafa;
 	border: none;
 	margin-top: 15px;
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: 500;
 }
 .update_btn{
 	height: 40px;
@@ -281,6 +316,7 @@ p{
 	background-color: #85929d;
 	color: #cccccc;
 	font-size: 14px;
+	font-weight: 500;
 	cursor: pointer;
 }
 
@@ -293,13 +329,19 @@ table{
 	text-align: left;
 }
 thead{
-	height: 30px;
+	height: 34px;
 	padding: 0 0 0 10px;
 	background-color: #c6d5e1;
 	color: #212121;
 }
 th, td{
-	padding: 0 10px;
+	padding: 0 15px;
+}
+.choice_rows td{
+	padding: 0;
+}
+.choice_rows tr{
+	height: 30px;
 }
 
 /* ########################################################################### 
@@ -320,6 +362,8 @@ th, td{
 	display: inline-block;
 	width: 115px;
 	color: #44749d; 
+	font-size: 16px;
+	font-weight: 500;
 }
 #create_survey_input{
 	width: 295px;
@@ -374,6 +418,8 @@ th, td{
 ****************************** */
 .settings_text{
 	margin-bottom: 24px; 
+	font-size: 16px;
+	font-weight: 400;
 }
 .form_select{
 	height: 40px;
@@ -463,6 +509,8 @@ th, td{
 .answer_required{
 	float: right;
 	margin-right: 15px; 
+	font-size: 14px;
+	font-weight: 400;
 }
 .analyze_table tr{
 	height: 30px;
