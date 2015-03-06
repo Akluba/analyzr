@@ -609,6 +609,26 @@ th, td{
 	display: inline-block;
 	margin-left: 12px;
 }
+meter{
+	width: 90%;
+	height: 12px;
+	vertical-align: baseline;
+	background: #EAE5DE;
+    border-radius: 3px;
+}
+meter::-moz-meter-bar {
+    background: #43749D;
+    border-radius: 3px;
+}
+meter::-webkit-meter-bar {
+    background: #EAE5DE;
+    border-radius: 3px;
+}
+meter::-webkit-meter-optimum-value {
+    background: #43749D;
+    border-radius: 3px;
+}
+
 
 /* ******************************
 	Side Content

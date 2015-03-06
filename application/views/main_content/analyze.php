@@ -43,10 +43,10 @@
 									}
 									$percent = ($count > 0 ? $count / $total : 0 );
 									echo '<tr>';
-										echo '<td>' .$answer->answerText .'</td>';
-										echo '<td>data visualization</td>';
-										echo '<td>' .round((float)$percent * 100 ) .'%' .'</td>';
-										echo '<td>' .$count .'</td>';
+										echo '<td width="50%">' .$answer->answerText .'</td>';
+										echo '<td width="35%"><meter max="' .$total .'" value="' .$count .'"></meter></td>';
+										echo '<td width="10%">' .round((float)$percent * 100 ) .'%' .'</td>';
+										echo '<td width="5%">' .$count .'</td>';
 									echo '</tr>';
 							}// end of switch	
 						}// end of if 
