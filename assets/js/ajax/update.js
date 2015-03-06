@@ -69,8 +69,6 @@ $('.js_question_edit').on('click',function(){
 			------------------------------- */
 			// empty existing div
 			$('aside').empty();
-			// hide add question form
-			$('#js_addform').hide();
 			// append view from ajax call
 			$('aside').append(res);
 			// cancel edit return to add question

@@ -20,12 +20,10 @@ $('#js_view_individual').on('click', function(){
 			url: "../survey_analyze/individual/" + $(this).data('id'),
 			success: function(res){
 				/* -------------------------------
-					APPENDING EDIT QUESTION
+					APPENDING INDIVIDUAL RESULTS
 				------------------------------- */
 				// empty existing div
-				//$('section').empty();
-				// hide add question form
-				$('#analyze_overview').hide();
+				$('section').empty();
 				// append view from ajax call
 				$('section').append(res);
 				
