@@ -5,10 +5,13 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/style.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/confirm.css">
+		
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/webfont/webfont.css">
+		
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700' rel='stylesheet' type='text/css'>
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="<?php echo asset_url();?>js/slider.js"></script>
 	</head>
 	<body>
 		<header>

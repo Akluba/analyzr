@@ -1,7 +1,11 @@
 <div class="container" id="analyze_overview">
 	<?php
 	echo '<h2>Analyze-overview: <strong>' .$title .'</strong></h2>';
-
+	
+	if(empty($questions)){
+		echo '<h3 class="empty_message">You have nothing to analyze! First you must create your survey and send it out.</h3>';
+	}
+	
 	foreach($questions as $question){
 		echo '<article>';
 			// TITLE 
@@ -21,11 +25,26 @@
 						if($answer->questionId == $question->questionId){
 							switch($question_type){
 								case 4:
-									foreach($responses as $response){
-										if($answer->answerId == $response->answerId){
-											echo $response->responseText;
-										}
-									}
+									echo '<div class="swipe_input_container">';
+										echo '<div class="swipe_input">';
+											echo '<div class="swipe_input_carousel">';
+											echo '<ul>';
+											foreach($responses as $response){
+												
+												if($answer->answerId == $response->answerId){
+													echo '<li><p class="swipe_response">' .$response->responseText .'</p></li>';
+												}
+											}
+											echo '</ul>';
+											echo '</div>';
+										echo '</div>';
+										echo '<div class="swipe_controls">';
+											echo '<span class="current_num"></span>';
+											echo '<span class="prev icon" data-icon="&#xe018;"></span>';  
+											echo '<span class="next icon" data-icon="&#xe015;"></span>';
+										echo '</div>';
+										echo '<div style="clear:both">';
+									echo '</div>';
 									break;
 								case 5: 
 									foreach($responses as $response){
@@ -51,8 +70,9 @@
 							}// end of switch	
 						}// end of if 
 					}// end of foreach answer
-				echo '<tbody>';
+					echo '<tbody>';
 			echo '</table>';
+				
 			echo '</div>';
 		echo '</article>';
 	}// end of foreach question

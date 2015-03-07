@@ -190,6 +190,21 @@ h3{
 	font-size: 18px;
 	font-weight: 400;
 }
+.empty_message{
+	color: #212121;
+	font-size: 30px;
+	max-width: 100%;
+}
+.empty_message strong{
+	color: #44749d;
+}
+.empty_message span{
+	padding-left: 12px; 
+	font-size: 50px;
+	color: #44749d;
+	cursor: default;
+	vertical-align: top;
+}
 h4{
 	margin: 0 0 3px 0;
 	font-size: 20px;
@@ -629,7 +644,30 @@ meter::-webkit-meter-optimum-value {
     border-radius: 3px;
 }
 
-
+	.swipe_input_container{
+		position: relative;
+		width: 275px;
+	}
+	.swipe_input{
+		height: 30px;
+		width: 265px;
+		padding: 3px;
+		border: 2px solid #c6d5e1;
+	}
+	.swipe_response{
+		width: 265px;
+		height: 30px;
+		line-height: 30px;
+	}
+	.swipe_controls{
+		float: right;
+		margin-top: 3px; 
+	}
+	.swipe_controls .icon{
+		font-size: 20px;
+		color: #43749D;
+		cursor: pointer;
+	}
 /* ******************************
 	Side Content
 ****************************** */

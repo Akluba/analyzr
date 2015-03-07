@@ -1,5 +1,5 @@
 <div class="side_container" id="js_addform">
-	<h2><strong>Add a Question</strong></h2>
+	<h2><strong>Question Buildr</strong></h2>
 	<?php
 		// OPEN FORM
 		echo form_open('#', array('id'=>'question_form'))."\n";

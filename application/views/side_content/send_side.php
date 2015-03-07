@@ -1,5 +1,5 @@
 <div class="side_container">
-	<h2><strong>Send Survey</strong></h2>
+	<h2><strong>Survey Sendr</strong></h2>
 	<?php
 		// OPEN FORM
 		echo form_open('#', array('id'=>'send_form'))."\n";
