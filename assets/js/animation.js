@@ -52,15 +52,22 @@ $(document).ready(function(){
 	
 	var LiCount = $(".swipe_input_carousel").find("ul").children("li").size();
 	
-	console.log(LiCount);
+	var carouselId = $(".swipe_input_carousel").attr("id");
+	var carouselCount = $(".swipe_input_carousel").length;
 	
-	$(".swipe_input_carousel").jCarouselLite({
-	    btnNext: ".next",
-	    btnPrev: ".prev",
-	    visible: 1,
-	    afterEnd: function(to){
-		}
-	});
+
+				
+		$(".swipe_input_carousel").each(function(){
+			var id = "#" + $(this).attr("id");
+			$(id + ".swipe_input_carousel").jCarouselLite({
+				btnNext: id + " .next",
+				btnPrev: id + " .prev",
+				visible: 1
+			}); 
+		 });
+		
+		
+		
 	
 	
 });

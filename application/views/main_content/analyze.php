@@ -5,7 +5,7 @@
 	if(empty($questions)){
 		echo '<h3 class="empty_message">You have nothing to analyze! First you must create your survey and send it out.</h3>';
 	}
-	
+	$carousel_input_id = 0;
 	foreach($questions as $question){
 		echo '<article>';
 			// TITLE 
@@ -25,12 +25,11 @@
 						if($answer->questionId == $question->questionId){
 							switch($question_type){
 								case 4:
-									echo '<div class="swipe_input_container">';
+									echo '<div class="swipe_input_container" id="' .$carousel_input_id .'">';
 										echo '<div class="swipe_input">';
-											echo '<div class="swipe_input_carousel">';
+											echo '<div class="swipe_input_carousel" id="' .$carousel_input_id .'">';
 											echo '<ul>';
 											foreach($responses as $response){
-												
 												if($answer->answerId == $response->answerId){
 													echo '<li><p class="swipe_response">' .$response->responseText .'</p></li>';
 												}
@@ -41,7 +40,7 @@
 										echo '<div class="swipe_controls">';
 											echo '<span class="current_num"></span>';
 											echo '<span class="prev icon" data-icon="&#xe018;"></span>';  
-											echo '<span class="next icon" data-icon="&#xe015;"></span>';
+											echo '<span class="next ' .$carousel_input_id .' icon" data-icon="&#xe015;"></span>';
 										echo '</div>';
 										echo '<div style="clear:both">';
 									echo '</div>';
@@ -70,12 +69,14 @@
 							}// end of switch	
 						}// end of if 
 					}// end of foreach answer
+					$carousel_input_id ++;
 					echo '<tbody>';
 			echo '</table>';
 				
 			echo '</div>';
 		echo '</article>';
 	}// end of foreach question
+	
 	
 	?>
 </div>
