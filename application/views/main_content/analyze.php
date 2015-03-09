@@ -16,6 +16,7 @@
 				if($question->questionRequire == 1){
 					echo '<p class="answer_required">&#42; answer required</p>';
 				}
+			echo '<div style="clear:both"></div>';
 			echo '</div>';
 			echo '<div class="article_content">';
 			// CHOICES
@@ -37,9 +38,10 @@
 											echo '</ul>';
 										echo '</div>';
 										echo '<div class="swipe_controls">';
-											echo '<span class="current_num"></span>';
-											echo '<span class="prev icon" data-icon="&#xe018;"></span>';  
-											echo '<span class="next ' .$carousel_input_id .' icon" data-icon="&#xe015;"></span>';
+											
+											echo '<span class="prev icon" data-icon="&#xe018;"></span>'; 
+											echo '<span class="current_num" id="' .$carousel_input_id .'"></span>'; 
+											echo '<span class="next icon" data-icon="&#xe015;"></span>';
 										echo '</div>';
 										echo '<div style="clear:both">';
 									echo '</div>';
@@ -56,9 +58,9 @@
 											echo '</ul>';
 										echo '</div>';
 										echo '<div class="swipe_controls">';
-											echo '<span class="current_num"></span>';
-											echo '<span class="prev icon" data-icon="&#xe018;"></span>';  
-											echo '<span class="next ' .$carousel_text_id .' icon" data-icon="&#xe015;"></span>';
+											echo '<span class="prev icon" data-icon="&#xe018;"></span>';
+											echo '<span class="current_num" id="' .$carousel_text_id .'"></span>';  
+											echo '<span class="next icon" data-icon="&#xe015;"></span>';
 										echo '</div>';
 										echo '<div style="clear:both">';
 									echo '</div>';

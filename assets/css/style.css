@@ -643,29 +643,6 @@ meter::-webkit-meter-optimum-value {
     background: #43749D;
     border-radius: 3px;
 }
-
-	/*
-
-	
-	
-	
-	
-	.swipe_text_container{
-		overflow: hidden;
-		width: 100%;
-	}
-	.swipe_text{
-		min-height: 150px;
-		overflow: scroll;
-		width: 100%;
-		padding: 3px;
-		border: 2px solid #c6d5e1;
-		box-sizing:border-box;
-	}
-	.swipe_text_response{
-		width: 100%;
-	}
-*/
 	
 	
 	.carousel_input_container{
@@ -688,7 +665,6 @@ meter::-webkit-meter-optimum-value {
 		line-height: 30px;
 		padding: 3px;
 	}
-	
 	.carousel_text_container{
 		width: 100%;
 	}
@@ -710,10 +686,11 @@ meter::-webkit-meter-optimum-value {
 		padding: 3px;
 	}
 	
-	
-	
-	
-	
+	.current_num{
+		vertical-align: top;
+		font-size: 16px;
+		color: #43749D;
+	}
 	.swipe_controls{
 		float: right;
 		margin-top: 3px; 

@@ -13,6 +13,7 @@
 				if($question->questionRequire == 1){
 					echo '<p class="answer_required">&#42; answer required</p>';
 				}
+			echo '<div style="clear:both"></div>';
 			echo '</div>';
 			echo '<div class="article_content">';
 			// CHOICES

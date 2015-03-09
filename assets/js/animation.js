@@ -47,38 +47,38 @@ $(document).ready(function(){
 		$(this).find('.question_actions').show();
 	},function(){
 		$(this).find('.question_actions').hide();
-	})
-	
-	
-	var LiCount = $(".swipe_input_carousel").find("ul").children("li").size();
-	
-	var carouselId = $(".swipe_input_carousel").attr("id");
-	var carouselCount = $(".swipe_input_carousel").length;
-	
+	});
 
-				
-		$(".input_carousel").each(function(){
-			var id = "#" + $(this).attr("id");
-			$(id + ".input_carousel").jCarouselLite({
-				btnNext: id + " .next",
-				btnPrev: id + " .prev",
-				visible: 1,
-				speed: 10
-			}); 
-		 });
-		
-		
-		$(".text_carousel").each(function(){
-			var id = "#" + $(this).attr("id");
-			$(id + ".text_carousel").jCarouselLite({
-				btnNext: id + " .next",
-				btnPrev: id + " .prev",
-				visible: 1,
-				autoWidth: true,
-				responsive: true,
-				speed: 10
-			}); 
-		 });
+
+	$(".input_carousel").each(function(){
+		var id = "#" + $(this).attr("id");
+		var liCount = $(id).find("ul").children("li").size();
+		$(id + '.current_num').append( 'of ' + liCount);
+		$(id + ".input_carousel").jCarouselLite({
+			btnNext: id + " .next",
+			btnPrev: id + " .prev",
+			visible: 1,
+			speed: 10,
+			afterEnd: function(a){
+				console.log(a);
+			}
+		}); 
+	 });
+	
+	
+	$(".text_carousel").each(function(){
+		var id = "#" + $(this).attr("id");
+		var liCount = $(id).find("ul").children("li").size();
+		$(id + '.current_num').append( 'of ' + liCount);
+		$(id + ".text_carousel").jCarouselLite({
+			btnNext: id + " .next",
+			btnPrev: id + " .prev",
+			visible: 1,
+			autoWidth: true,
+			responsive: true,
+			speed: 10
+		}); 
+	 });
 		
 	
 });

@@ -8,20 +8,17 @@
 		// USER EMAIL
 		echo form_hidden('user_email', $user_email);
 		// EMAIL ADDRESS
-		echo form_fieldset();
-			echo form_label('Email Address: ') ."\n";
+		echo form_fieldset('Email Address:');
 			echo form_input(array('name'=>'send_email','class'=>'form_input'));
 			echo '<div class="error_message" id="email_error"></div>';
 		echo form_fieldset_close(); 
 		// EMAIL SUBJECT
-		echo form_fieldset();
-			echo form_label('Subject: ') ."\n";
+		echo form_fieldset('Subject:');
 			echo form_input(array('name'=>'send_subject','class'=>'form_input'));
 			echo '<div class="error_message" id="subject_error"></div>';
 		echo form_fieldset_close(); 
 		// EMAIL MESSAGE
-		echo form_fieldset();
-			echo form_label('Message: ') ."\n";
+		echo form_fieldset('Message:');
 			echo form_textarea(array('name'=>'send_message','class'=>'send_textarea')) ."\n";
 			echo '<div class="error_message" id="message_error"></div>';
 		echo form_fieldset_close();
