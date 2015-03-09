@@ -6,6 +6,7 @@
 		echo '<h3 class="empty_message">You have nothing to analyze! First you must create your survey and send it out.</h3>';
 	}
 	$carousel_input_id = 0;
+	$carousel_text_id = 0;
 	foreach($questions as $question){
 		echo '<article>';
 			// TITLE 
@@ -25,17 +26,15 @@
 						if($answer->questionId == $question->questionId){
 							switch($question_type){
 								case 4:
-									echo '<div class="swipe_input_container" id="' .$carousel_input_id .'">';
-										echo '<div class="swipe_input">';
-											echo '<div class="swipe_input_carousel" id="' .$carousel_input_id .'">';
-											echo '<ul>';
+									echo '<div class="carousel_input_container" id="' .$carousel_input_id .'">';
+										echo '<div class="input_carousel" id="' .$carousel_input_id .'">';
+											echo '<ul class="input_responses">';
 											foreach($responses as $response){
 												if($answer->answerId == $response->answerId){
-													echo '<li><p class="swipe_response">' .$response->responseText .'</p></li>';
+													echo '<li class="input_response"><p>' .$response->responseText .'</p></li>';
 												}
 											}
 											echo '</ul>';
-											echo '</div>';
 										echo '</div>';
 										echo '<div class="swipe_controls">';
 											echo '<span class="current_num"></span>';
@@ -46,11 +45,23 @@
 									echo '</div>';
 									break;
 								case 5: 
-									foreach($responses as $response){
-										if($answer->answerId == $response->answerId){
-											echo $response->responseText;
-										}
-									}
+									echo '<div class="carousel_text_container" id="' .$carousel_text_id .'">';
+										echo '<div class="text_carousel" id="' .$carousel_text_id .'">';
+											echo '<ul class="text_responses">';
+											foreach($responses as $response){
+												if($answer->answerId == $response->answerId){
+													echo '<li class="text_response"><p>' .$response->responseText .'</p></li>';
+												}
+											}
+											echo '</ul>';
+										echo '</div>';
+										echo '<div class="swipe_controls">';
+											echo '<span class="current_num"></span>';
+											echo '<span class="prev icon" data-icon="&#xe018;"></span>';  
+											echo '<span class="next ' .$carousel_text_id .' icon" data-icon="&#xe015;"></span>';
+										echo '</div>';
+										echo '<div style="clear:both">';
+									echo '</div>';
 									break;
 								default:
 									$total = 0;
@@ -70,13 +81,13 @@
 						}// end of if 
 					}// end of foreach answer
 					$carousel_input_id ++;
+					$carousel_text_id ++;
 					echo '<tbody>';
 			echo '</table>';
 				
 			echo '</div>';
 		echo '</article>';
 	}// end of foreach question
-	
 	
 	?>
 </div>

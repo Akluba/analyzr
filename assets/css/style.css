@@ -644,21 +644,76 @@ meter::-webkit-meter-optimum-value {
     border-radius: 3px;
 }
 
-	.swipe_input_container{
-		position: relative;
-		width: 275px;
+	/*
+
+	
+	
+	
+	
+	.swipe_text_container{
+		overflow: hidden;
+		width: 100%;
 	}
-	.swipe_input{
-		height: 30px;
-		width: 265px;
+	.swipe_text{
+		min-height: 150px;
+		overflow: scroll;
+		width: 100%;
 		padding: 3px;
 		border: 2px solid #c6d5e1;
+		box-sizing:border-box;
 	}
-	.swipe_response{
+	.swipe_text_response{
+		width: 100%;
+	}
+*/
+	
+	
+	.carousel_input_container{
+		width: 275px;
+	}
+	.input_carousel{
+		width: 265px;
+		overflow: hidden;
+		border: 2px solid #c6d5e1;
+	}
+	.input_responses{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+	.input_response{
+		float: left;
 		width: 265px;
 		height: 30px;
 		line-height: 30px;
+		padding: 3px;
 	}
+	
+	.carousel_text_container{
+		width: 100%;
+	}
+	.text_carousel{
+		width: 100%;
+		overflow: hidden;
+		border: 2px solid #c6d5e1;
+		box-sizing:border-box;
+		min-height: 150px;
+		overflow-y: scroll;
+	}
+	.text_responses{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+	.text_response{
+		float: left;
+		padding: 3px;
+	}
+	
+	
+	
+	
+	
 	.swipe_controls{
 		float: right;
 		margin-top: 3px; 
@@ -668,6 +723,7 @@ meter::-webkit-meter-optimum-value {
 		color: #43749D;
 		cursor: pointer;
 	}
+	
 /* ******************************
 	Side Content
 ****************************** */

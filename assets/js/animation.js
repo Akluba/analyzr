@@ -57,18 +57,29 @@ $(document).ready(function(){
 	
 
 				
-		$(".swipe_input_carousel").each(function(){
+		$(".input_carousel").each(function(){
 			var id = "#" + $(this).attr("id");
-			$(id + ".swipe_input_carousel").jCarouselLite({
+			$(id + ".input_carousel").jCarouselLite({
 				btnNext: id + " .next",
 				btnPrev: id + " .prev",
-				visible: 1
+				visible: 1,
+				speed: 10
 			}); 
 		 });
 		
 		
+		$(".text_carousel").each(function(){
+			var id = "#" + $(this).attr("id");
+			$(id + ".text_carousel").jCarouselLite({
+				btnNext: id + " .next",
+				btnPrev: id + " .prev",
+				visible: 1,
+				autoWidth: true,
+				responsive: true,
+				speed: 10
+			}); 
+		 });
 		
-	
 	
 });
 
