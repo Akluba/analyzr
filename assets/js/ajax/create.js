@@ -1,7 +1,7 @@
 $(document).ready(function(){ 
 	
 	/*
-	** Creating a survey
+	** Create a survey
 	*********************************************** */
 	$("#survey_form").submit(function(event) {
 		// prevent php functions from taking place
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	
 	
 	/*
-	** Creating a question
+	** Create a question
 	*********************************************** */
 	$("#question_form").submit(function(event) {
 		// prevent php functions from taking place
@@ -61,7 +61,7 @@ $(document).ready(function(){
 	
 	
 	/*
-	** Creating a sent survey
+	** Create a sent survey
 	*********************************************** */
 	$("#send_form").submit(function(event) {
 		// prevent php functions from taking place
@@ -91,7 +91,29 @@ $(document).ready(function(){
 				}// end success if/else
 			}// end success
 		});// end ajax post
-	});// end of submit()	
+	});// end of submit()
+	
+	
+	/*
+	** Create a response
+	*********************************************** */
+	$("#survey_response").submit(function(event) {
+		// prevent php functions from taking place
+		event.preventDefault();
+		// get create survey form inputs
+		var data = $(this).serialize();
+	
+		// posting data via ajax to controller
+		$.ajax({
+			type: "POST",
+			url: "get_response",
+			dataType: 'json',
+			data: data,
+			success: function(res) {
+				console.log(res);
+			}// end success
+		});// end ajax post
+	});// end submit()	
 	
 	
 });// end doc ready()
