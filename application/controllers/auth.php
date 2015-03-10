@@ -4,26 +4,29 @@ session_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
+	// constructor function w/ all dependencies 
+	public function __construct() {
+		parent::__construct();
+			// Load form helper library
+			$this->load->helper('form');
+			
+			// Load form validation library
+			$this->load->library('form_validation');
+			
+			// Load session library
+			$this->load->library('session');
+			
+			// Load database
+			$this->load->model('auth_model');
+			
+			// Load password security
+			$this->load->helper('security');
+	} // end of __construct()
 	
-public function __construct() {
-	parent::__construct();
-		// Load form helper library
-		$this->load->helper('form');
-		
-		// Load form validation library
-		$this->load->library('form_validation');
-		
-		// Load session library
-		$this->load->library('session');
-		
-		// Load database
-		$this->load->model('auth_model');
-		
-		// Load password security
-		$this->load->helper('security');
-} // end of __construct()
 	
-	//load login form
+	/* 
+	** LOGIN view
+	************************************* */
 	public function login_form(){
 		$page_data = array(
 			'pageTitle' => 'Login',
@@ -32,17 +35,10 @@ public function __construct() {
 		$this->load->view('templates/auth', $page_data);
 	}// end login_form()
 	
-	//load registration form
-	public function registration_form() {
-		$page_data = array(
-			'pageTitle' => 'Register',
-			'analyzrContent' => $this->load->view('auth/registration_form',array(), TRUE),
-		);
-		$this->load->view('templates/auth', $page_data);
-	}// end registration_form()
 	
-	
-	// LOGIN 
+	/* 
+	** LOGIN process
+	************************************* */
 	public function login_process() {
 		// setting form_val preferences
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
@@ -88,8 +84,23 @@ public function __construct() {
 			}// end else/if
 		}// end else/if
 	}// end login_process
+
+		
+	/* 
+	** REGISTER view
+	************************************* */
+	public function registration_form() {
+		$page_data = array(
+			'pageTitle' => 'Register',
+			'analyzrContent' => $this->load->view('auth/registration_form',array(), TRUE),
+		);
+		$this->load->view('templates/auth', $page_data);
+	}// end registration_form()
 	
-	// REGISTRATION
+	
+	/* 
+	** REGISTER process
+	************************************* */
 	public function register_process() {
 		// Check validation for user input in registration form
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
@@ -144,7 +155,10 @@ public function __construct() {
 		}// end if/else
 	}// end registration_process()
 	
-	// LOG OUT
+	
+	/* 
+	** LOGOUT process
+	************************************* */
 	public function logout() {
 		// Removing session data
 		$sess_array = array(
@@ -155,7 +169,7 @@ public function __construct() {
 		redirect('login', 'refresh');
 	}
 	
+	
 }// end Auth Class
-
 /* End of file auth.php */
 /* Location: ./application/controllers/auth.php */

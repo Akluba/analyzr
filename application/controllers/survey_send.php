@@ -25,9 +25,9 @@ class Survey_Send extends Auth_Controller {
 			$this->load->model('send_model');
 	} // end of __construct()
 	
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
+	/* 
+	** CREATE sent survey
+	************************************* */
 	public function send_survey(){
 		$this->form_validation->set_rules('send_email', 'Email Address', 'required|valid_email');
 		$this->form_validation->set_rules('send_subject', 'Subject Field', 'required|xss_clean');
@@ -114,9 +114,9 @@ class Survey_Send extends Auth_Controller {
 	}// end of send_survey()
 	
 	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
+	/* 
+	** READ sent surveys
+	************************************* */
 	public function send($survey_id){
 		// passing survey_id to models to get data
 		$survey_result = $this->send_model->get_survey_data($survey_id);
@@ -139,6 +139,7 @@ class Survey_Send extends Auth_Controller {
 		// loading view
 		$this->load->view('templates/default', $page_data);
 	}// end send()
+	
 
 }// end of Survey_Builder Class
 /* End of file survey_send.php */

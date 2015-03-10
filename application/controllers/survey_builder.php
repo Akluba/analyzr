@@ -21,9 +21,10 @@ class Survey_Builder extends Auth_Controller {
 			$this->load->model('builder_model');
 	} // end of __construct()
 	
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
+	
+	/* 
+	** CREATE question
+	************************************* */
 	public function create_question(){
 		// determine selected type of question by user
 		$question_type = $this->input->post('question_type');
@@ -89,9 +90,9 @@ class Survey_Builder extends Auth_Controller {
 	}// end of add_question()
 	
 
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
+	/* 
+	** READ questions
+	************************************* */
 	public function builder($survey_id){
 		// passing survey_id to models to get data
 		$survey_result = $this->builder_model->get_survey_data($survey_id);
@@ -116,9 +117,9 @@ class Survey_Builder extends Auth_Controller {
 	}// end of builder()
 
 	
-	/* ##################################################################
-	########### UPDATE ##################################################
-	*/ ##################################################################
+	/* 
+	** UPDATE question
+	************************************* */
 	public function edit_question($question_id){
 		// question + answer data from database
 		$question_data = $this->builder_model->edit_question_data($question_id);
@@ -204,9 +205,9 @@ class Survey_Builder extends Auth_Controller {
 	}// end of update_question()
 	
 	
-	/* ##################################################################
-	########### DELETE ##################################################
-	*/ ##################################################################
+	/* 
+	** DELETE question
+	************************************* */
 	public function remove_question(){
 		$question_id = $this->input->post("question_id");
 		$question_result = $this->builder_model->remove_question($question_id);

@@ -4,57 +4,30 @@ session_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Take_Survey extends CI_Controller {
+	// constructor function w/ all dependencies 
+	public function __construct() {
+		parent::__construct();
+			// Load form helper library
+			$this->load->helper('form');
+			$this->load->helper('date');
+			
+			// Load form validation library
+			$this->load->library('form_validation');
+			
+			// Load session library
+			$this->load->library('session');
+			
+			// Load database
+			$this->load->model('take_model');
+			
+			// Load password security
+			$this->load->helper('security');
+	} // end of __construct()
 	
-public function __construct() {
-	parent::__construct();
-		// Load form helper library
-		$this->load->helper('form');
-		$this->load->helper('date');
-		
-		// Load form validation library
-		$this->load->library('form_validation');
-		
-		// Load session library
-		$this->load->library('session');
-		
-		// Load database
-		$this->load->model('take_model');
-		
-		// Load password security
-		$this->load->helper('security');
-} // end of __construct()
 	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
-	public function render_survey($recipient_id){
-		
-		$recipient_data = $this->take_model->get_recipient_data($recipient_id);
-		$survey_id = $recipient_data[0]->surveyId;
-		
-		$survey_data = $this->take_model->get_survey_data($survey_id);
-		$question_data = $this->take_model->get_question_data($survey_id);
-		$answer_data = $this->take_model->get_answer_data($survey_id);
-		
-		$body_data = array(
-			'surveyTitle' => $survey_data[0]->title,
-			'recipient' => $recipient_data,
-			'questions' => $question_data,
-			'answers' => $answer_data
-		);
-		
-		$page_data = array(
-			'pageTitle' => 'Take Survey',
-			'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
-			'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
-		);
-		
-		$this->load->view('templates/survey', $page_data);
-	}
-	
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
+	/* 
+	** CREATE survey response
+	************************************* */
 	public function get_response(){
 		// get survey id
 		$survey_id = $this->input->post('survey_id');
@@ -111,6 +84,35 @@ public function __construct() {
 	}// end of get_response()
 	
 	
+	/* 
+	** READ survey
+	************************************* */
+	public function render_survey($recipient_id){
+		
+		$recipient_data = $this->take_model->get_recipient_data($recipient_id);
+		$survey_id = $recipient_data[0]->surveyId;
+		
+		$survey_data = $this->take_model->get_survey_data($survey_id);
+		$question_data = $this->take_model->get_question_data($survey_id);
+		$answer_data = $this->take_model->get_answer_data($survey_id);
+		
+		$body_data = array(
+			'surveyTitle' => $survey_data[0]->title,
+			'recipient' => $recipient_data,
+			'questions' => $question_data,
+			'answers' => $answer_data
+		);
+		
+		$page_data = array(
+			'pageTitle' => 'Take Survey',
+			'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+			'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
+		);
+		
+		$this->load->view('templates/survey', $page_data);
+	}// end of render_survey()
+	
+		
 }// end Take_Survey Class
 /* End of file take_survey.php */
 /* Location: ./application/controllers/take_survey.php */

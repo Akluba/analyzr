@@ -4,7 +4,7 @@ session_start();
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends Auth_Controller {
-	
+	// constructor function w/ all dependencies 
 	public function __construct() {
 		parent::__construct();
 			// Load form helper library
@@ -21,10 +21,10 @@ class Home extends Auth_Controller {
 			$this->load->model('home_model');
 	} // end of __construct()
 	
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
 	
+	/* 
+	** CREATE survey
+	************************************* */
 	public function add_survey(){
 		// set rules for from validation
 		$this->form_validation->set_rules('survey_name', 'Survey Name', 'trim|required|min_length[5]|max_length[50]|xss_clean');
@@ -68,12 +68,11 @@ class Home extends Auth_Controller {
 			}
 		}// end form validation
 	}// end add_survey()
+
 	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
-	
-	// Determine user , Gather user surveys
+	/* 
+	** READ surveys
+	************************************* */
 	public function index(){
 		// determining logged in user from session
 		$email = $this->session->userdata('logged_in');

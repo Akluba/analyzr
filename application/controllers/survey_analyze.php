@@ -22,9 +22,9 @@ class Survey_Analyze extends Auth_Controller {
 	} // end of __construct()
 	
 	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
+	/* 
+	** READ overview
+	************************************* */
 	public function analyze($survey_id){
 		// passing survey_id to models to get data
 		
@@ -58,9 +58,12 @@ class Survey_Analyze extends Auth_Controller {
 		);
 		// loading view
 		$this->load->view('templates/default', $page_data);
-	}
+	}// end of analyze()
 	
 	
+	/* 
+	** READ individual
+	************************************* */
 	public function individual($recipient_id){
 		
 		$recipient_data = $this->analyze_model->get_recipient_data($recipient_id);
@@ -70,8 +73,6 @@ class Survey_Analyze extends Auth_Controller {
 		$question_data = $this->analyze_model->get_question_data($survey_id);
 		$answer_data = $this->analyze_model->get_answer_data($survey_id);
 		
-		
-		
 		$content_data = array(
 			'title' => $survey_data[0]->title,
 			'questions'=> $question_data,
@@ -79,17 +80,10 @@ class Survey_Analyze extends Auth_Controller {
 			'responses' => $recipient_data,
 		);
 		
-		
 		$this->load->view('main_content/analyze_individual', $content_data);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}// end of individual()
 	
 	
 }// end of Survey_Analyze Class
+/* End of file survey_analyze.php */
+/* Location: ./application/controllers/survey_analyze.php */
