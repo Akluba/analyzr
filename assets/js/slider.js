@@ -582,6 +582,7 @@
 
     return this;
   };
+  
 
   $.fn.jCarouselLite.defaults = {
 

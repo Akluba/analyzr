@@ -1,7 +1,7 @@
 <!-- Survey preview existing questions -->
 <div class="container" id="builder_active_container">
 	<?php
-	echo '<h2>Analyze-overview: <strong>' .$title .'</strong></h2>';
+	echo '<h2>Survey: <strong>' .$title .'</strong></h2>';
 	
 	if(empty($questions)){
 		echo '<h3 class="empty_message">Looks like you haven\'t created any questions yet.. Begin building your survey by using the <strong>Question Buildr!</strong><span class="icon" data-icon="&#xe032;"></span></h3>';
