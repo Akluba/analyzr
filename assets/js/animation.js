@@ -1,5 +1,9 @@
 $(document).ready(function(){ 
 	
+	/* ###########################################################
+	######## NAV #################################################	
+	########################################################### */
+	
 	/*
 	** Current selected nav element
 	*********************************************** */
@@ -22,6 +26,11 @@ $(document).ready(function(){
 			break;
 	}// end switch
 	
+	
+	
+	/* ###########################################################
+	######## BUTTONS #############################################
+	########################################################### */
 	
 	/*
 	** Button state for Inputs
@@ -69,6 +78,11 @@ $(document).ready(function(){
 	});// end hover()
 	
 	
+	
+	/* ###########################################################
+	######## CAROUSELS ###########################################
+	########################################################### */
+	
 	/*
 	** Input carousel
 	*********************************************** */
@@ -84,7 +98,7 @@ $(document).ready(function(){
 		var liCount = $(id).find("ul").children("li").size();
 		// no li elements exist
 		if(liCount == 0){
-			$(id + '.input_carousel ul').append('<li>No responses exist</li>').addClass('input_response');
+			$(id + '.input_carousel ul').append('<li class="input_response"><p>No responses exist</p></li>');
 			$(id + '.current_num').append('0 of 0');
 		// responses exist
 		}else{
@@ -140,7 +154,7 @@ $(document).ready(function(){
 		var liCount = $(id).find("ul").children("li").size();
 		// no li elements exist
 		if(liCount == 0){
-			$(id + '.text_carousel ul').append('<li>No responses exist</li>').addClass('text_response');
+			$(id + '.text_carousel ul').append('<li><p>No responses exist</p></li>').addClass('text_response');
 			$(id + '.current_num').append('0 of 0');
 		}else{
 			// initial position 
@@ -176,22 +190,89 @@ $(document).ready(function(){
 			responsive: true
 		}); // end jCarouselLite()
 	});// end each()
+	
+	
+	
+	/* ###########################################################
+	######## FORMS ###############################################
+	########################################################### */
+	
+	/*
+	** Question Type 
+	*********************************************** */
+	
+	// init question type -- mult choice
+	$('.indicate_type').append('<p>Multiple Choice</p>');
+	
+	// hide/show choices section of add question form
+	$('#question_form input').on('change', function(){
+		// value of selected radio btn question type 
+		var selected_radio = $('input[name="question_type"]:checked', '#question_form').val();
+		// append name of selected radio btn question type
+		switch(selected_radio){
+			case "1":
+				$('.indicate_type').empty();
+				$('.indicate_type').append('<p>Multiple Choice</p>');
+				break;
+			case "2":
+				$('.indicate_type').empty();
+				$('.indicate_type').append('<p>CheckBox</p>');
+				break;
+			case "3":
+				$('.indicate_type').empty();
+				$('.indicate_type').append('<p>Select Dropdown</p>');
+				break;
+			case "4":
+				$('.indicate_type').empty();
+				$('.indicate_type').append('<p>Text Box</p>');
+				break;
+			case "5":
+				$('.indicate_type').empty();
+				$('.indicate_type').append('<p>Comment Box</p>');
+				break;
+		}// end of switch
+		
+		// question type text based -- remove choices 
+		if(selected_radio == 4 || selected_radio == 5){
+			$('#question_choices').hide();
+		}else{
+			$('#question_choices').show();
+		}
+	});// end change()
+	
+	
+	/*
+	** Choices functionality 
+	*********************************************** */
+	
+	// num used for unique data-id
+	var dataId = 0;
+	// keep choiceCount of choices
+	var choiceCount = 0;
+	// add to previous data-id
+	function increment(){
+		dataId += 1; 
+	}
+	// add / remove choices located in add question form
+	$('.js_add_choice').on('click', function(){
+		// limit amount of added choices
+		if(choiceCount === 4) return false;
+		// run increment function to get id
+		increment();
+		// add to choiceCount of added inputs
+		choiceCount++;
+		// group of elements to be added for additional choice
+		var appendedSpan = '<div data-id="' + dataId +'">' +
+		'<input class="form_input additional_choice_input" type="text" name="choices[]">' +
+		'<a href="#" data-id="' + dataId + '" class="js_remove_choice remove_choice_anchor icon" data-icon="&#xe025;"></a>';
+		// appending additional choice elements
+		$('#additional_choices').append(appendedSpan);
+		// remove choice elements 
+		$('.js_remove_choice').unbind('click').on('click', function(){
+			$(this).parent().remove();
+			choiceCount--;
+		});// end click() remove
+	});// end click() add
 		
 	
 });// end doc ready()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
