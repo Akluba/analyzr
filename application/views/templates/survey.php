@@ -17,7 +17,8 @@
 			<?php if(isset($analyzrContent)){print $analyzrContent; }?>
 		</section>
 		
-		<!-- 	SUBMITTING RESPONSE	 -->
-		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/response.js"></script>
+		<!--  Create ajax  -->
+		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/create.js"></script>
+		
 	</body>
 </html>

@@ -14,8 +14,8 @@
 			<?php if(isset($analyzrContent)){print $analyzrContent; }?>
 		</div>
 		
-		
-		<!--  User login / register ajax	 -->
+		<!--  Auth ajax	 -->
 		<script type="text/javascript" src="<?php echo asset_url();?>js/ajax/auth.js"></script>
+		
 	</body>
 </html>
