@@ -161,9 +161,15 @@ Class Builder_model extends CI_Model {
 	*/ ##################################################################
 	
 	public function remove_question($question_id){
-		$tables = array('question','answer');
-		$this->db->where('questionId', $question_id);
-		$this->db->delete($tables);
+
+		$sql = "DELETE t1, t2, t3
+		FROM question t1
+		LEFT JOIN answer t2 ON t2.questionId = t1.questionId
+		LEFT JOIN response t3 ON t3.answerId = t2.answerId
+		WHERE t1.questionId = " . $question_id;
+		
+		$this->db->query($sql);
+		
 	}// end remove_question()
 	
 		

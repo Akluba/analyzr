@@ -55,9 +55,17 @@ Class Settings_model extends CI_Model {
 	
 	// Remove Survey
 	public function remove_survey($survey_id){
-		$tables = array('survey','question','answer');
-		$this->db->where('surveyId', $survey_id);
-		$this->db->delete($tables);
+
+		$sql = "DELETE t1, t2, t3, t4, t5
+		FROM survey t1
+		LEFT JOIN question t2 ON t2.surveyId = t1.surveyId
+		LEFT JOIN answer t3 ON t3.questionId = t2.questionId
+		LEFT JOIN sent t4 ON t4.surveyId = t1.surveyId 
+		LEFT JOIN response t5 ON  t5.recipientId = t4.recipientId
+		WHERE t1.surveyId = " . $survey_id;
+		
+		$this->db->query($sql);
+		
 	}// end remove_survey()
 	
 	
