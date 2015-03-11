@@ -40,7 +40,13 @@ class Take_Survey extends CI_Controller {
 		}
 		// run form validation
 		if ($this->form_validation->run() == FALSE) {
-			echo "required"; 
+			// ajax response returning validation errors
+			$response = array(
+				'error' => TRUE,
+				'required' => 'All questions marked *required must be answered'
+			);
+			// echo array so it's accessable
+			echo json_encode($response); 
 		}else{
 			// get recipient id
 			$recipient_id = $this->input->post('recipient_id');
@@ -80,6 +86,13 @@ class Take_Survey extends CI_Controller {
 			);
 			$respond_insert = $this->take_model->insert_respond_data($respond_data);
 			
+			// ajax response returning validation errors
+			$response = array(
+				'error' => FALSE,
+			);
+			// echo array so it's accessable
+			echo json_encode($response); 
+			
 		}// end of form_validation if/else
 	}// end of get_response()
 	
@@ -90,56 +103,87 @@ class Take_Survey extends CI_Controller {
 	public function render_survey($recipient_id){
 		
 		$recipient_data = $this->take_model->get_recipient_data($recipient_id);
-		$survey_id = $recipient_data[0]->surveyId;
-		$survey_data = $this->take_model->get_survey_data($survey_id);
-		$question_data = $this->take_model->get_question_data($survey_id);
-		$answer_data = $this->take_model->get_answer_data($survey_id);
-		$restrict_response = $recipient_data[0]->respondDate;
-		$restrict_status = (int)$survey_data[0]->status;
 		
-		// recipient has already submitted the survey
-		if($restrict_response != null){
-			$restriction_message = 'It appears you have already participated in this survey';
+		// survey exists
+		if($recipient_data != null){
+			$survey_id = $recipient_data[0]->surveyId;
+			$survey_data = $this->take_model->get_survey_data($survey_id);
+			$question_data = $this->take_model->get_question_data($survey_id);
+			$answer_data = $this->take_model->get_answer_data($survey_id);
 			
-			$page_data = array(
-				'pageTitle' => 'Survey Restricted',
-				'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
-				'analyzrContent' => $this->load->view('survey/restricted_survey',array('message' =>$restriction_message), TRUE),
-			);
+			$restrict_response = $recipient_data[0]->respondDate;
+			$restrict_status = (int)$survey_data[0]->status;
 			
-			$this->load->view('templates/survey', $page_data);
-		}
-		// recipient has visited a closed survey
-		else if($restrict_status === 0){
-			$restriction_message = 'It appears this survey has been closed by the user. This means they are no longer accepting responses.';
-			
-			$page_data = array(
-				'pageTitle' => 'Survey Restricted',
-				'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
-				'analyzrContent' => $this->load->view('survey/restricted_survey',array('message' =>$restriction_message), TRUE),
-			);
-			
-			$this->load->view('templates/survey', $page_data);
-		}
-		// recipient can continue to survey
-		else{
-			$body_data = array(
-				'surveyTitle' => $survey_data[0]->title,
-				'recipient' => $recipient_data,
-				'questions' => $question_data,
-				'answers' => $answer_data
-			);
-			
-			$page_data = array(
-				'pageTitle' => 'Take Survey',
-				'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
-				'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
-			);
-			
-			$this->load->view('templates/survey', $page_data);
-		}// end of if/else restrict
+			// recipient has already submitted the survey
+			if($restrict_response != null){
+				$message = 'It appears you have already participated in this survey';
+				
+				$page_data = array(
+					'pageTitle' => 'Survey Restricted',
+					'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+					'analyzrContent' => $this->load->view('survey/survey_message',array('message' =>$message), TRUE),
+				);
+				
+				$this->load->view('templates/survey', $page_data);
+			}
+			// recipient has visited a closed survey
+			else if($restrict_status === 0){
+				$message = 'It appears this survey has been closed by the user. This means they are no longer accepting responses.';
+				
+				$page_data = array(
+					'pageTitle' => 'Survey Restricted',
+					'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+					'analyzrContent' => $this->load->view('survey/survey_message',array('message' =>$message), TRUE),
+				);
+				
+				$this->load->view('templates/survey', $page_data);
+			}
+			// recipient can continue to survey
+			else{
+				$body_data = array(
+					'surveyTitle' => $survey_data[0]->title,
+					'recipient' => $recipient_data,
+					'questions' => $question_data,
+					'answers' => $answer_data
+				);
+				
+				$page_data = array(
+					'pageTitle' => 'Take Survey',
+					'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+					'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
+				);
+				
+				$this->load->view('templates/survey', $page_data);
+			}// end of if/else restrict
+		// survey no longer exist
+		}else{
+			$message = 'It appears this survey no longer exist.';
+				
+				$page_data = array(
+					'pageTitle' => 'Survey Error',
+					'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+					'analyzrContent' => $this->load->view('survey/survey_message',array('message' =>$message), TRUE),
+				);
+				
+				$this->load->view('templates/survey', $page_data);
+		}// end of if/else existing survey
 	}// end of render_survey()
 	
+	
+	/* 
+	** READ completed survey message
+	************************************* */
+	public function thank_you(){
+		$message = 'Thank you for participating in this survey!';
+			
+		$page_data = array(
+			'pageTitle' => 'Survey Completed',
+			'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+			'analyzrContent' => $this->load->view('survey/survey_message',array('message' =>$message), TRUE),
+		);
+		
+		$this->load->view('templates/survey', $page_data);
+	}
 		
 }// end Take_Survey Class
 /* End of file take_survey.php */

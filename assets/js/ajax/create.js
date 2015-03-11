@@ -110,7 +110,11 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: data,
 			success: function(res) {
-				console.log(res);
+				if(res['error'] == true ){
+					
+				}else{
+					window.location.href = '../thank_you';
+				}
 			}// end success
 		});// end ajax post
 	});// end submit()	

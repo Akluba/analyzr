@@ -18,7 +18,7 @@ $(document).ready(function(){
 				dataType: 'json',
 				data: {'survey_id': data},
 				success: function(res) {
-					// refresh page w/ question removed 
+					// redirect to home w/ survey removed
 					window.location.href = '../home';
 				}// end success
 			});// end ajax post
