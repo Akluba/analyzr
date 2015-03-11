@@ -1,8 +1,22 @@
 <?php
-
 Class Home_model extends CI_Model {
-
-	// Read data using email
+	
+	/*
+	** CREATE survey
+	***************************************** */
+	public function new_survey_insert($data) {
+		$this->db->insert('survey', $data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}// end new_survey_insert()
+	
+	
+	/*
+	** READ user data
+	***************************************** */
 	public function get_data($email) {
 		$condition = "email =" . "'" . $email['email'] . "'";
 		$this->db->select('*');
@@ -18,7 +32,10 @@ Class Home_model extends CI_Model {
 		}
 	}// end get_data()
 	
-	// Read data using userId
+	
+	/*
+	** READ survey data
+	***************************************** */
 	public function get_survey_data($userId){
 		$condition = "userId =" . "'" . $userId . "'";
 		$this->db->select('*');
@@ -29,15 +46,6 @@ Class Home_model extends CI_Model {
 		return $query->result();
 	}// end get_survey_data()
 	
-	// Insert new survey data
-	public function new_survey_insert($data) {
-		$this->db->insert('survey', $data);
-		if ($this->db->affected_rows() > 0) {
-			return true;
-		}else{
-			return false;
-		}
-	}// end new_survey_insert()
 	
 }// end Home_model Class
 ?>

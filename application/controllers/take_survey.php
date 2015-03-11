@@ -91,25 +91,53 @@ class Take_Survey extends CI_Controller {
 		
 		$recipient_data = $this->take_model->get_recipient_data($recipient_id);
 		$survey_id = $recipient_data[0]->surveyId;
-		
 		$survey_data = $this->take_model->get_survey_data($survey_id);
 		$question_data = $this->take_model->get_question_data($survey_id);
 		$answer_data = $this->take_model->get_answer_data($survey_id);
+		$restrict_response = $recipient_data[0]->respondDate;
+		$restrict_status = (int)$survey_data[0]->status;
 		
-		$body_data = array(
-			'surveyTitle' => $survey_data[0]->title,
-			'recipient' => $recipient_data,
-			'questions' => $question_data,
-			'answers' => $answer_data
-		);
-		
-		$page_data = array(
-			'pageTitle' => 'Take Survey',
-			'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
-			'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
-		);
-		
-		$this->load->view('templates/survey', $page_data);
+		// recipient has already submitted the survey
+		if($restrict_response != null){
+			$restriction_message = 'It appears you have already participated in this survey';
+			
+			$page_data = array(
+				'pageTitle' => 'Survey Restricted',
+				'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+				'analyzrContent' => $this->load->view('survey/restricted_survey',array('message' =>$restriction_message), TRUE),
+			);
+			
+			$this->load->view('templates/survey', $page_data);
+		}
+		// recipient has visited a closed survey
+		else if($restrict_status === 0){
+			$restriction_message = 'It appears this survey has been closed by the user. This means they are no longer accepting responses.';
+			
+			$page_data = array(
+				'pageTitle' => 'Survey Restricted',
+				'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+				'analyzrContent' => $this->load->view('survey/restricted_survey',array('message' =>$restriction_message), TRUE),
+			);
+			
+			$this->load->view('templates/survey', $page_data);
+		}
+		// recipient can continue to survey
+		else{
+			$body_data = array(
+				'surveyTitle' => $survey_data[0]->title,
+				'recipient' => $recipient_data,
+				'questions' => $question_data,
+				'answers' => $answer_data
+			);
+			
+			$page_data = array(
+				'pageTitle' => 'Take Survey',
+				'headerContent' => $this->load->view('survey/survey_head',array(),TRUE),
+				'analyzrContent' => $this->load->view('survey/survey_body',$body_data, TRUE),
+			);
+			
+			$this->load->view('templates/survey', $page_data);
+		}// end of if/else restrict
 	}// end of render_survey()
 	
 		

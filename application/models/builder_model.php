@@ -1,10 +1,9 @@
 <?php
 Class Builder_model extends CI_Model {
 	
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
-	
+	/*
+	** CREATE question
+	***************************************** */
 	public function insert_question($question_data){
 		$this->db->trans_start();
 		$this->db->insert('question', $question_data);
@@ -14,14 +13,18 @@ Class Builder_model extends CI_Model {
 		return  $insert_id;
 	}// end insert_question()
 	
+	
+	/*
+	** CREATE question choices
+	***************************************** */
 	public function insert_answer($answer_data){
 		$this->db->insert_batch('answer', $answer_data); 
 	}// end insert_answer()
 	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
 	
+	/*
+	** READ survey
+	***************************************** */
 	public function get_survey_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -33,6 +36,10 @@ Class Builder_model extends CI_Model {
 		return $query->result();
 	}// end get_survey_data()
 	
+	
+	/*
+	** READ question
+	***************************************** */
 	public function get_question_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -42,6 +49,10 @@ Class Builder_model extends CI_Model {
 		return $query->result();
 	}// end get_question_data()
 	
+	
+	/*
+	** READ question choices
+	***************************************** */
 	public function get_answer_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -51,10 +62,14 @@ Class Builder_model extends CI_Model {
 		return $query->result();
 	}// end get_answer_data()
 	
-	/* ##################################################################
-	########### UPDATE ##################################################
-	*/ ##################################################################
 	
+	
+	
+	
+	
+	/*
+	** UPDATE question data
+	***************************************** */
 	public function edit_question_data($question_id){
 		$this->db->select('*');
 		$this->db->from('question');
@@ -63,6 +78,10 @@ Class Builder_model extends CI_Model {
 		return $query->result();
 	}// end edit_question_data()
 	
+	
+	/*
+	** UPDATE choices data
+	***************************************** */
 	public function edit_answer_data($question_id){
 		$this->db->select('*');
 		$this->db->from('answer');
@@ -71,17 +90,19 @@ Class Builder_model extends CI_Model {
 		return $query->result();
 	}// end edit_answer_data()
 	
+	
+	/*
+	** UPDATE question
+	***************************************** */
 	public function update_question($question_data){
 		$this->db->where('questionId', $question_data['questionId']);
 		$this->db->update('question', $question_data);
 	}// end update_question()
 	
 	
-	
-	
-	
-	
-	
+	/*
+	** UPDATE choices
+	***************************************** */
 	public function update_answer($answer_data,$question_id){
 		
 		// get count of existing choices
@@ -92,6 +113,7 @@ Class Builder_model extends CI_Model {
 		// get count of new
 		$num_new = count($answer_data);
 		
+		// answer_data only contains one choice 
 		if($num_new === 1){
 			$new_data = array();
 			for($i=1;$i<$num_existing;$i++){
@@ -104,13 +126,10 @@ Class Builder_model extends CI_Model {
 			$this->db->update('answer', $answer_data[0]);
 		}
 		
-		
-		
-		// even and new
+		// answer_data contains greater or equal amount of choices
 		else if($num_new >= $num_existing){
-			
+			// array to contain new answer_data
 			$new_data = array();
-			
 			// append answerId to new choice array 
 			foreach($existing->result() as $i=>$existing_data){
 				// answerId from existing choice
@@ -124,7 +143,7 @@ Class Builder_model extends CI_Model {
 			// update_batch 
 			$this->db->update_batch('answer', $new_data, 'answerId');
 			
-			// new greater existing
+			// insert additional choices
 			if($num_new > $num_existing){
 				$new_data = array();
 				for($i=$i+1; $i<$num_new;$i++){
@@ -132,7 +151,9 @@ Class Builder_model extends CI_Model {
 				}
 				$this->db->insert_batch('answer', $new_data); 
 			}
-		}else{
+		}
+		// answer_data contains fewer amount of choices
+		else{
 			$new_data = array();
 			foreach($answer_data as $i=>$choice){
 				$id = $existing->result()[$i]->answerId;
@@ -148,28 +169,22 @@ Class Builder_model extends CI_Model {
 			}
 			$this->db->where_in('answerId', $new_data);
 			$this->db->delete('answer');
-			
-		}// end equal choice amount if/else
-		
-		
-		
-		 
+		}// end equal choice amount if/else	 
 	}// end update_answer()
 	
-	/* ##################################################################
-	########### DELETE ##################################################
-	*/ ##################################################################
 	
+	/*
+	** DELETE question / all related content
+	***************************************** */
 	public function remove_question($question_id){
-
+		// query joining all content related to question
 		$sql = "DELETE t1, t2, t3
 		FROM question t1
 		LEFT JOIN answer t2 ON t2.questionId = t1.questionId
 		LEFT JOIN response t3 ON t3.answerId = t2.answerId
 		WHERE t1.questionId = " . $question_id;
-		
-		$this->db->query($sql);
-		
+		// deleting question
+		$this->db->query($sql);	
 	}// end remove_question()
 	
 		

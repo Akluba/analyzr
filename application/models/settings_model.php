@@ -1,17 +1,9 @@
 <?php
-
 Class Settings_model extends CI_Model {
 
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
-	
-	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
-	
-	// Read data for selected survey
+	/*
+	** READ survey settings
+	***************************************** */
 	public function get_survey_settings($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -23,11 +15,10 @@ Class Settings_model extends CI_Model {
 		return $query->result();
 	}// end get_survey_settings()
 	
-	/* ##################################################################
-	########### UPDATE ##################################################
-	*/ ##################################################################
 	
-	// Update Title 
+	/*
+	** UPDATE survey title
+	***************************************** */
 	public function update_title($survey_id,$updated_title){
 		$this->db->where('surveyId', $survey_id);
 		$this->db->update('survey', array('title' => $updated_title));
@@ -38,7 +29,10 @@ Class Settings_model extends CI_Model {
 		}
 	}// end update_title()
 	
-	// Update Status
+	
+	/*
+	** UPDATE survey status
+	***************************************** */
 	public function update_status($survey_id,$updated_status){
 		$this->db->where('surveyId', $survey_id);
 		$this->db->update('survey', array('status' => $updated_status));
@@ -49,13 +43,12 @@ Class Settings_model extends CI_Model {
 		}
 	}// end update_status()
 	
-	/* ##################################################################
-	########### DELETE ##################################################
-	*/ ##################################################################
 	
-	// Remove Survey
+	/*
+	** DELETE survey / all related content
+	***************************************** */
 	public function remove_survey($survey_id){
-
+		// query joining all content related to survey
 		$sql = "DELETE t1, t2, t3, t4, t5
 		FROM survey t1
 		LEFT JOIN question t2 ON t2.surveyId = t1.surveyId
@@ -63,9 +56,8 @@ Class Settings_model extends CI_Model {
 		LEFT JOIN sent t4 ON t4.surveyId = t1.surveyId 
 		LEFT JOIN response t5 ON  t5.recipientId = t4.recipientId
 		WHERE t1.surveyId = " . $survey_id;
-		
+		// deleting survey
 		$this->db->query($sql);
-		
 	}// end remove_survey()
 	
 	

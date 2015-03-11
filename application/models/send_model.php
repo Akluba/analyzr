@@ -1,9 +1,9 @@
 <?php
 Class Send_model extends CI_Model {
 	
-	/* ##################################################################
-	########### CREATE ##################################################
-	*/ ##################################################################
+	/*
+	** CREATE sent survey
+	***************************************** */
 	public function insert_send_data($send_data){
 		$this->db->select('*');
 		$this->db->from('sent');
@@ -27,9 +27,9 @@ Class Send_model extends CI_Model {
 	}// end of insert_send_data()
 	
 	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
+	/*
+	** READ survey data
+	***************************************** */
 	public function get_survey_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -41,6 +41,10 @@ Class Send_model extends CI_Model {
 		return $query->result();
 	}// end of get_survey_data()
 	
+	
+	/*
+	** READ sent data
+	***************************************** */
 	public function get_sent_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -52,12 +56,11 @@ Class Send_model extends CI_Model {
 	}// end of get_sent_data()
 	
 	
-	/* ##################################################################
-	########### DELETE ##################################################
-	*/ ##################################################################
-	// in the case message is not sent out due to Mandrill error
-	// remove data from sent 
+	/*
+	** DELETE sent
+	***************************************** */
 	public function remove_sent($recipient_id){
+		// in the case message is not sent out due to Mandrill error
 		$this->db->where('recipientId', $recipient_id);
 		$this->db->delete('sent');
 	}// end of remove_sent()

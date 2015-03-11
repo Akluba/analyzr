@@ -1,10 +1,9 @@
 <?php
 Class Analyze_model extends CI_Model {
 	
-	
-	/* ##################################################################
-	########### READ ####################################################
-	*/ ##################################################################
+	/*
+	** READ survey data
+	***************************************** */
 	public function get_survey_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -16,6 +15,10 @@ Class Analyze_model extends CI_Model {
 		return $query->result();
 	}// end get_survey_data()
 	
+	
+	/*
+	** READ question data
+	***************************************** */
 	public function get_question_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -25,6 +28,10 @@ Class Analyze_model extends CI_Model {
 		return $query->result();
 	}// end get_question_data()
 	
+	
+	/*
+	** READ choices data
+	***************************************** */
 	public function get_answer_data($survey_id){
 		$condition = "surveyId =" . "'" . $survey_id . "'";
 		$this->db->select('*');
@@ -34,6 +41,10 @@ Class Analyze_model extends CI_Model {
 		return $query->result();
 	}// end get_answer_data()
 	
+	
+	/*
+	** READ responses data
+	***************************************** */
 	public function get_response_data($survey_id){
 		$this->db->select('question.questionId,response.answerId, response.responseText');
 		$this->db->from('survey');
@@ -47,6 +58,9 @@ Class Analyze_model extends CI_Model {
 	}// end get_response_data()
 	
 	
+	/*
+	** READ individuals data
+	***************************************** */
 	public function get_individual_data($survey_id){
 		$this->db->select('sent.recipientId, sent.email, sent.respondDate');
 		$this->db->from('survey');
@@ -59,7 +73,9 @@ Class Analyze_model extends CI_Model {
 	}// end get_response_data()
 	
 	
-	
+	/*
+	** READ individual response data
+	***************************************** */
 	public function get_recipient_data($recipient_id){
 		$this->db->select('response.answerId, response.responseText, answer.surveyId, answer.answerText, question.questionId');
 		$this->db->from('response');
@@ -72,5 +88,5 @@ Class Analyze_model extends CI_Model {
 	}
 	
 	
-}
+}// end of Analyze_model Class
 ?>
