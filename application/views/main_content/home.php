@@ -23,12 +23,6 @@
 		</div>
 	</article>
 	
-	<?php
-	if(empty($survey)){
-		echo '<h3 class="empty_message">No Surveys, begin by giving your survey a title.</h3>';
-	}
-	?>
-	
 	<!-- existing surveys and their possible functions -->
 	<?php foreach ($survey as $item): ?>
 		<article class="home_existing_survey">

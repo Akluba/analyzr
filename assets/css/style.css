@@ -600,6 +600,31 @@ th, td{
 .send_textarea{
 	height: 160px;
 }
+#restrict_send{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(254, 250, 250, 0.8);
+}
+#restrict_send .empty_message{
+	width: 100%;
+	text-align: center;
+	padding: 51px 0 15px 0;
+}
+#restrict_send .empty_btn{
+	display: inline-block;
+	height: 45px;
+	width: 100%;
+	border-radius: 5px;
+	background-color: #44749d;
+	color: #fefafa;
+	text-decoration: none;
+	text-align: center;
+	line-height: 45px;
+}
 
 /* ########################################################################### 
 ######################### ANALYZE ############################################

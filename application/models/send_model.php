@@ -28,6 +28,22 @@ Class Send_model extends CI_Model {
 	
 	
 	/*
+	** READ question data
+	***************************************** */
+	public function question_exist($survey_id){
+		$this->db->select('*');
+		$this->db->from('question');
+		$this->db->where('surveyId',$survey_id);
+		$query = $this->db->get();
+		if ($query->num_rows() >= 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	/*
 	** READ survey data
 	***************************************** */
 	public function get_survey_data($survey_id){

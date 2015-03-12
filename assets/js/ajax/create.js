@@ -81,11 +81,13 @@ $(document).ready(function(){
 					$('#subject_error').empty();
 					$('#message_error').empty();
 					$('#mandrill_error').empty();
+					$('#survey_error').empty();
 					// append validation error message 
 					if(res['email'] != "" && res['email'] != undefined) $('#email_error').append("&#42;"+res['email']);
 					if(res['subject'] != "" && res['subject'] != undefined) $('#subject_error').append("&#42;"+res['subject']);
 					if(res['message'] != "" && res['message'] != undefined) $('#message_error').append("&#42;"+res['message']);
 					if(res['mandrill'] != "" && res['mandrill'] != undefined) $('#mandrill_error').append("&#42;"+res['mandrill']);
+					if(res['survey'] != "" && res['survey'] != undefined) $('#survey_error').append("&#42;"+res['survey']);
 				}else{
 					location.reload();
 				}// end success if/else

@@ -1,6 +1,14 @@
 <div class="side_container">
 	<h2><strong>Survey Sendr</strong></h2>
 	<?php
+		
+		if($question_exist == false){
+			echo '<div id="restrict_send">';
+			echo '<h3 class="empty_message">Sendr not available until survey is built.</h3>';
+			echo '<a class="empty_btn" href="../survey_builder/' .$survey_id .'">Build Survey</a>';
+			echo '</div>';
+		}
+		
 		// OPEN FORM
 		echo form_open('#', array('id'=>'send_form'))."\n";
 		// SURVEY ID	
@@ -25,6 +33,7 @@
 		// SUBMIT
 		echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Send Survey'))."\n";
 		echo '<div class="error_message" id="mandrill_error"></div>';
+		echo '<div class="error_message" id="survey_error"></div>';
 		// CLOSE FORM
 		echo form_close()."\n";
 	?>
