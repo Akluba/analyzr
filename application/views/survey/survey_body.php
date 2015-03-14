@@ -1,14 +1,15 @@
+<div class="container">
 <?php 
-	echo '<h2>Survey: <strong>' .$surveyTitle .'</strong></h2>';
+	echo '<h2 id="survey_title">Survey: <strong>' .$surveyTitle .'</strong></h2>';
 	// HIDDEN INPUTS
 	$hidden = array('recipient_id'=>$recipient[0]->recipientId,'survey_id'=>$recipient[0]->surveyId);
 	// FORM OPEN
 	echo form_open('#',array('id'=>'survey_response'),$hidden);
 	foreach($questions as $question){
-		echo '<article>';
+		echo '<article class="survey_item">';
 			// TITLE 
 			echo '<div class="article_header">';
-				echo '<h3>' .$question->questionText .'</h3>';
+				echo '<h3 class="question_title">' .$question->questionText .'</h3>';
 				// REQUIRED
 				if($question->questionRequire == 1){
 					echo '<p class="answer_required">&#42; answer required</p>';
@@ -64,10 +65,27 @@
 			echo '</div>';
 		echo '</article>';
 	}// end of foreach question
+	
+	
+	
 	// SUBMIT BUTTON
 	echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Submit Survey'));
 	// FORM CLOSE
 	echo form_close();
-	
+?>
+</div>	
+
+<!-- Missing answer  -->
+<div id="confirm_remove" style="display: none;">
+	<div id="confirmOverlay">
+		<div id="confirmBox">
+			<h1>Survey Incomplete</h1>
+			<p id="required_error"></p>
+			<div id="confirmButtons">
+				<a class="js_close_window confirm_remove_btn" href="#">Ok<span></span></a>
+			</div>
+		</div>
+	</div>
+</div>
 	
 	

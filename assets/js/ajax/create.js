@@ -113,7 +113,11 @@ $(document).ready(function(){
 			data: data,
 			success: function(res) {
 				if(res['error'] == true ){
-					
+					if(res['required'] != "" && res['required'] != undefined) $('#required_error').html(res['required']);
+					$('#confirm_remove').show();
+					$('.js_close_window').on('click',function(){
+						$('#confirm_remove').hide();
+					});
 				}else{
 					window.location.href = '../thank_you';
 				}

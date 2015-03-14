@@ -3,7 +3,7 @@
 	<?php
 		
 		if($question_exist == false){
-			echo '<div id="restrict_send">';
+			echo '<div id="restrict_action">';
 			echo '<h3 class="empty_message">Sendr not available until survey is built.</h3>';
 			echo '<a class="empty_btn" href="../survey_builder/' .$survey_id .'">Build Survey</a>';
 			echo '</div>';

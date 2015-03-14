@@ -31,11 +31,11 @@ class Survey_Builder extends Auth_Controller {
 		// set rules for form validation based on question type
 		if($question_type == 4 || $question_type == 5){
 			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
-			$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
+			$this->form_validation->set_rules('question_text', 'Question', 'required|xss_clean');
 		}else{
 			$this->form_validation->set_rules('question_type', 'Question Type', 'required|xss_clean');
-			$this->form_validation->set_rules('question_text', 'Question Text', 'required|xss_clean');
-			$this->form_validation->set_rules('choices[]', 'Question Choices', 'required|xss_clean');
+			$this->form_validation->set_rules('question_text', 'Question', 'required|xss_clean');
+			$this->form_validation->set_rules('choices[]', 'Choices', 'required|xss_clean');
 		}
 		// run form validation
 		if ($this->form_validation->run() == FALSE) {

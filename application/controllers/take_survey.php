@@ -43,7 +43,7 @@ class Take_Survey extends CI_Controller {
 			// ajax response returning validation errors
 			$response = array(
 				'error' => TRUE,
-				'required' => 'All questions marked *required must be answered'
+				'required' => 'All questions marked <strong>*answer required</strong> must be answered before submitting the survey.'
 			);
 			// echo array so it's accessable
 			echo json_encode($response); 

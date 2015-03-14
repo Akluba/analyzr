@@ -1,4 +1,4 @@
-<h1>Analyzr</h1>
+<h1><a class="analyzr_logo" href="/analyzr">Analyzr</a></h1>
 <div class="auth_form">
 	<?php 
 		// Form Open

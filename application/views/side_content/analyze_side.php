@@ -5,6 +5,16 @@
 		<li>&#124;</li>
 		<li><a href="#" id="js_view_individual">Individual</a></li>
 	</ul>
+	
+	<?php 
+		if($recipients == null){
+			echo '<div id="restrict_action">';
+			echo '<h3 class="empty_message">Analyzr options not available until responses are present.</h3>';
+			echo '<a class="empty_btn" href="../survey_send/' .$survey_id .'">Send Survey</a>';
+			echo '</div>';
+		}	
+	?>
+	
 	<?php foreach($recipients as $recipient): ?>
 		<div class="js_individual_recipient recipient_item" data-id="<?php echo $recipient->recipientId; ?>">
 			<p><?php echo $recipient->email; ?></p>

@@ -1,9 +1,6 @@
-/* ########################################################################### 
-######################### Survey #############################################
-########################################################################### */
-/* ******************************
-	Document
-****************************** */
+/* ############################################
+########## Document
+############################################ */
 html{
 	margin: 0;
 }
@@ -12,54 +9,244 @@ body{
 	background-color: #eae5de;
 	font-family: 'Source Sans Pro', sans-serif;
 }
-section{
-	max-width: 960px;
-	min-width: 305px;
-	width: 85%;
-	margin: 0 auto 50px;
+.container{
+	width: 920px;
+	margin: 0 auto;
 }
-/* ******************************
-	Headers
-****************************** */
+
+/* ############################################
+########## Header
+############################################ */
 header{
 	height: 67px;
 	width: 100%;
 	background-color: #212121;
 }
 header h1{
-	margin: 14px 70px 0 20px;
 	float: left;
-	color: white;
+	margin: 10px 0 0;
 }
-header ul{
+header h1 a{
+	display: block;
+	height: 45px;
+	width: 148px;
+	background-image: url('../img/full_logo.png');
+	text-indent: -99999px;
+}
+header nav{
 	float: right;
-	margin: 15px 20px 0 0;
-	padding: 0;
 }
-header ul li{
+header nav ul{
+	margin: 14px 0 0;
+	padding: 0;
+	height: 37px;
+}
+header nav li{
 	float: left;
 	list-style-type: none;
-	margin-right: 10px;	
+	margin-right: 12px;
 }
-header ul li:last-child{
+header nav li:last-child{
 	margin-right: 0;
 }
-header ul li a{
-	text-decoration: none;
-	display: block;
-	color: #c6d5e1;
+header nav li a{
 	padding: 8px 12px;
+	text-decoration: none;
+	color: white;
+	display: block;
 }
-#login_btn{
+#register_btn{
+	background-color: #44749D;
 	border-radius: 3px;
-	background-color: #44749d;
+}
+
+/* ############################################
+########## Landing section
+############################################ */
+section{
+	margin: 30px 0 72px;
+}
+#landing_title{
+	margin: 0;
+	font-size: 60px;
+	text-align: center;
+	font-weight: 400;
+	color: #212121;
+}
+section p{
+	margin: 24px 0 32px;
+}
+#cta_btn{
+	height: 45px;
+	width: 275px;
+	float: right;
+	display: block;
+	border-radius: 5px;
+	background-color: #44749D;
+	font-size: 18px;
+	color: #FEFAFA;
+	line-height: 45px;
+	text-align: center;
+	text-decoration: none;
+}
+
+/* ############################################
+########## Landing articles
+############################################ */
+.feature_row{
+	width: 244px;
+	height: 300px;
+	float: left;
+	margin-right: 40px;
+	padding: 12px 18px;
+	background-color: #fefafa;
+}
+#last_feature{
+	margin-right: 0;
+}
+.feature_title{
+	margin: 0 0 22px;
+	font-size: 24px;
+	text-align: center;
+	font-weight: 400;
+}
+.icon{
+	text-align: center;
+	font-size: 85px;
+	color: #44749d;
+	cursor: default;	
+}
+.feature_row p{
+	text-align: center;
+	color: #8C989E;
+}
+
+/* ############################################
+########## Landing footer
+############################################ */
+footer{
+	margin-top: 100px;
+	padding: 35px 0 10px;
+	background-color: #c6d5e1;
+}
+#contact_info{
+	float: left;
+}
+dl{
+	margin: 0;
+}
+h4{
+	margin: 0;
+}
+dd{
+	margin: 0;
+}
+dd a{
+	margin-right: 12px;
 	color: #fefafa;
 }
+dd a:hover{
+	color: #44749D;
+}
+footer p{
+	color: #8C989E;
+	font-size: 14px;
+	margin: 12px 0 0;
+}
+footer nav{
+	float: right;
+}
+footer nav ul{
+	margin: 0;
+	padding: 0;
+}
+footer nav ul li{
+	list-style-type: none;
+}
+footer nav a{
+	text-decoration: none;
+	color: #8C989E;
+	font-size: 14px;
+}footer nav a:hover{
+	color: #44749D;
+}
+
+/* ############################################
+########## Auth
+############################################ */
+
+/* ******************************
+	Modal
+****************************** */
+.auth_area{
+	width: 375px;
+	margin: 100px auto;	
+}
+.analyzr_logo{
+	
+	display: block;
+	height: 56px;
+	width: 184px;
+	background-image: url('../img/analyzr_logo.png');
+	text-indent: -99999px;
+	margin: 0 auto 10px;
+}
+.auth_form{
+	width: 275px;
+	position: relative;
+	padding: 25px 50px 50px;
+	background-color: #fefafa;
+	border-radius: 5px;
+}
+
+/* ******************************
+	Inputs
+****************************** */
+.auth_input{
+	height: 30px;
+	width: 265px;
+	padding: 3px;
+	border: 2px solid #c6d5e1;
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+.auth_form a{
+	text-decoration: none;
+	float: right;
+	margin: 15px 0;
+	color: #44749d;
+}
+.auth_form label{
+	float: left;
+}
+fieldset{
+	margin: 0 0 15px;
+	padding: 0;
+	border: 0;
+}
+
+/* ******************************
+	Errors
+****************************** */
+.error_message{
+	position: absolute;
+	right: 50px;
+	font-size: 12px;
+	color: #44749d;
+}
+.error_message p{
+	margin: 0;
+	display: inline;
+}
+
+/* ############################################
+########## Survey
+############################################ */
 
 /* ******************************
 	Articles
 ****************************** */
-article{
+.survey_item{
 	background-color: #fefafa;
 	margin-bottom: 10px;
 }
@@ -80,14 +267,33 @@ article{
 /* ******************************
 	Article text
 ****************************** */
-h3{
-	margin: 0;
-	float: left;
-	max-width: 70%;
+#survey_title{
+	color: #bcb7ad;
+	font-size: 24px;
+	font-weight: 200;
+}
+#survey_title strong{
+	color: #44749d;
+	font-weight: 400;
 }
 .answer_required{
 	float: right;
 	margin: 0 15px 0; 
+	font-size: 14px;
+	font-weight: 400;
+}
+.question_title{
+	margin: 0;
+	float: left;
+	max-width: 70%;
+	font-size: 18px;
+	font-weight: 400;
+}
+.choice_rows td{
+	padding: 0;
+}
+.choice_rows tr{
+	height: 30px;
 }
 
 /* ******************************
@@ -135,39 +341,9 @@ textarea{
 }
 
 
-.answer_required{
-	float: right;
-	margin-right: 15px; 
-	font-size: 14px;
-	font-weight: 400;
-}
-h2{
-	color: #bcb7ad;
-	font-size: 24px;
-	font-weight: 200;
-}
-h2 strong{
-	color: #44749d;
-	font-weight: 400;
-}
-h3{
-	margin: 0;
-	float: left;
-	max-width: 70%;
-	font-size: 18px;
-	font-weight: 400;
-}
-.choice_rows td{
-	padding: 0;
-}
-.choice_rows tr{
-	height: 30px;
-}
-
-
-/* ******************************
-	restricted survey
-****************************** */
+/* ############################################
+########## Messages
+############################################ */
 .restricted_container{
 	margin: 100px auto;
 	padding: 100px 50px;
@@ -181,63 +357,3 @@ h3{
 	padding: 0;
 	margin: 0;
 }
-
-/* ########################################################################### 
-######################### Auth ###############################################
-########################################################################### */
-/* ******************************
-	Modal
-****************************** */
-.auth_area{
-	width: 375px;
-	margin: 100px auto;	
-}
-.auth_area h1{
-	text-align: center;
-}
-.auth_form{
-	width: 275px;
-	position: relative;
-	padding: 25px 50px 50px;
-	background-color: #fefafa;
-	border-radius: 5px;
-}
-/* ******************************
-	Inputs
-****************************** */
-.auth_input{
-	height: 30px;
-	width: 265px;
-	padding: 3px;
-	border: 2px solid #c6d5e1;
-	font-size: 14px;
-	margin-bottom: 3px;
-}
-.auth_form a{
-	text-decoration: none;
-	float: right;
-	margin: 15px 0;
-	color: #44749d;
-}
-.auth_form label{
-	float: left;
-}
-fieldset{
-	margin: 0 0 15px;
-	padding: 0;
-	border: 0;
-}
-/* ******************************
-	Errors
-****************************** */
-.error_message{
-	position: absolute;
-	right: 50px;
-	font-size: 12px;
-	color: #44749d;
-}
-.error_message p{
-	margin: 0;
-	display: inline;
-}
-
