@@ -66,6 +66,14 @@ class Take_Survey extends CI_Controller {
 				}else if(strpos($key, 'hidden')){
 					// don't insert hidden input values into response_data[]
 					continue;
+				}else if(is_array($_POST[$key])){
+					foreach($_POST[$key] as $check_value){
+						$response_data[] = array(
+							'recipientId' => $recipient_id,
+							'answerId' => $check_value,
+							'responseText' => Null	
+						);
+					}
 				}else{
 					// insert response data containing only answer id
 					$response_data[] = array(
@@ -75,8 +83,10 @@ class Take_Survey extends CI_Controller {
 					);	
 				}
 			}// end foreach Post data
+			
 			// insert response data into database
 			$response_insert = $this->take_model->insert_response_data($response_data);
+			
 			// insert response date
 			$datestring = "%Y%m%d";
 			$respond_date = mdate($datestring);

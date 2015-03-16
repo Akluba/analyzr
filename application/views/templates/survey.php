@@ -19,7 +19,7 @@
 			<?php if(isset($headerContent)){print $headerContent; }?>
 		</header>
 		
-			<?php if(isset($analyzrContent)){print $analyzrContent; }?>
+		<?php if(isset($analyzrContent)){print $analyzrContent; }?>
 		
 		
 		<!--  Create ajax  -->

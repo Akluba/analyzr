@@ -33,7 +33,7 @@
 								break;
 							// displaying answer type - CHECKBOX 
 							case 2:
-								echo '<td>' .form_checkbox(array('name'=>$question->questionId, 'value'=>$answer->answerId));
+								echo '<td>' .form_checkbox(array('name'=>$question->questionId.'[]', 'value'=>$answer->answerId));
 								echo $answer->answerText .'</td>';
 								break;
 							// displaying answer type - INPUT 	

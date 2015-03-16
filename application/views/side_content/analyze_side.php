@@ -9,7 +9,7 @@
 	<?php 
 		if($recipients == null){
 			echo '<div id="restrict_action">';
-			echo '<h3 class="empty_message">Analyzr options not available until responses are present.</h3>';
+			echo '<h3 class="empty_message">Analyzr options will become available when responses are received.</h3>';
 			echo '<a class="empty_btn" href="../survey_send/' .$survey_id .'">Send Survey</a>';
 			echo '</div>';
 		}	
