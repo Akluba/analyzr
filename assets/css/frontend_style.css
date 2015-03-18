@@ -6,6 +6,7 @@ html{
 }
 body{
 	margin: 0;
+	width: 100%;
 	background-color: #eae5de;
 	font-family: 'Source Sans Pro', sans-serif;
 }
@@ -18,7 +19,7 @@ body{
 ########## Header
 ############################################ */
 header{
-	height: 67px;
+	min-height: 67px;
 	width: 100%;
 	background-color: #212121;
 }
@@ -64,6 +65,7 @@ header nav li a{
 ########## Landing section
 ############################################ */
 section{
+	width: 100%;
 	margin: 30px 0 72px;
 }
 #landing_title{

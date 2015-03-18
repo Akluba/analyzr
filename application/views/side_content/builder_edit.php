@@ -1,4 +1,4 @@
-<div class="side_container" id="js_editform">
+<div class="side_container builder_edit_contanier" id="js_editform">
 	<h2><strong>Edit Question</strong></h2>
 	<?php
 		// OPEN FORM
@@ -82,9 +82,12 @@
 			echo form_label('Answer required ') ."\n";
 		echo form_fieldset_close();
 		// SUBMIT
-		echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Save Question'));
-		// CANCEL
-		echo '<a href="#" class="js_cancel_edit">Cancel</a>';
+		echo '<div class="fix_btn_bottom">';
+			// CANCEL
+			echo '<a href="#" class="js_cancel_edit cancel_edit_btn">Cancel</a>';
+			echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Save Question'));
+		echo '</div>';
+		
 		// CLOSE FORM
 		echo form_close()."\n";
 	?>

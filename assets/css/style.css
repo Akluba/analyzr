@@ -72,14 +72,14 @@ header h1{
 	background-image: url('../img/full_logo.png');
 	height: 45px;
 	width: 148px;
-	margin: 10px 0 0 20px;
+	margin: 10px 0 0 15px;
 }
 .icon_logo{
 	text-indent: -9999px; ;
 	background-image: url('../img/icon_logo.png');
-	height: 50px;
-	width: 38px;
-	margin: 8px 70px 0 11px;
+	height: 40px;
+	width: 31px;
+	margin: 10px 70px 0 15px;
 }
 .header_icon{
 	vertical-align: middle;
@@ -91,7 +91,7 @@ header h1{
 }
 header ul{
 	float: right;
-	margin: 24px 20px 0 0;
+	margin: 24px 15px 0 0;
 	padding: 0;
 }
 header ul li{
@@ -168,6 +168,12 @@ nav .icon{
 	width: 275px;
 	margin: 0 auto;
 	position: relative;
+}
+.builder_container{
+	margin-bottom: 105px;
+}
+.builder_edit_contanier{
+	margin-bottom: 160px;
 }
 
 /* ******************************
@@ -349,6 +355,31 @@ td{
 	font-size: 14px;
 	font-weight: 500;
 	cursor: pointer;
+}
+.cancel_edit_btn{
+	display: block;
+	width: 275px;
+	height: 45px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	background-color: #EBE8E1;
+	color: #212121;
+	border: none;
+	text-decoration: none;
+	text-align: center;
+	line-height: 45px;
+	font-size: 16px;
+	font-weight: 600;
+}
+.fix_btn_bottom{
+	position: fixed;
+	bottom: 0;
+	margin-left: -20px;
+	padding: 20px;
+	background-color: #C6D5E1;
+}
+.fix_btn_bottom .submit_btn{
+	margin: 0;
 }
 
 /* ******************************

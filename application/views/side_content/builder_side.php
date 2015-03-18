@@ -1,4 +1,4 @@
-<div class="side_container" id="js_addform">
+<div class="side_container builder_container" id="js_addform">
 	<h2><strong>Question Buildr</strong></h2>
 	<?php
 		// OPEN FORM
@@ -32,6 +32,7 @@
 			
 		echo '</div>';
 		echo form_fieldset_close(); 
+		
 		// QUESTION TEXT
 		echo form_fieldset('Survey Question');
 			$data = array(
@@ -41,6 +42,7 @@
 			echo form_textarea($data) ."\n";
 			echo '<div class="error_message" id="question_error"></div>';
 		echo form_fieldset_close(); 
+		
 		// QUESTION CHOICES
 		echo form_fieldset('Survey Choices',array('id'=>'question_choices'));
 			echo form_input(array('name'=>'choices[]','class'=>'form_input'));
@@ -48,7 +50,9 @@
 			echo '<div id="additional_choices"></div>';
 			echo '<div class="error_message" id="choice_error"></div>';
 			echo '<p class="js_add_choice add_choice_btn">add choice</p>' ."\n";
-		echo form_fieldset_close(); 	
+		echo form_fieldset_close();
+		
+		
 		// OPTIONS
 		echo form_fieldset('Survey Options');
 			$check_data = array(
@@ -61,8 +65,14 @@
 			echo form_checkbox($check_data) ."\n";
 			echo form_label('Answer required ') ."\n";
 		echo form_fieldset_close(); 
+		
+		
+		
 		// SUBMIT
-		echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Add Question'));
+		echo '<div class="fix_btn_bottom">';	
+			echo form_submit(array('type'=>'submit','class'=>'submit_btn','value'=>'Add Question'));
+		echo '</div>';
+		
 		// CLOSE FORM
 		echo form_close()."\n";
 	?>
